@@ -17,23 +17,33 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 let ClassService = class ClassService {
-    constructor(usersModel) {
-        this.usersModel = usersModel;
+    constructor(classModel) {
+        this.classModel = classModel;
     }
-    create(createClassDto) {
-        return 'This action adds a new class';
+    async create(name, open) {
+        const classes = await this.classModel.find({ name });
+        if (classes.length)
+            throw new common_1.BadRequestException('Class already exist!');
+        const classe = await this.classModel.create({ name, open });
+        return classe.save();
     }
-    findAll() {
-        return `This action returns all class`;
+    async findAll() {
+        return await this.classModel.find().exec();
     }
-    findOne(id) {
-        return `This action returns a #${id} class`;
+    async findOne(id) {
+        return await this.classModel.findOne({ id });
     }
-    update(id, updateClassDto) {
-        return `This action updates a #${id} class`;
+    async update(id, updateClassDto) {
+        return await this.classModel.findByIdAndUpdate({
+            _id: id,
+        }, {
+            $set: updateClassDto,
+        }, {
+            new: true
+        });
     }
-    remove(id) {
-        return `This action removes a #${id} class`;
+    async remove(id) {
+        return await this.classModel.deleteOne({ _id: id }).exec();
     }
 };
 ClassService = __decorate([

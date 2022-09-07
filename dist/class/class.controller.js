@@ -21,20 +21,20 @@ let ClassController = class ClassController {
     constructor(classService) {
         this.classService = classService;
     }
-    create(createClassDto) {
-        return this.classService.create(createClassDto);
+    create(body) {
+        return this.classService.create(body.name, body.open);
     }
     findAll() {
         return this.classService.findAll();
     }
     findOne(id) {
-        return this.classService.findOne(+id);
+        return this.classService.findOne(id);
     }
     update(id, updateClassDto) {
-        return this.classService.update(+id, updateClassDto);
+        return this.classService.update(id, updateClassDto);
     }
     remove(id) {
-        return this.classService.remove(+id);
+        return this.classService.remove(id);
     }
 };
 __decorate([
