@@ -6,6 +6,7 @@ import * as dotenv from 'dotenv';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { ClassModule } from './class/class.module';
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ const URL = process.env.DATABASE_URL;
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'client'),
     }),
+    ClassModule,
   ],
   controllers: [],
   providers: [],

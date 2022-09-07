@@ -15,6 +15,7 @@ const dotenv = require("dotenv");
 const throttler_1 = require("@nestjs/throttler");
 const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
+const class_module_1 = require("./class/class.module");
 dotenv.config();
 const URL = process.env.DATABASE_URL;
 let AppModule = class AppModule {
@@ -32,6 +33,7 @@ AppModule = __decorate([
             serve_static_1.ServeStaticModule.forRoot({
                 rootPath: (0, path_1.join)(__dirname, '..', 'client'),
             }),
+            class_module_1.ClassModule,
         ],
         controllers: [],
         providers: [],
