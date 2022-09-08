@@ -14,7 +14,10 @@ const secret = process.env.SESSION_SECRET;
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
   app.enableCors({
-    origin: '*',
+    origin: [
+      'https://backend-two-gamma.vercel.app/',
+      'https://frontendtest-livid.vercel.app/',
+    ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
     allowedHeaders: [
