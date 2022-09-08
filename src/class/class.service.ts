@@ -8,9 +8,12 @@ import { Class } from './entities/class.entity'
 export class ClassService {
   constructor(@InjectModel('Class') private classModel: Model<Class>) {}
   async create(name: string, open: boolean) {
-    const classes = await this.classModel.find({name});
+    const classes = await this.classModel.find({ name });
+    
     if (classes.length) throw new BadRequestException('Class already exist!')
-    const classe = await this.classModel.create({name, open})
+
+    const classe = await this.classModel.create({ name, open })
+    
     return classe.save();
   }
 

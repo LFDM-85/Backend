@@ -1,1 +1,0 @@
-{"version":3,"file":"class.entity.js","sourceRoot":"","sources":["../../../src/class/schema/class.entity.ts"],"names":[],"mappings":";;;AAAA,qCAAqC;AAExB,QAAA,WAAW,GAAG,IAAI,QAAQ,CAAC,MAAM,CAAC;IAC7C,IAAI,EAAE,EAAE,IAAI,EAAE,MAAM,EAAE,QAAQ,EAAE,IAAI,EAAE;IACtC,IAAI,EAAE,EAAE,IAAI,EAAE,MAAM,EAAE,QAAQ,EAAE,KAAK,EAAE;CACxC,CAAC,CAAC;AAEH,MAAa,KAAK;CAGjB;AAHD,sBAGC"}
