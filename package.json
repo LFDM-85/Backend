@@ -5,6 +5,8 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
+  
+  
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -42,7 +44,7 @@
     "express-session": "^1.17.3",
     "helmet": "^5.1.1",
     "moment": "^2.29.4",
-    "mongoose": "^6.5.4",
+    "mongoose": "^6.4.4",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
