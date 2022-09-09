@@ -13,13 +13,10 @@ dotenv.config();
 const secret = process.env.SESSION_SECRET;
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
-    cors: {
-      origin: '*',
-      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-      preflightContinue: false,
-      optionsSuccessStatus: 204,
-    },
+  const app = await NestFactory.create(AppModule);
+  app.get('/', function (req, res) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.send('Hello World');
   });
 
   // app.enableCors({
