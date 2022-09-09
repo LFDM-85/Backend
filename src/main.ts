@@ -14,16 +14,13 @@ const secret = process.env.SESSION_SECRET;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use(
-    cors({
-      credentials: true,
-      preflightContinue: true,
-      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-      origin: true,
-    }),
-  );
+  app.use(cors());
+
+  app.get('/products/:id', function (req, res, next) {
+    res.json({ msg: 'This is CORS-enabled for all origins!' });
+  });
   // app.enableCors({
-  //   origin: 'http://frontendtest-livid.vercel.app:3000/',
+  //   origin: 'http://frontendtest-livid.vercel.app',
   //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   //   credentials: true,
   //   allowedHeaders: [
