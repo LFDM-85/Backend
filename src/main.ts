@@ -6,7 +6,6 @@ import * as cookieParser from 'cookie-parser';
 import * as session from 'express-session';
 import * as passport from 'passport';
 import * as dotenv from 'dotenv';
-import cors from 'cors';
 
 dotenv.config();
 
@@ -14,23 +13,19 @@ const secret = process.env.SESSION_SECRET;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use(cors());
 
-  app.get('/products/:id', function (req, res, next) {
-    res.json({ msg: 'This is CORS-enabled for all origins!' });
+  app.enableCors({
+    origin: 'http://frontendtest-livid.vercel.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+    allowedHeaders: [
+      'origin',
+      'x-requested-with',
+      'content-type',
+      'accept',
+      'authorization',
+    ],
   });
-  // app.enableCors({
-  //   origin: 'http://frontendtest-livid.vercel.app',
-  //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-  //   credentials: true,
-  //   allowedHeaders: [
-  //     'origin',
-  //     'x-requested-with',
-  //     'content-type',
-  //     'accept',
-  //     'authorization',
-  //   ],
-  // });
 
   app.use(cookieParser());
   app.use(helmet());
