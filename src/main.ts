@@ -6,6 +6,7 @@ import * as cookieParser from 'cookie-parser';
 import * as session from 'express-session';
 import * as passport from 'passport';
 import * as dotenv from 'dotenv';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ const secret = process.env.SESSION_SECRET;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.use(cors());
   app.enableCors({
     origin: 'http://frontendtest-livid.vercel.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
@@ -26,13 +28,6 @@ async function bootstrap() {
     ],
   });
 
-  // app.use(function (req, res, next) {
-  //   res.setHeader('Access-Control-Allow-Origin', '*');
-  //   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  //   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  //   res.setHeader('Access-Control-Allow-Credentials', true);
-  //   next();
-  // });
   app.use(cookieParser());
   app.use(helmet());
   app.useGlobalPipes(
@@ -52,3 +47,4 @@ async function bootstrap() {
   await app.listen(5000);
 }
 bootstrap();
+
