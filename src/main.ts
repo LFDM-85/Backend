@@ -13,32 +13,20 @@ dotenv.config();
 const secret = process.env.SESSION_SECRET;
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-
-  app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST, PATCH,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Accept');
-    next();
-  });
-
+  const app = await NestFactory.create(AppModule); 
   app.enableCors({
-    allowedHeaders: '*',
-    origin: '*',
+    origin: 'http://frontendtest-livid.vercel.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+    preflightContinue: true,
+    allowedHeaders: [
+      'origin',
+      'x-requested-with',
+      'content-type',
+      'accept',
+      'authorization',
+    ],
   });
-  // app.enableCors({
-  //   origin: 'http://frontendtest-livid.vercel.app',
-  //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-  //   credentials: true,
-  //   preflightContinue: true,
-  //   allowedHeaders: [
-  //     'origin',
-  //     'x-requested-with',
-  //     'content-type',
-  //     'accept',
-  //     'authorization',
-  //   ],
-  // });
 
   app.use(cookieParser());
   app.use(helmet());
