@@ -13,21 +13,28 @@ dotenv.config();
 const secret = process.env.SESSION_SECRET;
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-
-  app.enableCors({
-    origin: '*',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    credentials: true,
-    preflightContinue: true,
-    allowedHeaders: [
-      'origin',
-      'x-requested-with',
-      'content-type',
-      'accept',
-      'authorization',
-    ],
+  const app = await NestFactory.create(AppModule, {
+    cors: {
+      origin: '*',
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+      preflightContinue: false,
+      optionsSuccessStatus: 204,
+    },
   });
+
+  // app.enableCors({
+  //   origin: '*',
+  //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  //   credentials: true,
+  //   preflightContinue: true,
+  //   allowedHeaders: [
+  //     'origin',
+  //     'x-requested-with',
+  //     'content-type',
+  //     'accept',
+  //     'authorization',
+  //   ],
+  // });
 
   app.use(cookieParser());
   app.use(helmet());
