@@ -24,6 +24,7 @@ async function bootstrap() {
       'Access-Control-Allow-Methods',
       'GET,OPTIONS,PATCH,DELETE,POST,PUT',
     );
+    res.setHeader('HTTP/1.1 200 OK');
     res.setHeader(
       'Access-Control-Allow-Headers',
       'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
