@@ -15,21 +15,19 @@ const secret = process.env.SESSION_SECRET;
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.use(cors({ origin: true })); // enable origin cors
-
-  // app.enableCors({
-  //   origin: true,
-  //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-  //   credentials: true,
-  //   preflightContinue: true,
-  //   allowedHeaders: [
-  //     'origin',
-  //     'x-requested-with',
-  //     'content-type',
-  //     'accept',
-  //     'authorization',
-  //   ],
-  // });
+  app.enableCors({
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+    preflightContinue: true,
+    allowedHeaders: [
+      'origin',
+      'x-requested-with',
+      'content-type',
+      'accept',
+      'authorization',
+    ],
+  });
 
   app.use(cookieParser());
   app.use(helmet());
