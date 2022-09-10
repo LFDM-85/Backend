@@ -13,7 +13,7 @@ const secret = process.env.SESSION_SECRET;
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     const options = {
-        origin: '*',
+        origin: true,
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
         preflightContinue: false,
         optionsSuccessStatus: 200,
