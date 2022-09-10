@@ -14,8 +14,11 @@
       "dest": "dist/main.js",
       "methods": [
         "GET", "POST", "PATCH", "PUT", "DELETE"
-      ],
-      
+      ]
+    }
+  
+  
+  ],
   "env": {
    
       "DATABASE_URL":"mongodb+srv://luismelo:3986088lm@cluster0.lbzvv.mongodb.net/?retryWrites=true&w=majority",
