@@ -11,7 +11,19 @@ const dotenv = require("dotenv");
 dotenv.config();
 const secret = process.env.SESSION_SECRET;
 async function bootstrap() {
-    const app = await core_1.NestFactory.create(app_module_1.AppModule, { cors: true });
+    const app = await core_1.NestFactory.create(app_module_1.AppModule);
+    app.enableCors({
+        origin: true,
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+        credentials: true,
+        allowedHeaders: [
+            'origin',
+            'x-requested-with',
+            'content-type',
+            'accept',
+            'authorization',
+        ],
+    });
     app.use(cookieParser());
     app.use((0, helmet_1.default)());
     app.useGlobalPipes(new common_1.ValidationPipe({
