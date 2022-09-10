@@ -16,7 +16,6 @@ async function bootstrap() {
         origin: true,
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
         credentials: true,
-        preflightContinue: true,
         allowedHeaders: [
             'origin',
             'x-requested-with',
