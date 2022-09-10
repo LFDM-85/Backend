@@ -17,24 +17,11 @@ async function bootstrap() {
   const options = {
     origin: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    preflightContinue: false,
+    preflightContinue: true,
     optionsSuccessStatus: 200,
     credentials: true,
   };
-
   app.enableCors(options);
-  // app.enableCors({
-  //   origin: true,
-  //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-  //   credentials: true,
-  //   allowedHeaders: [
-  //     'origin',
-  //     'x-requested-with',
-  //     'content-type',
-  //     'accept',
-  //     'authorization',
-  //   ],
-  // });
 
   app.use(cookieParser());
   app.use(helmet());

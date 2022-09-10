@@ -15,7 +15,7 @@ async function bootstrap() {
     const options = {
         origin: true,
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-        preflightContinue: false,
+        preflightContinue: true,
         optionsSuccessStatus: 200,
         credentials: true,
     };
