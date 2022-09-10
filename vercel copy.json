@@ -16,8 +16,6 @@
         "GET", "POST", "PATCH", "PUT", "DELETE"
       ]
     }
-  
-  
   ],
   "env": {
    
