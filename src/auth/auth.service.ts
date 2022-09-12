@@ -21,9 +21,9 @@ export class AuthService {
     if (user) {
       const comparePass = comparePasswords(password, user.password);
       if (comparePass) {
-        const { _id, name, email, role } = user;
+        const { _id, name, email, role, isValidated } = user;
         console.log('Correct password');
-        return { id: _id, name, email, role };
+        return { id: _id, name, email, role, isValidated };
       } else {
         console.log('Password is wrong!');
       }

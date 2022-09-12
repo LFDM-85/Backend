@@ -10,6 +10,7 @@ export declare class AuthService {
         name: string;
         email: string;
         role: string[];
+        isValidated: boolean;
     }>;
     signin(user: Users): Promise<{
         token: string;
