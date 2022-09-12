@@ -35,5 +35,10 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Array)
 ], UpdateUserDto.prototype, "role", void 0);
+__decorate([
+    (0, class_validator_1.IsBoolean)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Boolean)
+], UpdateUserDto.prototype, "isValidated", void 0);
 exports.UpdateUserDto = UpdateUserDto;
 //# sourceMappingURL=update-user.dto.js.map

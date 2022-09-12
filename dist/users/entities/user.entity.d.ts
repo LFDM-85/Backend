@@ -3,6 +3,5 @@ export declare class Users {
     email: string;
     password: string;
     role: string[];
-    refreshToken: string;
-    refreshTokenExp: string;
+    isValidated: boolean;
 }

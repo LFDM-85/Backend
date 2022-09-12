@@ -3,4 +3,5 @@ export declare class CreateUserDto {
     password: string;
     name: string;
     role: string[];
+    isValidated: boolean;
 }

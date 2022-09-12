@@ -7,7 +7,6 @@ exports.UsersSchema = new mongoose.Schema({
     email: { type: String, required: true },
     password: { type: String, required: true },
     role: { type: Array, required: true },
-    refreshToken: { type: String, required: false },
-    refreshTokenExp: { type: String, required: false },
+    isValidated: { type: Boolean, required: true },
 });
 //# sourceMappingURL=users.schema.js.map
