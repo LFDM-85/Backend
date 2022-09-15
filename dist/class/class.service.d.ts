@@ -13,6 +13,9 @@ export declare class ClassService {
     findOne(name: string): Promise<Class & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;
+    findOneById(id: string): Promise<Class & import("mongoose").Document<any, any, any> & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     update(name: string, updateClassDto: UpdateClassDto): Promise<import("mongodb").UpdateResult>;
     remove(name: string): Promise<import("mongodb").DeleteResult>;
 }

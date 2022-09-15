@@ -29,6 +29,11 @@ export class ClassService {
     return this.classModel.findOne({name});
   }
 
+  async findOneById(id: string) {
+    return this.classModel.findById({id})
+  }
+
+
   async update(name: string, updateClassDto: UpdateClassDto) {
     return this.classModel.updateOne({name}, {$set: {...updateClassDto}});
 
