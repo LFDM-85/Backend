@@ -30,7 +30,7 @@ export class ClassService {
   }
 
   async findOneById(id: string) {
-    return this.classModel.findById({id}).exec()
+    return this.classModel.findOne({id}).exec()
   }
 
 

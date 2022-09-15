@@ -35,7 +35,7 @@ let ClassService = class ClassService {
         return this.classModel.findOne({ nameClass }).exec();
     }
     async findOneById(id) {
-        return this.classModel.findById({ id }).exec();
+        return this.classModel.findOne({ id }).exec();
     }
     async update(nameClass, updateClassDto) {
         return this.classModel.updateOne({ nameClass }, { $set: Object.assign({}, updateClassDto) });
