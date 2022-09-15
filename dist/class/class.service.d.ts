@@ -10,12 +10,12 @@ export declare class ClassService {
     findAll(): Promise<(Class & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
-    findOne(name: string): Promise<Class & import("mongoose").Document<any, any, any> & {
+    findOne(nameClass: string): Promise<Class & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     findOneById(id: string): Promise<Class & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    update(name: string, updateClassDto: UpdateClassDto): Promise<import("mongodb").UpdateResult>;
-    remove(name: string): Promise<import("mongodb").DeleteResult>;
+    update(nameClass: string, updateClassDto: UpdateClassDto): Promise<import("mongodb").UpdateResult>;
+    remove(nameClass: string): Promise<import("mongodb").DeleteResult>;
 }

@@ -31,17 +31,17 @@ let ClassService = class ClassService {
     async findAll() {
         return this.classModel.find();
     }
-    async findOne(name) {
-        return this.classModel.findOne({ name }).exec();
+    async findOne(nameClass) {
+        return this.classModel.findOne({ nameClass }).exec();
     }
     async findOneById(id) {
         return this.classModel.findById({ id }).exec();
     }
-    async update(name, updateClassDto) {
-        return this.classModel.updateOne({ name }, { $set: Object.assign({}, updateClassDto) });
+    async update(nameClass, updateClassDto) {
+        return this.classModel.updateOne({ nameClass }, { $set: Object.assign({}, updateClassDto) });
     }
-    async remove(name) {
-        return this.classModel.deleteOne({ name }).exec();
+    async remove(nameClass) {
+        return this.classModel.deleteOne({ nameClass }).exec();
     }
 };
 ClassService = __decorate([

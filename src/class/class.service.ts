@@ -25,8 +25,8 @@ export class ClassService {
     return this.classModel.find();
   }
 
-  async findOne(name: string) {
-    return this.classModel.findOne({name}).exec();
+  async findOne(nameClass: string) {
+    return this.classModel.findOne({nameClass}).exec();
   }
 
   async findOneById(id: string) {
@@ -34,12 +34,12 @@ export class ClassService {
   }
 
 
-  async update(name: string, updateClassDto: UpdateClassDto) {
-    return this.classModel.updateOne({name}, {$set: {...updateClassDto}});
+  async update(nameClass: string, updateClassDto: UpdateClassDto) {
+    return this.classModel.updateOne({nameClass}, {$set: {...updateClassDto}});
 
   }
 
-  async remove(name: string) {
-    return this.classModel.deleteOne({name}).exec();
+  async remove(nameClass: string) {
+    return this.classModel.deleteOne({nameClass}).exec();
   }
 }
