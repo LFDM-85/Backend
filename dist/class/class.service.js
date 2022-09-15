@@ -32,16 +32,16 @@ let ClassService = class ClassService {
         return this.classModel.find();
     }
     async findOne(name) {
-        return this.classModel.findOne({ name });
+        return this.classModel.findOne({ name }).exec();
     }
     async findOneById(id) {
-        return this.classModel.findById({ id });
+        return this.classModel.findById({ id }).exec();
     }
     async update(name, updateClassDto) {
         return this.classModel.updateOne({ name }, { $set: Object.assign({}, updateClassDto) });
     }
     async remove(name) {
-        return this.classModel.deleteOne({ name });
+        return this.classModel.deleteOne({ name }).exec();
     }
 };
 ClassService = __decorate([

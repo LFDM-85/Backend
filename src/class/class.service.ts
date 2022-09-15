@@ -26,11 +26,11 @@ export class ClassService {
   }
 
   async findOne(name: string) {
-    return this.classModel.findOne({name});
+    return this.classModel.findOne({name}).exec();
   }
 
   async findOneById(id: string) {
-    return this.classModel.findById({id})
+    return this.classModel.findById({id}).exec()
   }
 
 
@@ -40,6 +40,6 @@ export class ClassService {
   }
 
   async remove(name: string) {
-    return this.classModel.deleteOne({name});
+    return this.classModel.deleteOne({name}).exec();
   }
 }
