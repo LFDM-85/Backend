@@ -1,17 +1,23 @@
-import { IsArray, IsBoolean, IsEmail, IsString } from 'class-validator';
+import { IsArray, IsBoolean, IsEmail, IsString, IsNotEmpty } from 'class-validator';
 
 export class CreateUserDto {
   @IsEmail()
+    @IsNotEmpty()
   email: string;
 
   @IsString()
+    @IsNotEmpty()
   password: string;
 
   @IsString()
+    @IsNotEmpty()
   name: string;
 
   @IsArray()
+    @IsNotEmpty()
   role: string[];
+
   @IsBoolean()
+    @IsNotEmpty()
   isValidated: boolean;
 }

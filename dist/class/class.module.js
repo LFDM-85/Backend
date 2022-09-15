@@ -17,7 +17,7 @@ let ClassModule = class ClassModule {
 ClassModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            mongoose_1.MongooseModule.forFeature([{ name: 'Class', schema: class_schema_1.ClassSchema }]),
+            mongoose_1.MongooseModule.forFeature([{ name: class_schema_1.Class.name, schema: class_schema_1.ClassSchema }]),
         ],
         controllers: [class_controller_1.ClassController],
         providers: [class_service_1.ClassService],

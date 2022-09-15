@@ -16,16 +16,13 @@ exports.ClassService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
+const class_schema_1 = require("./schema/class.schema");
 let ClassService = class ClassService {
     constructor(classModel) {
         this.classModel = classModel;
     }
-    async create(name, open) {
-        const classes = await this.classModel.find({ name });
-        if (classes.length)
-            throw new common_1.BadRequestException('Class already exist!');
-        const classe = await this.classModel.create({ name, open });
-        return classe.save();
+    async create(createClassDto) {
+        return new this.classModel(createClassDto).save();
     }
     async findAll() {
         return await this.classModel.find().exec();
@@ -48,7 +45,7 @@ let ClassService = class ClassService {
 };
 ClassService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)('Class')),
+    __param(0, (0, mongoose_1.InjectModel)(class_schema_1.Class.name)),
     __metadata("design:paramtypes", [mongoose_2.Model])
 ], ClassService);
 exports.ClassService = ClassService;

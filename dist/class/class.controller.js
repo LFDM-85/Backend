@@ -21,8 +21,8 @@ let ClassController = class ClassController {
     constructor(classService) {
         this.classService = classService;
     }
-    create(body) {
-        return this.classService.create(body.name, body.open);
+    create(createClassDto) {
+        return this.classService.create(createClassDto);
     }
     findAll() {
         return this.classService.findAll();

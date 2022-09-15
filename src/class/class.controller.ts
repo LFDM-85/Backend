@@ -5,11 +5,11 @@ import { UpdateClassDto } from './dto/update-class.dto';
 
 @Controller('class')
 export class ClassController {
-  constructor(private readonly classService: ClassService) {}
+  constructor(private  classService: ClassService) {}
 
   @Post('/create')
-  create(@Body() body: CreateClassDto) {
-    return this.classService.create(body.name, body.open);
+  create(@Body() createClassDto: CreateClassDto) {
+    return this.classService.create(createClassDto);
   }
 
   @Get('/all')

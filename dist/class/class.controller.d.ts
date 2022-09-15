@@ -1,44 +1,17 @@
-/// <reference types="mongoose/types/aggregate" />
-/// <reference types="mongoose/types/callback" />
-/// <reference types="mongoose/types/collection" />
-/// <reference types="mongoose/types/connection" />
-/// <reference types="mongoose/types/cursor" />
-/// <reference types="mongoose/types/document" />
-/// <reference types="mongoose/types/error" />
-/// <reference types="mongoose/types/expressions" />
-/// <reference types="mongoose/types/helpers" />
-/// <reference types="mongoose/types/middlewares" />
-/// <reference types="mongoose/types/indexes" />
-/// <reference types="mongoose/types/models" />
-/// <reference types="mongoose/types/mongooseoptions" />
-/// <reference types="mongoose/types/pipelinestage" />
-/// <reference types="mongoose/types/populate" />
-/// <reference types="mongoose/types/query" />
-/// <reference types="mongoose/types/schemaoptions" />
-/// <reference types="mongoose/types/schematypes" />
-/// <reference types="mongoose/types/session" />
-/// <reference types="mongoose/types/types" />
-/// <reference types="mongoose/types/utility" />
-/// <reference types="mongoose/types/validation" />
-/// <reference types="mongoose/types/virtuals" />
-/// <reference types="mongoose" />
-/// <reference types="mongoose/types/inferschematype" />
 import { ClassService } from './class.service';
 import { CreateClassDto } from './dto/create-class.dto';
 import { UpdateClassDto } from './dto/update-class.dto';
 export declare class ClassController {
-    private readonly classService;
+    private classService;
     constructor(classService: ClassService);
-    create(body: CreateClassDto): Promise<import("mongoose").Document<unknown, any, import("./entities/class.entity").Class> & import("./entities/class.entity").Class & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    findAll(): Promise<(import("mongoose").Document<unknown, any, import("./entities/class.entity").Class> & import("./entities/class.entity").Class & {
+    create(createClassDto: CreateClassDto): Promise<import("./schema/class.schema").Class>;
+    findAll(): Promise<(import("./schema/class.schema").Class & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
-    findOne(id: string): Promise<import("mongoose").Document<unknown, any, import("./entities/class.entity").Class> & import("./entities/class.entity").Class & {
+    findOne(id: string): Promise<import("./schema/class.schema").Class & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    update(id: string, updateClassDto: UpdateClassDto): Promise<import("mongoose").Document<unknown, any, import("./entities/class.entity").Class> & import("./entities/class.entity").Class & {
+    update(id: string, updateClassDto: UpdateClassDto): Promise<import("./schema/class.schema").Class & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     remove(id: string): Promise<import("mongodb").DeleteResult>;

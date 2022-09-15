@@ -15,22 +15,27 @@ class CreateUserDto {
 }
 __decorate([
     (0, class_validator_1.IsEmail)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "password", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "name", void 0);
 __decorate([
     (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Array)
 ], CreateUserDto.prototype, "role", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Boolean)
 ], CreateUserDto.prototype, "isValidated", void 0);
 exports.CreateUserDto = CreateUserDto;

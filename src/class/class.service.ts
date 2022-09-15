@@ -2,19 +2,20 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UpdateClassDto } from './dto/update-class.dto';
-import { Class } from './entities/class.entity'
+import {ClassDocument, Class} from "./schema/class.schema";
+import {CreateClassDto} from "./dto/create-class.dto";
 
 @Injectable()
 export class ClassService {
-  constructor(@InjectModel('Class') private classModel: Model<Class>) {}
-  async create(name: string, open: boolean) {
-    const classes = await this.classModel.find({ name });
-    
-    if (classes.length) throw new BadRequestException('Class already exist!')
-
-    const classe = await this.classModel.create({ name, open })
-    
-    return classe.save();
+  constructor(@InjectModel(Class.name) private classModel: Model<ClassDocument>) {}
+  async create(createClassDto: CreateClassDto): Promise<Class> {
+    return  new this.classModel(createClassDto).save()
+    // const classes = await this.classModel.find({ name });
+    //
+    // if (classes.length) throw new BadRequestException('Class already exist!')
+    //
+    // const classe = await this.classModel.create({ name, open })
+    //
   }
 
   async findAll() {
