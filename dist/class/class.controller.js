@@ -54,21 +54,21 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ClassController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':name'),
+    (0, common_1.Get)('/:name'),
     __param(0, (0, common_1.Param)('name')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ClassController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Get)(':id'),
+    (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ClassController.prototype, "findOneById", null);
 __decorate([
-    (0, common_1.Patch)(':name'),
+    (0, common_1.Patch)('/:name'),
     __param(0, (0, common_1.Param)('name')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -76,7 +76,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ClassController.prototype, "update", null);
 __decorate([
-    (0, common_1.Delete)(':name'),
+    (0, common_1.Delete)('/:name'),
     __param(0, (0, common_1.Param)('name')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
