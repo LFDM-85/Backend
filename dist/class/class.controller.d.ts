@@ -4,7 +4,9 @@ import { UpdateClassDto } from './dto/update-class.dto';
 export declare class ClassController {
     private classService;
     constructor(classService: ClassService);
-    create(createClassDto: CreateClassDto): Promise<import("./schema/class.schema").Class>;
+    create(createClassDto: CreateClassDto): Promise<import("./schema/class.schema").Class & import("mongoose").Document<any, any, any> & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     findAll(): Promise<(import("./schema/class.schema").Class & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;

@@ -22,7 +22,7 @@ let ClassController = class ClassController {
         this.classService = classService;
     }
     create(createClassDto) {
-        return this.classService.create(createClassDto);
+        return this.classService.create(createClassDto.nameClass, createClassDto.open);
     }
     findAll() {
         return this.classService.findAll();

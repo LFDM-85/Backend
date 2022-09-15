@@ -8,13 +8,16 @@ import {CreateClassDto} from "./dto/create-class.dto";
 @Injectable()
 export class ClassService {
   constructor(@InjectModel(Class.name) private classModel: Model<ClassDocument>) {}
-  async create(createClassDto: CreateClassDto): Promise<Class> {
 
-    const { nameClass, open} = createClassDto
+  async create(nameClass: string, open: boolean) {
 
-    if(nameClass) throw new BadRequestException('Class already exist!')
+    const findOneClass = await this.classModel.findOne({nameClass})
 
-    return  new this.classModel(createClassDto).save()
+    if(findOneClass) throw new BadRequestException('Class already exist!')
+
+    const oneClass = await this.classModel.create({nameClass, open})
+
+    return  oneClass.save()
 
   }
 

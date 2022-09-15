@@ -21,11 +21,12 @@ let ClassService = class ClassService {
     constructor(classModel) {
         this.classModel = classModel;
     }
-    async create(createClassDto) {
-        const { nameClass, open } = createClassDto;
-        if (nameClass)
+    async create(nameClass, open) {
+        const findOneClass = await this.classModel.findOne({ nameClass });
+        if (findOneClass)
             throw new common_1.BadRequestException('Class already exist!');
-        return new this.classModel(createClassDto).save();
+        const oneClass = await this.classModel.create({ nameClass, open });
+        return oneClass.save();
     }
     async findAll() {
         return this.classModel.find();
