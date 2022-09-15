@@ -5,7 +5,7 @@ export type ClassDocument = Class & Document
 @Schema()
 export class Class {
   @Prop()
-  name: string;
+  nameClass: string;
   @Prop()
   open: boolean
 }

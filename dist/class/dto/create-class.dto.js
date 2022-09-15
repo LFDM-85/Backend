@@ -17,7 +17,7 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateClassDto.prototype, "name", void 0);
+], CreateClassDto.prototype, "nameClass", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsBoolean)(),

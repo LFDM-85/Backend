@@ -16,7 +16,7 @@ let Class = class Class {
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Class.prototype, "name", void 0);
+], Class.prototype, "nameClass", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Boolean)

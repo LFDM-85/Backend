@@ -4,7 +4,7 @@ import { IsBoolean, IsString, IsNotEmpty } from 'class-validator';
 export class CreateClassDto {
   @IsNotEmpty()
   @IsString()
-  name: string;
+  nameClass: string;
 
   @IsNotEmpty()
   @IsBoolean()

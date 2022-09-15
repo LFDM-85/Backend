@@ -25,7 +25,7 @@
 import { Document } from "mongoose";
 export declare type ClassDocument = Class & Document;
 export declare class Class {
-    name: string;
+    nameClass: string;
     open: boolean;
 }
 export declare const ClassSchema: import("mongoose").Schema<Class, import("mongoose").Model<Class, any, any, any, any>, {}, {}, {}, {}, "type", Class>;

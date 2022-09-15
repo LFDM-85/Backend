@@ -22,8 +22,8 @@ let ClassService = class ClassService {
         this.classModel = classModel;
     }
     async create(createClassDto) {
-        const className = await this.classModel.find({ name });
-        if (className)
+        const { nameClass, open } = createClassDto;
+        if (nameClass)
             throw new common_1.BadRequestException('Class already exist!');
         return new this.classModel(createClassDto).save();
     }

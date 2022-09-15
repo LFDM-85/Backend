@@ -10,9 +10,9 @@ export class ClassService {
   constructor(@InjectModel(Class.name) private classModel: Model<ClassDocument>) {}
   async create(createClassDto: CreateClassDto): Promise<Class> {
 
-    const className = await this.classModel.find({ name });
-    if (className) throw new BadRequestException('Class already exist!');
+    const { nameClass, open} = createClassDto
 
+    if(nameClass) throw new BadRequestException('Class already exist!')
 
     return  new this.classModel(createClassDto).save()
 

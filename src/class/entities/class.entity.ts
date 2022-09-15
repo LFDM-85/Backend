@@ -1,4 +1,4 @@
 export class Class {
-  name: string;
+  nameClass: string;
   open: boolean;
 }

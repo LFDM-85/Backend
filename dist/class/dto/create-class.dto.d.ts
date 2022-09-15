@@ -1,4 +1,4 @@
 export declare class CreateClassDto {
-    name: string;
+    nameClass: string;
     open: boolean;
 }
