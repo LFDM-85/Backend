@@ -25,22 +25,16 @@ let ClassService = class ClassService {
         return new this.classModel(createClassDto).save();
     }
     async findAll() {
-        return await this.classModel.find().exec();
+        return this.classModel.find();
     }
-    async findOne(id) {
-        return await this.classModel.findOne({ id });
+    async findOne(name) {
+        return this.classModel.findOne({ name });
     }
-    async update(id, updateClassDto) {
-        return await this.classModel.findByIdAndUpdate({
-            _id: id,
-        }, {
-            $set: updateClassDto,
-        }, {
-            new: true
-        });
+    async update(name, updateClassDto) {
+        return this.classModel.updateOne({ name }, { $set: Object.assign({}, updateClassDto) });
     }
-    async remove(id) {
-        return await this.classModel.deleteOne({ _id: id }).exec();
+    async remove(name) {
+        return this.classModel.deleteOne({ name });
     }
 };
 ClassService = __decorate([

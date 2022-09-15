@@ -8,11 +8,9 @@ export declare class ClassController {
     findAll(): Promise<(import("./schema/class.schema").Class & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;
-    findOne(id: string): Promise<import("./schema/class.schema").Class & import("mongoose").Document<any, any, any> & {
+    findOne(name: string): Promise<import("./schema/class.schema").Class & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    update(id: string, updateClassDto: UpdateClassDto): Promise<import("./schema/class.schema").Class & import("mongoose").Document<any, any, any> & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    remove(id: string): Promise<import("mongodb").DeleteResult>;
+    update(name: string, updateClassDto: UpdateClassDto): Promise<import("mongodb").UpdateResult>;
+    remove(name: string): Promise<import("mongodb").DeleteResult>;
 }

@@ -17,18 +17,18 @@ export class ClassController {
     return this.classService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.classService.findOne(id);
+  @Get(':name')
+  findOne(@Param('name') name: string) {
+    return this.classService.findOne(name);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateClassDto: UpdateClassDto) {
-    return this.classService.update(id, updateClassDto);
+  @Patch(':name')
+  update(@Param('name') name: string, @Body() updateClassDto: UpdateClassDto) {
+    return this.classService.update(name, updateClassDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.classService.remove(id);
+  @Delete(':name')
+  remove(@Param('name') name: string) {
+    return this.classService.remove(name);
   }
 }

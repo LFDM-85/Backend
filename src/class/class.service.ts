@@ -11,37 +11,23 @@ export class ClassService {
   async create(createClassDto: CreateClassDto): Promise<Class> {
 
     return  new this.classModel(createClassDto).save()
-    // const classes = await this.classModel.find({ name });
-    //
-    // if (classes.length) throw new BadRequestException('Class already exist!')
-    //
-    // const classe = await this.classModel.create({ name, open })
-    //
+
   }
 
   async findAll() {
-    return await this.classModel.find().exec();
+    return this.classModel.find();
   }
 
-  async findOne(id: string) {
-    return await this.classModel.findOne({id});
+  async findOne(name: string) {
+    return this.classModel.findOne({name});
   }
 
-  async update(id: string, updateClassDto: UpdateClassDto) {
-    return await this.classModel.findByIdAndUpdate(
-      {
-        _id: id,
-      },
-      {
-        $set: updateClassDto,
-      },
-      {
-        new: true
-      }
-    );
+  async update(name: string, updateClassDto: UpdateClassDto) {
+    return this.classModel.updateOne({name}, {$set: {...updateClassDto}});
+
   }
 
-  async remove(id: string) {
-    return await this.classModel.deleteOne({_id: id}).exec();
+  async remove(name: string) {
+    return this.classModel.deleteOne({name});
   }
 }

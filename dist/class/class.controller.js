@@ -27,14 +27,14 @@ let ClassController = class ClassController {
     findAll() {
         return this.classService.findAll();
     }
-    findOne(id) {
-        return this.classService.findOne(id);
+    findOne(name) {
+        return this.classService.findOne(name);
     }
-    update(id, updateClassDto) {
-        return this.classService.update(id, updateClassDto);
+    update(name, updateClassDto) {
+        return this.classService.update(name, updateClassDto);
     }
-    remove(id) {
-        return this.classService.remove(id);
+    remove(name) {
+        return this.classService.remove(name);
     }
 };
 __decorate([
@@ -51,23 +51,23 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ClassController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)(':name'),
+    __param(0, (0, common_1.Param)('name')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ClassController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Patch)(':name'),
+    __param(0, (0, common_1.Param)('name')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_class_dto_1.UpdateClassDto]),
     __metadata("design:returntype", void 0)
 ], ClassController.prototype, "update", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Delete)(':name'),
+    __param(0, (0, common_1.Param)('name')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
