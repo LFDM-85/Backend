@@ -26,11 +26,12 @@ export class ClassService {
   }
 
   async findOne(nameClass: string) {
+    if(!nameClass) throw new BadRequestException((`Class with this name: ${nameClass} does not exist!`))
     return this.classModel.findOne({nameClass}).exec();
   }
 
   async findOneById(id: string) {
-    return this.classModel.findOne({id}).exec()
+    return this.classModel.findOne({_id: id }).exec()
   }
 
 

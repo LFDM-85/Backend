@@ -32,10 +32,12 @@ let ClassService = class ClassService {
         return this.classModel.find();
     }
     async findOne(nameClass) {
+        if (!nameClass)
+            throw new common_1.BadRequestException((`Class with this name: ${nameClass} does not exist!`));
         return this.classModel.findOne({ nameClass }).exec();
     }
     async findOneById(id) {
-        return this.classModel.findOne({ id }).exec();
+        return this.classModel.findOne({ _id: id }).exec();
     }
     async update(nameClass, updateClassDto) {
         return this.classModel.updateOne({ nameClass }, { $set: Object.assign({}, updateClassDto) });
