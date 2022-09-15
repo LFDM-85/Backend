@@ -26,7 +26,7 @@ export class UsersController {
       body.email,
       body.password,
       body.name,
-      body.role,
+      body.roles,
       body.isValidated,
     );
   }

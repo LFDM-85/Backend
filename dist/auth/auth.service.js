@@ -24,9 +24,9 @@ let AuthService = class AuthService {
         if (user) {
             const comparePass = (0, bcrypt_1.comparePasswords)(password, user.password);
             if (comparePass) {
-                const { _id, name, email, role, isValidated } = user;
+                const { _id, name, email, roles, isValidated } = user;
                 console.log('Correct password');
-                return { id: _id, name, email, role, isValidated };
+                return { id: _id, name, email, roles, isValidated };
             }
             else {
                 console.log('Password is wrong!');

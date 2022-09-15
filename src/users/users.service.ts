@@ -9,9 +9,9 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export class UsersService {
   constructor(@InjectModel('Users') private usersModel: Model<Users>) {}
 
-  async create(email: string, password: string, name: string, role: string[], isValidated: boolean) {
+  async create(email: string, password: string, name: string, roles: string[], isValidated: boolean) {
     const users = await this.usersModel.find({ email });
-    if (users.length) throw new BadRequestException('Email in use');
+    if (users) throw new BadRequestException('Email in use');
 
     password = encodePassword(password);
     console.log(password);
@@ -20,7 +20,7 @@ export class UsersService {
       email,
       password,
       name,
-      role,
+      roles,
       isValidated,
     });
     return user.save(); // saves the entity in MongoDB

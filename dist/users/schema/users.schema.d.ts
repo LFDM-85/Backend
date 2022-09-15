@@ -3,6 +3,6 @@ export declare const UsersSchema: mongoose.Schema<any, mongoose.Model<any, any, 
     name: string;
     email: string;
     password: string;
-    role: any[];
+    roles: any[];
     isValidated: boolean;
 }>;

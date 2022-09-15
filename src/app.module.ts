@@ -7,6 +7,8 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { ClassModule } from './class/class.module';
+import {APP_GUARD} from "@nestjs/core";
+import {RolesGuard} from "./roleGuards/roles.guard";
 
 dotenv.config();
 
@@ -27,6 +29,9 @@ const URL = process.env.DATABASE_URL;
     ClassModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [{
+    provide: APP_GUARD,
+    useClass: RolesGuard,
+  }],
 })
 export class AppModule {}

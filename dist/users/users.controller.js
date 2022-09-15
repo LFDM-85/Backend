@@ -24,7 +24,7 @@ let UsersController = class UsersController {
         this.usersService = usersService;
     }
     async createUser(body) {
-        return await this.usersService.create(body.email, body.password, body.name, body.role, body.isValidated);
+        return await this.usersService.create(body.email, body.password, body.name, body.roles, body.isValidated);
     }
     async whoami(req) {
         return req.user;

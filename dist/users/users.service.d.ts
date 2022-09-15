@@ -28,7 +28,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export declare class UsersService {
     private usersModel;
     constructor(usersModel: Model<Users>);
-    create(email: string, password: string, name: string, role: string[], isValidated: boolean): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
+    create(email: string, password: string, name: string, roles: string[], isValidated: boolean): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     findAll(): Promise<(import("mongoose").Document<unknown, any, Users> & Users & {

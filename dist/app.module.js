@@ -16,6 +16,8 @@ const throttler_1 = require("@nestjs/throttler");
 const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
 const class_module_1 = require("./class/class.module");
+const core_1 = require("@nestjs/core");
+const roles_guard_1 = require("./roleGuards/roles.guard");
 dotenv.config();
 const URL = process.env.DATABASE_URL;
 let AppModule = class AppModule {
@@ -36,7 +38,10 @@ AppModule = __decorate([
             class_module_1.ClassModule,
         ],
         controllers: [],
-        providers: [],
+        providers: [{
+                provide: core_1.APP_GUARD,
+                useClass: roles_guard_1.RolesGuard,
+            }],
     })
 ], AppModule);
 exports.AppModule = AppModule;

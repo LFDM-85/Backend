@@ -15,7 +15,7 @@ export class CreateUserDto {
 
   @IsArray()
     @IsNotEmpty()
-  role: string[];
+  roles: string[];
 
   @IsBoolean()
     @IsNotEmpty()

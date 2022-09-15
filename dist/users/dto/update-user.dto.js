@@ -34,7 +34,7 @@ __decorate([
     (0, class_validator_1.IsArray)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Array)
-], UpdateUserDto.prototype, "role", void 0);
+], UpdateUserDto.prototype, "roles", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsOptional)(),

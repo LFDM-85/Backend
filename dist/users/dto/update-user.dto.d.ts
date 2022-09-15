@@ -4,7 +4,7 @@ export declare class UpdateUserDto extends UpdateUserDto_base {
     email: string;
     password: string;
     name: string;
-    role: string[];
+    roles: string[];
     isValidated: boolean;
 }
 export {};

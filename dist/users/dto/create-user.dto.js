@@ -32,7 +32,7 @@ __decorate([
     (0, class_validator_1.IsArray)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Array)
-], CreateUserDto.prototype, "role", void 0);
+], CreateUserDto.prototype, "roles", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsNotEmpty)(),

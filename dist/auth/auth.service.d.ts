@@ -9,7 +9,7 @@ export declare class AuthService {
         id: import("mongoose").Types.ObjectId;
         name: string;
         email: string;
-        role: string[];
+        roles: string[];
         isValidated: boolean;
     }>;
     signin(user: Users): Promise<{

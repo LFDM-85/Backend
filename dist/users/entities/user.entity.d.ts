@@ -2,6 +2,6 @@ export declare class Users {
     name: string;
     email: string;
     password: string;
-    role: string[];
+    roles: string[];
     isValidated: boolean;
 }
