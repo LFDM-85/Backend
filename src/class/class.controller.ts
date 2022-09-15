@@ -23,8 +23,8 @@ export class ClassController {
   }
 
   @Get('/:id')
-  findOneById(@Param('id') id: string) {
-    return this.classService.findOneById(id)
+  findOneById(@Param('id') _id: string) {
+    return this.classService.findOneById(_id)
   }
 
   @Patch('/:name')

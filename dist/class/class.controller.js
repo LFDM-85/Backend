@@ -30,8 +30,8 @@ let ClassController = class ClassController {
     findOne(name) {
         return this.classService.findOne(name);
     }
-    findOneById(id) {
-        return this.classService.findOneById(id);
+    findOneById(_id) {
+        return this.classService.findOneById(_id);
     }
     update(name, updateClassDto) {
         return this.classService.update(name, updateClassDto);

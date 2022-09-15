@@ -13,7 +13,7 @@ export declare class ClassController {
     findOne(name: string): Promise<import("./schema/class.schema").Class & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    findOneById(id: string): Promise<import("./schema/class.schema").Class & import("mongoose").Document<any, any, any> & {
+    findOneById(_id: string): Promise<import("./schema/class.schema").Class & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     update(name: string, updateClassDto: UpdateClassDto): Promise<import("mongodb").UpdateResult>;
