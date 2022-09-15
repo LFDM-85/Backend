@@ -11,7 +11,7 @@ export class UsersService {
 
   async create(email: string, password: string, name: string, roles: string[], isValidated: boolean) {
     const users = await this.usersModel.find({ email });
-    if (users) throw new BadRequestException('Email in use');
+    if (users.length) throw new BadRequestException('Email in use');
 
     password = encodePassword(password);
     console.log(password);

@@ -23,7 +23,7 @@ let UsersService = class UsersService {
     }
     async create(email, password, name, roles, isValidated) {
         const users = await this.usersModel.find({ email });
-        if (users)
+        if (users.length)
             throw new common_1.BadRequestException('Email in use');
         password = (0, bcrypt_1.encodePassword)(password);
         console.log(password);
