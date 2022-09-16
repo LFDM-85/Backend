@@ -9,6 +9,7 @@ import { join } from 'path';
 import { ClassModule } from './class/class.module';
 import {APP_GUARD} from "@nestjs/core";
 import {RolesGuard} from "./roleGuards/roles.guard";
+import { ClassUserModule } from './class_user/class_user.module';
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ const URL = process.env.DATABASE_URL;
       rootPath: join(__dirname, '..', 'client'),
     }),
     ClassModule,
+    ClassUserModule,
   ],
   controllers: [],
   providers: [{

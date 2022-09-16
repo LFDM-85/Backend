@@ -3,7 +3,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UpdateClassDto } from './dto/update-class.dto';
 import {ClassDocument, Class} from "./schema/class.schema";
-import {CreateClassDto} from "./dto/create-class.dto";
 
 @Injectable()
 export class ClassService {

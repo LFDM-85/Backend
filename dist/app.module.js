@@ -18,6 +18,7 @@ const path_1 = require("path");
 const class_module_1 = require("./class/class.module");
 const core_1 = require("@nestjs/core");
 const roles_guard_1 = require("./roleGuards/roles.guard");
+const class_user_module_1 = require("./class_user/class_user.module");
 dotenv.config();
 const URL = process.env.DATABASE_URL;
 let AppModule = class AppModule {
@@ -36,6 +37,7 @@ AppModule = __decorate([
                 rootPath: (0, path_1.join)(__dirname, '..', 'client'),
             }),
             class_module_1.ClassModule,
+            class_user_module_1.ClassUserModule,
         ],
         controllers: [],
         providers: [{
