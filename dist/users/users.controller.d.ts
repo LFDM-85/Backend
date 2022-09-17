@@ -29,9 +29,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
-    createUser(body: CreateUserDto): Promise<import("mongoose").Document<unknown, any, import("./entities/user.entity").Users> & import("./entities/user.entity").Users & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
+    createUser(createUserDto: CreateUserDto): Promise<import("./entities/user.entity").Users>;
     whoami(req: any): Promise<string>;
     findAllUsers(): Promise<(import("mongoose").Document<unknown, any, import("./entities/user.entity").Users> & import("./entities/user.entity").Users & {
         _id: import("mongoose").Types.ObjectId;

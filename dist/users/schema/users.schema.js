@@ -18,11 +18,11 @@ __decorate([
     __metadata("design:type", String)
 ], Users.prototype, "name", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ require: true }),
     __metadata("design:type", String)
 ], Users.prototype, "email", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ require: true }),
     __metadata("design:type", String)
 ], Users.prototype, "password", void 0);
 __decorate([

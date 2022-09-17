@@ -25,12 +25,11 @@
 import { Model } from 'mongoose';
 import { Users } from './entities/user.entity';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateUserDto } from './dto/create-user.dto';
 export declare class UsersService {
     private usersModel;
     constructor(usersModel: Model<Users>);
-    create(email: string, password: string, name: string, roles: string[], isValidated: boolean): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
+    create(createUserDto: CreateUserDto): Promise<Users>;
     findAll(): Promise<(import("mongoose").Document<unknown, any, Users> & Users & {
         _id: import("mongoose").Types.ObjectId;
     })[]>;

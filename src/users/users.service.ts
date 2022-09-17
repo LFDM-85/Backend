@@ -4,25 +4,22 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Users } from './entities/user.entity';
 import { encodePassword } from '../utils/bcrypt';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UsersService {
   constructor(@InjectModel('Users') private usersModel: Model<Users>) {}
 
-  async create(email: string, password: string, name: string, roles: string[], isValidated: boolean) {
+  async create(createUserDto: CreateUserDto): Promise<Users> {
+    
+    const {email, password} = createUserDto
     const users = await this.usersModel.find({ email });
     if (users.length) throw new BadRequestException('Email in use');
 
-    password = encodePassword(password);
+    createUserDto.password = encodePassword(password);
     console.log(password);
 
-    const user = await this.usersModel.create({
-      email,
-      password,
-      name,
-      roles,
-      isValidated,
-    });
+    const user = await this.usersModel.create(createUserDto);
     return user.save(); // saves the entity in MongoDB
   }
 

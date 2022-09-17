@@ -21,19 +21,14 @@ let UsersService = class UsersService {
     constructor(usersModel) {
         this.usersModel = usersModel;
     }
-    async create(email, password, name, roles, isValidated) {
+    async create(createUserDto) {
+        const { email, password } = createUserDto;
         const users = await this.usersModel.find({ email });
         if (users.length)
             throw new common_1.BadRequestException('Email in use');
-        password = (0, bcrypt_1.encodePassword)(password);
+        createUserDto.password = (0, bcrypt_1.encodePassword)(password);
         console.log(password);
-        const user = await this.usersModel.create({
-            email,
-            password,
-            name,
-            roles,
-            isValidated,
-        });
+        const user = await this.usersModel.create(createUserDto);
         return user.save();
     }
     async findAll() {
