@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClassSchema = exports.Class = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
+const mongoose_2 = require("mongoose");
 let Class = class Class {
 };
 __decorate([
@@ -21,9 +22,13 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Boolean)
 ], Class.prototype, "open", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: 'Users' }] })),
+    __metadata("design:type", Array)
+], Class.prototype, "user", void 0);
 Class = __decorate([
     (0, mongoose_1.Schema)()
 ], Class);
 exports.Class = Class;
-exports.ClassSchema = mongoose_1.SchemaFactory.createForClass((Class));
+exports.ClassSchema = mongoose_1.SchemaFactory.createForClass(Class);
 //# sourceMappingURL=class.schema.js.map
