@@ -26,18 +26,21 @@
 import { ClassService } from './class.service';
 import { CreateClassDto } from './dto/create-class.dto';
 import { UpdateClassDto } from './dto/update-class.dto';
+import { Users } from 'src/users/schema/users.schema';
 export declare class ClassController {
     private classService;
     constructor(classService: ClassService);
     create(createClassDto: CreateClassDto): Promise<import("./schema/class.schema").Class & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    findAll(): Promise<(import("./schema/class.schema").Class & import("mongoose").Document<any, any, any> & {
+    findAll(): Promise<Omit<import("./schema/class.schema").Class & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
-    })[]>;
+    }, never>[]>;
     findOne(name: string): Promise<import("./schema/class.schema").Class & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    update(name: string, updateClassDto: UpdateClassDto): Promise<import("mongodb").UpdateResult>;
+    update(id: string, updateClassDto: UpdateClassDto, users: Users): Promise<import("./schema/class.schema").Class & import("mongoose").Document<any, any, any> & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     remove(name: string): Promise<import("mongodb").DeleteResult>;
 }

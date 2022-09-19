@@ -4,6 +4,7 @@ import { CreateClassDto } from './dto/create-class.dto';
 import { UpdateClassDto } from './dto/update-class.dto';
 import {Roles} from "../decorators/roles.decorator";
 import {Role} from "../enums/role.enum";
+import { Users } from 'src/users/schema/users.schema';
 
 @Controller('class')
 export class ClassController {
@@ -26,9 +27,9 @@ export class ClassController {
   }
 
   @Roles(Role.Admin)
-  @Patch('/:name')
-  update(@Param('name') name: string, @Body() updateClassDto: UpdateClassDto) {
-    return this.classService.update(name, updateClassDto);
+  @Patch('/:id')
+  update(@Param('id') id: string, @Body() updateClassDto: UpdateClassDto, users: Users) {
+    return this.classService.update(id, updateClassDto, users);
   }
   @Roles(Role.Admin)
   @Delete('/:name')

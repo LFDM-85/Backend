@@ -19,6 +19,7 @@ const create_class_dto_1 = require("./dto/create-class.dto");
 const update_class_dto_1 = require("./dto/update-class.dto");
 const roles_decorator_1 = require("../decorators/roles.decorator");
 const role_enum_1 = require("../enums/role.enum");
+const users_schema_1 = require("../users/schema/users.schema");
 let ClassController = class ClassController {
     constructor(classService) {
         this.classService = classService;
@@ -32,8 +33,8 @@ let ClassController = class ClassController {
     findOne(name) {
         return this.classService.findOne(name);
     }
-    update(name, updateClassDto) {
-        return this.classService.update(name, updateClassDto);
+    update(id, updateClassDto, users) {
+        return this.classService.update(id, updateClassDto, users);
     }
     remove(name) {
         return this.classService.remove(name);
@@ -62,11 +63,11 @@ __decorate([
 ], ClassController.prototype, "findOne", null);
 __decorate([
     (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
-    (0, common_1.Patch)('/:name'),
-    __param(0, (0, common_1.Param)('name')),
+    (0, common_1.Patch)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_class_dto_1.UpdateClassDto]),
+    __metadata("design:paramtypes", [String, update_class_dto_1.UpdateClassDto, users_schema_1.Users]),
     __metadata("design:returntype", void 0)
 ], ClassController.prototype, "update", null);
 __decorate([

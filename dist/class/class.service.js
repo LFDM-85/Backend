@@ -17,9 +17,11 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const class_schema_1 = require("./schema/class.schema");
+const users_service_1 = require("../users/users.service");
 let ClassService = class ClassService {
-    constructor(classModel) {
+    constructor(classModel, userService) {
         this.classModel = classModel;
+        this.userService = userService;
     }
     async create(nameClass, open) {
         const findOneClass = await this.classModel.findOne({ nameClass });
@@ -29,15 +31,21 @@ let ClassService = class ClassService {
         return oneClass.save();
     }
     async findAll() {
-        return this.classModel.find();
+        return this.classModel.find().populate('user');
     }
     async findOne(nameClass) {
         if (!nameClass)
             throw new common_1.BadRequestException((`Class with this name: ${nameClass} does not exist!`));
         return this.classModel.findOne({ nameClass }).exec();
     }
-    async update(nameClass, updateClassDto) {
-        return this.classModel.updateOne({ nameClass }, { $set: Object.assign({}, updateClassDto) });
+    async update(id, updateClassDto, users) {
+        const { email } = users;
+        const user = await this.userService.findEmail(email);
+        return await this.classModel.findByIdAndUpdate({
+            _id: id,
+        }, {
+            $push: { user: user }
+        }, { new: true });
     }
     async remove(nameClass) {
         return this.classModel.deleteOne({ nameClass }).exec();
@@ -46,7 +54,7 @@ let ClassService = class ClassService {
 ClassService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(class_schema_1.Class.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model])
+    __metadata("design:paramtypes", [mongoose_2.Model, users_service_1.UsersService])
 ], ClassService);
 exports.ClassService = ClassService;
 //# sourceMappingURL=class.service.js.map

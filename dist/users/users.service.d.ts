@@ -30,9 +30,9 @@ export declare class UsersService {
     private usersModel;
     constructor(usersModel: Model<Users>);
     create(createUserDto: CreateUserDto): Promise<Users>;
-    findAll(): Promise<(import("mongoose").Document<unknown, any, Users> & Users & {
+    findAll(): Promise<Omit<import("mongoose").Document<unknown, any, Users> & Users & {
         _id: import("mongoose").Types.ObjectId;
-    })[]>;
+    }, never>[]>;
     findOne(condition: any): Promise<Users>;
     findEmail(email: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
         _id: import("mongoose").Types.ObjectId;
@@ -41,6 +41,15 @@ export declare class UsersService {
         _id: import("mongoose").Types.ObjectId;
     }>;
     update(id: string, updateUserDto: UpdateUserDto): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    addClass(userId: string, classId: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    removeClass(userId: string, classId: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    getClasses(userId: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     remove(id: string): Promise<import("mongodb").DeleteResult>;

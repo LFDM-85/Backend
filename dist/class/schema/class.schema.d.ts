@@ -2,6 +2,7 @@ import mongoose, { Document } from "mongoose";
 import { Users } from "src/users/schema/users.schema";
 export declare type ClassDocument = Class & Document;
 export declare class Class {
+    _id: string;
     nameClass: string;
     open: boolean;
     user: Users[];

@@ -11,9 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClassSchema = exports.Class = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
+const class_transformer_1 = require("class-transformer");
 const mongoose_2 = require("mongoose");
 let Class = class Class {
 };
+__decorate([
+    (0, class_transformer_1.Transform)(({ value }) => value.toString()),
+    __metadata("design:type", String)
+], Class.prototype, "_id", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)

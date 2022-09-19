@@ -6,6 +6,7 @@ import { encodePassword } from '../utils/bcrypt';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 
+
 @Injectable()
 export class UsersService {
   constructor(@InjectModel('Users') private usersModel: Model<Users>) {}
@@ -17,14 +18,13 @@ export class UsersService {
     if (users.length) throw new BadRequestException('Email in use');
 
     createUserDto.password = encodePassword(password);
-    console.log(password);
 
     const user = await this.usersModel.create(createUserDto);
     return user.save(); // saves the entity in MongoDB
   }
 
   async findAll() {
-    return await this.usersModel.find().exec();
+    return await this.usersModel.find().populate('classes').exec();
   }
 
   async findOne(condition: any): Promise<Users> {
@@ -55,6 +55,27 @@ export class UsersService {
         new: true
       },
     )
+  }
+
+  async addClass(userId: string, classId: string) {
+    return this.usersModel.findByIdAndUpdate(
+      userId,
+      { $addToSet:  { classes: classId }},
+  { new: true}
+    )
+  }
+
+  async removeClass(userId: string, classId: string) {
+    return this.usersModel.findByIdAndUpdate(
+      userId,
+      { $pull: { classes: classId } },
+      { new: true}
+    )
+  }
+
+   async getClasses(userId: string) {
+    const user = await this.usersModel.findById(userId).populate('classes');
+    return user;
   }
 
   async remove(id: string) {

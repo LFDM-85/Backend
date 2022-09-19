@@ -1,12 +1,16 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { UserDocument, Users } from 'src/users/schema/users.schema';
 import { UpdateClassDto } from './dto/update-class.dto';
-import {ClassDocument, Class} from "./schema/class.schema";
+import { ClassDocument, Class } from "./schema/class.schema";
+import { UsersService } from '../users/users.service';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
+
 
 @Injectable()
 export class ClassService {
-  constructor(@InjectModel(Class.name) private classModel: Model<ClassDocument>) {}
+  constructor(@InjectModel(Class.name) private classModel: Model<ClassDocument>,  private userService: UsersService,) {}
 
   async create(nameClass: string, open: boolean) {
 
@@ -21,7 +25,7 @@ export class ClassService {
   }
 
   async findAll() {
-    return this.classModel.find();
+    return this.classModel.find().populate('user');
   }
 
   async findOne(nameClass: string) {
@@ -29,10 +33,24 @@ export class ClassService {
     return this.classModel.findOne({nameClass}).exec();
   }
 
+  async update(id: string, updateClassDto: UpdateClassDto, users: Users) {
 
-  async update(nameClass: string, updateClassDto: UpdateClassDto) {
-    return this.classModel.updateOne({nameClass}, {$set: {...updateClassDto}});
+    const { email } = users;
 
+      const user  = await this.userService.findEmail(email);
+      
+
+    return await this.classModel.findByIdAndUpdate(
+      
+        {
+          _id: id,           
+        },
+        {
+          $push: {user: user}
+        },
+        { new: true }
+      
+    )
   }
 
   async remove(nameClass: string) {

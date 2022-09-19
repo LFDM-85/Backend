@@ -38,6 +38,15 @@ let UsersController = class UsersController {
     update(id, updateUserDto) {
         return this.usersService.update(id, updateUserDto);
     }
+    addClass(userId, classId) {
+        return this.usersService.addClass(userId, classId);
+    }
+    removeClass(userId, classId) {
+        return this.usersService.removeClass(userId, classId);
+    }
+    getClasses(userId) {
+        return this.usersService.getClasses(userId);
+    }
     delete(id) {
         return this.usersService.remove(id);
     }
@@ -79,6 +88,29 @@ __decorate([
     __metadata("design:paramtypes", [String, update_user_dto_1.UpdateUserDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "update", null);
+__decorate([
+    (0, common_1.Patch)('/:id/add-class/:classId'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Param)('classId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "addClass", null);
+__decorate([
+    (0, common_1.Patch)('/:id/remove-class/:classId'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Param)('classId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "removeClass", null);
+__decorate([
+    (0, common_1.Get)('/:id/classes'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "getClasses", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),

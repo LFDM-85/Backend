@@ -27,12 +27,11 @@ let UsersService = class UsersService {
         if (users.length)
             throw new common_1.BadRequestException('Email in use');
         createUserDto.password = (0, bcrypt_1.encodePassword)(password);
-        console.log(password);
         const user = await this.usersModel.create(createUserDto);
         return user.save();
     }
     async findAll() {
-        return await this.usersModel.find().exec();
+        return await this.usersModel.find().populate('classes').exec();
     }
     async findOne(condition) {
         if (!condition) {
@@ -54,6 +53,16 @@ let UsersService = class UsersService {
         }, {
             new: true
         });
+    }
+    async addClass(userId, classId) {
+        return this.usersModel.findByIdAndUpdate(userId, { $addToSet: { classes: classId } }, { new: true });
+    }
+    async removeClass(userId, classId) {
+        return this.usersModel.findByIdAndUpdate(userId, { $pull: { classes: classId } }, { new: true });
+    }
+    async getClasses(userId) {
+        const user = await this.usersModel.findById(userId).populate('classes');
+        return user;
     }
     async remove(id) {
         return await this.usersModel.deleteOne({

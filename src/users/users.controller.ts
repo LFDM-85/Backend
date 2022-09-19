@@ -48,6 +48,21 @@ export class UsersController {
     return this.usersService.update(id, updateUserDto)
   }
 
+  @Patch('/:id/add-class/:classId')
+  addClass(@Param('id') userId: string, @Param('classId') classId: string) {
+    return this.usersService.addClass(userId, classId)
+    }
+
+   @Patch('/:id/remove-class/:classId')
+  removeClass(@Param('id') userId: string, @Param('classId') classId: string) {
+    return this.usersService.removeClass(userId, classId)
+  }
+  
+  @Get('/:id/classes')
+  getClasses(@Param('id') userId: string) {
+    return this.usersService.getClasses(userId)
+    }
+  
   @Delete('/:id')
   delete(@Param('id') id: string) {
     return this.usersService.remove(id)
