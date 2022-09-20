@@ -27,14 +27,11 @@ let AttendanceController = class AttendanceController {
     findAll() {
         return this.attendanceService.findAll();
     }
-    findOne(id) {
-        return this.attendanceService.findOne(+id);
-    }
     update(id, updateAttendanceDto) {
-        return this.attendanceService.update(+id, updateAttendanceDto);
+        return this.attendanceService.update(id, updateAttendanceDto);
     }
     remove(id) {
-        return this.attendanceService.remove(+id);
+        return this.attendanceService.remove(id);
     }
 };
 __decorate([
@@ -50,13 +47,6 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], AttendanceController.prototype, "findAll", null);
-__decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], AttendanceController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),

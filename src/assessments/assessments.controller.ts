@@ -24,7 +24,7 @@ export class AssessmentsController {
 
   @Patch('/:id')
   update(@Param('id') id: string, @Body() updateAssessmentDto: UpdateAssessmentDto) {
-    return this.assessmentsService.update(+id, updateAssessmentDto);
+    return this.assessmentsService.update(id, updateAssessmentDto);
   }
 
   @Patch('/:id/add-user/:assessmentId')
@@ -44,6 +44,6 @@ export class AssessmentsController {
 
   @Delete('/:id')
   remove(@Param('id') id: string) {
-    return this.assessmentsService.remove(+id);
+    return this.assessmentsService.remove(id);
   }
 }

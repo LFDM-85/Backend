@@ -37,7 +37,7 @@ export declare class AssessmentsService {
     })[], import("mongoose").Document<unknown, any, Assessment> & Assessment & {
         _id: import("mongoose").Types.ObjectId;
     }, {}, Assessment>;
-    update(id: number, updateAssessmentDto: UpdateAssessmentDto): Promise<import("mongoose").Document<unknown, any, Assessment> & Assessment & {
+    update(id: string, updateAssessmentDto: UpdateAssessmentDto): Promise<import("mongoose").Document<unknown, any, Assessment> & Assessment & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     addUser(userId: string, assessmentId: string): Promise<import("mongoose").Document<unknown, any, Assessment> & Assessment & {
@@ -49,5 +49,5 @@ export declare class AssessmentsService {
     getUsers(assessmentId: string): Promise<import("mongoose").Document<unknown, any, Assessment> & Assessment & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    remove(id: number): Promise<import("mongodb").DeleteResult>;
+    remove(id: string): Promise<import("mongodb").DeleteResult>;
 }

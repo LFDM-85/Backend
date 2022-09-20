@@ -9,17 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateAttendanceDto = void 0;
-const class_validator_1 = require("class-validator");
-class CreateAttendanceDto {
-}
+exports.AttendanceSchema = exports.Attendance = void 0;
+const mongoose_1 = require("@nestjs/mongoose");
+const class_transformer_1 = require("class-transformer");
+let Attendance = class Attendance {
+};
 __decorate([
-    (0, class_validator_1.IsBoolean)(),
-    __metadata("design:type", Boolean)
-], CreateAttendanceDto.prototype, "attendance", void 0);
+    (0, class_transformer_1.Transform)(({ value }) => value.toString()),
+    __metadata("design:type", String)
+], Attendance.prototype, "_id", void 0);
 __decorate([
-    (0, class_validator_1.IsBoolean)(),
+    (0, mongoose_1.Prop)(),
     __metadata("design:type", Boolean)
-], CreateAttendanceDto.prototype, "validation", void 0);
-exports.CreateAttendanceDto = CreateAttendanceDto;
-//# sourceMappingURL=create-attendance.dto.js.map
+], Attendance.prototype, "attendance", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", Boolean)
+], Attendance.prototype, "validation", void 0);
+Attendance = __decorate([
+    (0, mongoose_1.Schema)()
+], Attendance);
+exports.Attendance = Attendance;
+exports.AttendanceSchema = mongoose_1.SchemaFactory.createForClass(Attendance);
+//# sourceMappingURL=attendance.schema.js.map

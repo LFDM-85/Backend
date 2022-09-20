@@ -28,7 +28,7 @@ let AssessmentsController = class AssessmentsController {
         return this.assessmentsService.findAll().populate('user');
     }
     update(id, updateAssessmentDto) {
-        return this.assessmentsService.update(+id, updateAssessmentDto);
+        return this.assessmentsService.update(id, updateAssessmentDto);
     }
     addClass(userId, assessmentId) {
         return this.assessmentsService.addUser(userId, assessmentId);
@@ -40,7 +40,7 @@ let AssessmentsController = class AssessmentsController {
         return this.assessmentsService.getUsers(assessmentId);
     }
     remove(id) {
-        return this.assessmentsService.remove(+id);
+        return this.assessmentsService.remove(id);
     }
 };
 __decorate([

@@ -21,24 +21,12 @@
 /// <reference types="mongoose/types/utility" />
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Model } from 'mongoose';
-import { CreateAttendanceDto } from './dto/create-attendance.dto';
-import { UpdateAttendanceDto } from './dto/update-attendance.dto';
-import { Attendance } from './entities/attendance.entity';
-export declare class AttendanceService {
-    private attendanceModel;
-    constructor(attendanceModel: Model<Attendance>);
-    create(createAttendanceDto: CreateAttendanceDto): Promise<import("mongoose").Document<unknown, any, Attendance> & Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, Attendance> & Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    })[], import("mongoose").Document<unknown, any, Attendance> & Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    }, {}, Attendance>;
-    update(id: string, updateAttendanceDto: UpdateAttendanceDto): Promise<import("mongoose").Document<unknown, any, Attendance> & Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    remove(id: string): Promise<import("mongodb").DeleteResult>;
+export declare type AttendanceDocument = Attendance & Document;
+export declare class Attendance {
+    _id: string;
+    attendance: boolean;
+    validation: boolean;
 }
+export declare const AttendanceSchema: import("mongoose").Schema<Attendance, import("mongoose").Model<Attendance, any, any, any, any>, {}, {}, {}, {}, "type", Attendance>;

@@ -1,1 +1,4 @@
-export class Attendance {}
+export class Attendance {
+  attendance: boolean;
+  validation: boolean;
+}

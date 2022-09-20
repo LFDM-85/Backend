@@ -20,7 +20,7 @@ export class AssessmentsService {
   //   return `This action returns a #${id} assessment`;
   // }
 
-  async update(id: number, updateAssessmentDto: UpdateAssessmentDto) {
+  async update(id: string, updateAssessmentDto: UpdateAssessmentDto) {
     return await this.assessmentModel.findByIdAndUpdate(
       {
         _id:id,
@@ -54,7 +54,7 @@ export class AssessmentsService {
    }
   
 
-  remove(id: number) {
+  remove(id: string) {
     return this.assessmentModel.deleteOne({id}).exec();
   }
 }

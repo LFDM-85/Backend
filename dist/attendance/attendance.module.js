@@ -10,12 +10,21 @@ exports.AttendanceModule = void 0;
 const common_1 = require("@nestjs/common");
 const attendance_service_1 = require("./attendance.service");
 const attendance_controller_1 = require("./attendance.controller");
+const lectures_module_1 = require("../lectures/lectures.module");
+const mongoose_1 = require("@nestjs/mongoose");
+const attendance_schema_1 = require("./schema/attendance.schema");
 let AttendanceModule = class AttendanceModule {
 };
 AttendanceModule = __decorate([
     (0, common_1.Module)({
+        imports: [
+            lectures_module_1.LecturesModule,
+            mongoose_1.MongooseModule.forFeature([
+                { name: attendance_schema_1.Attendance.name, schema: attendance_schema_1.AttendanceSchema },
+            ]),
+        ],
         controllers: [attendance_controller_1.AttendanceController],
-        providers: [attendance_service_1.AttendanceService]
+        providers: [attendance_service_1.AttendanceService],
     })
 ], AttendanceModule);
 exports.AttendanceModule = AttendanceModule;
