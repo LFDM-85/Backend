@@ -19,6 +19,10 @@ const class_module_1 = require("./class/class.module");
 const core_1 = require("@nestjs/core");
 const roles_guard_1 = require("./roleGuards/roles.guard");
 const class_user_module_1 = require("./class_user/class_user.module");
+const lectures_module_1 = require("./lectures/lectures.module");
+const assessments_module_1 = require("./assessments/assessments.module");
+const work_module_1 = require("./work/work.module");
+const attendance_module_1 = require("./attendance/attendance.module");
 dotenv.config();
 const URL = process.env.DATABASE_URL;
 let AppModule = class AppModule {
@@ -38,6 +42,10 @@ AppModule = __decorate([
             }),
             class_module_1.ClassModule,
             class_user_module_1.ClassUserModule,
+            lectures_module_1.LecturesModule,
+            assessments_module_1.AssessmentsModule,
+            work_module_1.WorkModule,
+            attendance_module_1.AttendanceModule,
         ],
         controllers: [],
         providers: [{
