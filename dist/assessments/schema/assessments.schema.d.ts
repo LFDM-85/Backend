@@ -21,24 +21,11 @@
 /// <reference types="mongoose/types/utility" />
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Model } from 'mongoose';
-import { CreateAssessmentDto } from './dto/create-assessment.dto';
-import { UpdateAssessmentDto } from './dto/update-assessment.dto';
-import { Assessment } from './entities/assessment.entity';
-export declare class AssessmentsService {
-    private assessmentModel;
-    constructor(assessmentModel: Model<Assessment>);
-    create(createAssessmentDto: CreateAssessmentDto): Promise<import("mongoose").Document<unknown, any, Assessment> & Assessment & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, Assessment> & Assessment & {
-        _id: import("mongoose").Types.ObjectId;
-    })[], import("mongoose").Document<unknown, any, Assessment> & Assessment & {
-        _id: import("mongoose").Types.ObjectId;
-    }, {}, Assessment>;
-    update(id: number, updateAssessmentDto: UpdateAssessmentDto): Promise<import("mongoose").Document<unknown, any, Assessment> & Assessment & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    remove(id: number): Promise<import("mongodb").DeleteResult>;
+export declare type AssessmentDocument = Assessment & Document;
+export declare class Assessment {
+    _id: string;
+    assessmentValue: number;
 }
+export declare const AssessmentSchema: import("mongoose").Schema<Assessment, import("mongoose").Model<Assessment, any, any, any, any>, {}, {}, {}, {}, "type", Assessment>;

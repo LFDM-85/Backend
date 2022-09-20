@@ -9,14 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateAssessmentDto = void 0;
-const class_validator_1 = require("class-validator");
-class CreateAssessmentDto {
-}
+exports.AssessmentSchema = exports.Assessment = void 0;
+const mongoose_1 = require("@nestjs/mongoose");
+const class_transformer_1 = require("class-transformer");
+let Assessment = class Assessment {
+};
 __decorate([
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_transformer_1.Transform)(({ value }) => value.toString()),
+    __metadata("design:type", String)
+], Assessment.prototype, "_id", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
     __metadata("design:type", Number)
-], CreateAssessmentDto.prototype, "assessmentValue", void 0);
-exports.CreateAssessmentDto = CreateAssessmentDto;
-//# sourceMappingURL=create-assessment.dto.js.map
+], Assessment.prototype, "assessmentValue", void 0);
+Assessment = __decorate([
+    (0, mongoose_1.Schema)()
+], Assessment);
+exports.Assessment = Assessment;
+exports.AssessmentSchema = mongoose_1.SchemaFactory.createForClass(Assessment);
+//# sourceMappingURL=assessments.schema.js.map

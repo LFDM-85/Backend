@@ -17,10 +17,10 @@ export class AssessmentsController {
     return this.assessmentsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.assessmentsService.findOne(+id);
-  }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.assessmentsService.findOne(+id);
+  // }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAssessmentDto: UpdateAssessmentDto) {

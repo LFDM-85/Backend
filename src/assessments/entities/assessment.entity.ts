@@ -1,1 +1,3 @@
-export class Assessment {}
+export class Assessment {
+  assessmentValue: number;
+}

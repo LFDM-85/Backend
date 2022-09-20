@@ -1,26 +1,38 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { CreateAssessmentDto } from './dto/create-assessment.dto';
 import { UpdateAssessmentDto } from './dto/update-assessment.dto';
+import { Assessment } from './entities/assessment.entity';
 
 @Injectable()
 export class AssessmentsService {
-  create(createAssessmentDto: CreateAssessmentDto) {
-    return 'This action adds a new assessment';
+  constructor(@InjectModel(Assessment.name) private assessmentModel: Model<Assessment>) {}
+  async create(createAssessmentDto: CreateAssessmentDto) {
+    return await(await this.assessmentModel.create(createAssessmentDto)).save();
   }
 
   findAll() {
-    return `This action returns all assessments`;
+    return this.assessmentModel.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} assessment`;
-  }
+  // findOne(id: number) {
+  //   return `This action returns a #${id} assessment`;
+  // }
 
-  update(id: number, updateAssessmentDto: UpdateAssessmentDto) {
-    return `This action updates a #${id} assessment`;
+  async update(id: number, updateAssessmentDto: UpdateAssessmentDto) {
+    return await this.assessmentModel.findByIdAndUpdate(
+      {
+        _id:id,
+      },
+      {
+        $push: updateAssessmentDto
+      },
+      {new: true}
+    );
   }
 
   remove(id: number) {
-    return `This action removes a #${id} assessment`;
+    return this.assessmentModel.deleteOne({id}).exec();
   }
 }
