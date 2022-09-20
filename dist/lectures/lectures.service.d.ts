@@ -32,9 +32,9 @@ export declare class LecturesService {
     create(createLectureDto: CreateLectureDto): Promise<import("mongoose").Document<unknown, any, Lecture> & Lecture & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, Lecture> & Lecture & {
+    findAll(): import("mongoose").Query<Omit<import("mongoose").Document<unknown, any, Lecture> & Lecture & {
         _id: import("mongoose").Types.ObjectId;
-    })[], import("mongoose").Document<unknown, any, Lecture> & Lecture & {
+    }, never>[], import("mongoose").Document<unknown, any, Lecture> & Lecture & {
         _id: import("mongoose").Types.ObjectId;
     }, {}, Lecture>;
     update(id: string, updateLectureDto: UpdateLectureDto): Promise<import("mongoose").Document<unknown, any, Lecture> & Lecture & {

@@ -14,7 +14,7 @@ export class LecturesController {
 
   @Get('/all')
   findAll() {
-    return this.lecturesService.findAll();
+    return this.lecturesService.findAll().populate('assessment');
   }
 
   // @Get(':id')

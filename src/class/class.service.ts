@@ -22,7 +22,7 @@ export class ClassService {
   }
 
   async findAll() {
-    return this.classModel.find().populate('user');
+    return this.classModel.find().populate('user', 'lecture');
   }
 
   async findOne(nameClass: string) {

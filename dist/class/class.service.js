@@ -29,7 +29,7 @@ let ClassService = class ClassService {
         return oneClass.save();
     }
     async findAll() {
-        return this.classModel.find().populate('user');
+        return this.classModel.find().populate('user', 'lecture');
     }
     async findOne(nameClass) {
         if (!nameClass)

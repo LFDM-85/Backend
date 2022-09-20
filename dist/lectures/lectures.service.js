@@ -29,7 +29,7 @@ let LecturesService = class LecturesService {
         return await (await this.lectureModel.create(createLectureDto)).save();
     }
     findAll() {
-        return this.lectureModel.find();
+        return this.lectureModel.find().populate('assessment');
     }
     async update(id, updateLectureDto) {
         return await this.lectureModel.findByIdAndUpdate({

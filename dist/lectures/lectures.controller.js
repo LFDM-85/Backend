@@ -25,7 +25,7 @@ let LecturesController = class LecturesController {
         return this.lecturesService.create(createLectureDto);
     }
     findAll() {
-        return this.lecturesService.findAll();
+        return this.lecturesService.findAll().populate('assessment');
     }
     update(id, updateLectureDto) {
         return this.lecturesService.update(id, updateLectureDto);

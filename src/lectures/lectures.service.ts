@@ -21,7 +21,7 @@ export class LecturesService {
   }
 
   findAll() {
-    return this.lectureModel.find();
+    return this.lectureModel.find().populate('assessment');
   }
 
   // async findOne(id: string) {

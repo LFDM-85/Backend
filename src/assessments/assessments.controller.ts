@@ -7,7 +7,7 @@ import { UpdateAssessmentDto } from './dto/update-assessment.dto';
 export class AssessmentsController {
   constructor(private readonly assessmentsService: AssessmentsService) {}
 
-  @Post()
+  @Post('/create')
   create(@Body() createAssessmentDto: CreateAssessmentDto) {
     return this.assessmentsService.create(createAssessmentDto);
   }
@@ -22,12 +22,12 @@ export class AssessmentsController {
   //   return this.assessmentsService.findOne(+id);
   // }
 
-  @Patch(':id')
+  @Patch('/:id')
   update(@Param('id') id: string, @Body() updateAssessmentDto: UpdateAssessmentDto) {
     return this.assessmentsService.update(+id, updateAssessmentDto);
   }
 
-  @Delete(':id')
+  @Delete('/:id')
   remove(@Param('id') id: string) {
     return this.assessmentsService.remove(+id);
   }
