@@ -16,8 +16,8 @@ exports.ClassService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const class_schema_1 = require("./schema/class.schema");
 const users_service_1 = require("../users/users.service");
+const class_entity_1 = require("./entities/class.entity");
 let ClassService = class ClassService {
     constructor(classModel, userService) {
         this.classModel = classModel;
@@ -38,14 +38,22 @@ let ClassService = class ClassService {
             throw new common_1.BadRequestException((`Class with this name: ${nameClass} does not exist!`));
         return this.classModel.findOne({ nameClass }).exec();
     }
-    async update(id, updateClassDto, users) {
-        const { email } = users;
-        const user = await this.userService.findEmail(email);
+    async update(id, updateClassDto) {
         return await this.classModel.findByIdAndUpdate({
             _id: id,
         }, {
-            $push: { user: user }
+            $push: updateClassDto
         }, { new: true });
+    }
+    async addUser(userId, classId) {
+        return this.classModel.findByIdAndUpdate(classId, { $addToSet: { user: userId } }, { new: true });
+    }
+    async removeUser(userId, classId) {
+        return this.classModel.findByIdAndUpdate(classId, { $pull: { user: userId } }, { new: true });
+    }
+    async getUsers(classId) {
+        const classes = await this.classModel.findById(classId).populate('classes');
+        return classes;
     }
     async remove(nameClass) {
         return this.classModel.deleteOne({ nameClass }).exec();
@@ -53,7 +61,7 @@ let ClassService = class ClassService {
 };
 ClassService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(class_schema_1.Class.name)),
+    __param(0, (0, mongoose_1.InjectModel)(class_entity_1.Class.name)),
     __metadata("design:paramtypes", [mongoose_2.Model, users_service_1.UsersService])
 ], ClassService);
 exports.ClassService = ClassService;

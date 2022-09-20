@@ -9,7 +9,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel('Users') private usersModel: Model<Users>) {}
+  constructor(@InjectModel(Users.name) private usersModel: Model<Users>) {}
 
   async create(createUserDto: CreateUserDto): Promise<Users> {
     

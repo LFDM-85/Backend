@@ -1,16 +1,14 @@
 import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { UserDocument, Users } from 'src/users/schema/users.schema';
 import { UpdateClassDto } from './dto/update-class.dto';
-import { ClassDocument, Class } from "./schema/class.schema";
 import { UsersService } from '../users/users.service';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { Class } from './entities/class.entity';
 
 
 @Injectable()
 export class ClassService {
-  constructor(@InjectModel(Class.name) private classModel: Model<ClassDocument>,  private userService: UsersService,) {}
+  constructor(@InjectModel(Class.name) private classModel: Model<Class>,  private userService: UsersService,) {}
 
   async create(nameClass: string, open: boolean) {
 
@@ -33,12 +31,8 @@ export class ClassService {
     return this.classModel.findOne({nameClass}).exec();
   }
 
-  async update(id: string, updateClassDto: UpdateClassDto, users: Users) {
-
-    const { email } = users;
-
-      const user  = await this.userService.findEmail(email);
-      
+  async update(id: string, updateClassDto: UpdateClassDto) {
+     
 
     return await this.classModel.findByIdAndUpdate(
       
@@ -46,11 +40,32 @@ export class ClassService {
           _id: id,           
         },
         {
-          $push: {user: user}
+          $push: updateClassDto
         },
         { new: true }
       
     )
+  }
+
+  async addUser(userId: string, classId: string) {
+    return this.classModel.findByIdAndUpdate(
+      classId,
+      { $addToSet:  { user: userId }},
+  { new: true}
+    )
+  }
+
+  async removeUser(userId: string, classId: string) {
+    return this.classModel.findByIdAndUpdate(
+      classId,
+      { $pull: { user: userId } },
+      { new: true}
+    )
+  }
+
+   async getUsers(classId: string) {
+    const classes = await this.classModel.findById(classId).populate('classes');
+    return classes;
   }
 
   async remove(nameClass: string) {

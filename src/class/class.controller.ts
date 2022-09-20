@@ -28,9 +28,26 @@ export class ClassController {
 
   @Roles(Role.Admin)
   @Patch('/:id')
-  update(@Param('id') id: string, @Body() updateClassDto: UpdateClassDto, users: Users) {
-    return this.classService.update(id, updateClassDto, users);
+  update(@Param('id') id: string, @Body() updateClassDto: UpdateClassDto) {
+    return this.classService.update(id, updateClassDto);
   }
+
+   @Patch('/:id/add-user/:classId')
+  addClass(@Param('id') userId: string, @Param('classId') classId: string) {
+    return this.classService.addUser(userId, classId)
+    }
+
+   @Patch('/:id/remove-user/:classId')
+  removeClass(@Param('id') userId: string, @Param('classId') classId: string) {
+    return this.classService.removeUser(userId, classId)
+  }
+  
+  @Get('/:classId/users')
+  getClasses(@Param('classId') classId: string) {
+    return this.classService.getUsers(classId)
+    }
+
+
   @Roles(Role.Admin)
   @Delete('/:name')
   remove(@Param('name') name: string) {
