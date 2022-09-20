@@ -32,6 +32,28 @@ export class AssessmentsService {
     );
   }
 
+  async addUser(userId: string, assessmentId: string) {
+    return this.assessmentModel.findByIdAndUpdate(
+      assessmentId,
+      { $addToSet:  { user: userId }},
+  { new: true}
+    )
+  }
+
+  async removeUser(userId: string, assessmentId: string) {
+    return this.assessmentModel.findByIdAndUpdate(
+      assessmentId,
+      { $pull: { user: userId } },
+      { new: true}
+    )
+  }
+
+   async getUsers(assessmentId: string) {
+    const assessment = await this.assessmentModel.findById(assessmentId).populate('user');
+    return assessment;
+   }
+  
+
   remove(id: number) {
     return this.assessmentModel.deleteOne({id}).exec();
   }

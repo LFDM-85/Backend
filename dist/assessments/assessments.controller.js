@@ -25,10 +25,19 @@ let AssessmentsController = class AssessmentsController {
         return this.assessmentsService.create(createAssessmentDto);
     }
     findAll() {
-        return this.assessmentsService.findAll();
+        return this.assessmentsService.findAll().populate('user');
     }
     update(id, updateAssessmentDto) {
         return this.assessmentsService.update(+id, updateAssessmentDto);
+    }
+    addClass(userId, assessmentId) {
+        return this.assessmentsService.addUser(userId, assessmentId);
+    }
+    removeClass(userId, assessmentId) {
+        return this.assessmentsService.removeUser(userId, assessmentId);
+    }
+    getClasses(assessmentId) {
+        return this.assessmentsService.getUsers(assessmentId);
     }
     remove(id) {
         return this.assessmentsService.remove(+id);
@@ -55,6 +64,29 @@ __decorate([
     __metadata("design:paramtypes", [String, update_assessment_dto_1.UpdateAssessmentDto]),
     __metadata("design:returntype", void 0)
 ], AssessmentsController.prototype, "update", null);
+__decorate([
+    (0, common_1.Patch)('/:id/add-user/:assessmentId'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Param)('assessmentId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], AssessmentsController.prototype, "addClass", null);
+__decorate([
+    (0, common_1.Patch)('/:id/remove-user/:assessmentId'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Param)('assessmentId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], AssessmentsController.prototype, "removeClass", null);
+__decorate([
+    (0, common_1.Get)('/:assessmentId/users'),
+    __param(0, (0, common_1.Param)('assessmentId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AssessmentsController.prototype, "getClasses", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),

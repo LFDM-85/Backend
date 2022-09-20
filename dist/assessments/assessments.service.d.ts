@@ -40,5 +40,14 @@ export declare class AssessmentsService {
     update(id: number, updateAssessmentDto: UpdateAssessmentDto): Promise<import("mongoose").Document<unknown, any, Assessment> & Assessment & {
         _id: import("mongoose").Types.ObjectId;
     }>;
+    addUser(userId: string, assessmentId: string): Promise<import("mongoose").Document<unknown, any, Assessment> & Assessment & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    removeUser(userId: string, assessmentId: string): Promise<import("mongoose").Document<unknown, any, Assessment> & Assessment & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    getUsers(assessmentId: string): Promise<import("mongoose").Document<unknown, any, Assessment> & Assessment & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     remove(id: number): Promise<import("mongodb").DeleteResult>;
 }

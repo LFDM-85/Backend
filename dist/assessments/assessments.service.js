@@ -34,6 +34,16 @@ let AssessmentsService = class AssessmentsService {
             $push: updateAssessmentDto
         }, { new: true });
     }
+    async addUser(userId, assessmentId) {
+        return this.assessmentModel.findByIdAndUpdate(assessmentId, { $addToSet: { user: userId } }, { new: true });
+    }
+    async removeUser(userId, assessmentId) {
+        return this.assessmentModel.findByIdAndUpdate(assessmentId, { $pull: { user: userId } }, { new: true });
+    }
+    async getUsers(assessmentId) {
+        const assessment = await this.assessmentModel.findById(assessmentId).populate('user');
+        return assessment;
+    }
     remove(id) {
         return this.assessmentModel.deleteOne({ id }).exec();
     }

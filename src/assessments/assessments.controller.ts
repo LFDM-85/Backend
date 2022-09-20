@@ -14,7 +14,7 @@ export class AssessmentsController {
 
   @Get()
   findAll() {
-    return this.assessmentsService.findAll();
+    return this.assessmentsService.findAll().populate('user');
   }
 
   // @Get(':id')
@@ -25,6 +25,21 @@ export class AssessmentsController {
   @Patch('/:id')
   update(@Param('id') id: string, @Body() updateAssessmentDto: UpdateAssessmentDto) {
     return this.assessmentsService.update(+id, updateAssessmentDto);
+  }
+
+  @Patch('/:id/add-user/:assessmentId')
+  addClass(@Param('id') userId: string, @Param('assessmentId') assessmentId: string) {
+    return this.assessmentsService.addUser(userId, assessmentId)
+    }
+
+   @Patch('/:id/remove-user/:assessmentId')
+  removeClass(@Param('id') userId: string, @Param('assessmentId') assessmentId: string) {
+    return this.assessmentsService.removeUser(userId, assessmentId)
+  }
+  
+  @Get('/:assessmentId/users')
+  getClasses(@Param('assessmentId') assessmentId: string) {
+    return this.assessmentsService.getUsers(assessmentId)
   }
 
   @Delete('/:id')

@@ -12,6 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AssessmentSchema = exports.Assessment = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const class_transformer_1 = require("class-transformer");
+const mongoose_2 = require("mongoose");
+const users_schema_1 = require("../../users/schema/users.schema");
 let Assessment = class Assessment {
 };
 __decorate([
@@ -22,6 +24,10 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Number)
 ], Assessment.prototype, "assessmentValue", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: 'Users' }] })),
+    __metadata("design:type", users_schema_1.Users)
+], Assessment.prototype, "user", void 0);
 Assessment = __decorate([
     (0, mongoose_1.Schema)()
 ], Assessment);
