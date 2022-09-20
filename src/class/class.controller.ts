@@ -45,7 +45,23 @@ export class ClassController {
   @Get('/:classId/users')
   getClasses(@Param('classId') classId: string) {
     return this.classService.getUsers(classId)
-    }
+  }
+  
+  @Patch('/:lectureId/add-lecture/:classId')
+  addLecture(@Param('lectureId') lectureId: string, @Param('classId') classId: string) {
+    return this.classService.addLecture(lectureId, classId)
+  }
+
+   @Patch('/:lectureId/remove-lecture/:classId')
+  removeLecture(@Param('lectureId') lectureId: string, @Param('classId') classId: string) {
+    return this.classService.removeLecture(lectureId, classId)
+  }
+  
+  @Get('/:classId/lectures')
+  getLectures(@Param('classId') classId: string) {
+    return this.classService.getLectures(classId)
+  }
+  
 
 
   @Roles(Role.Admin)

@@ -50,5 +50,14 @@ export declare class ClassController {
     getClasses(classId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/class.entity").Class> & import("./entities/class.entity").Class & {
         _id: import("mongoose").Types.ObjectId;
     }>;
+    addLecture(lectureId: string, classId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/class.entity").Class> & import("./entities/class.entity").Class & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    removeLecture(lectureId: string, classId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/class.entity").Class> & import("./entities/class.entity").Class & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    getLectures(classId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/class.entity").Class> & import("./entities/class.entity").Class & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     remove(name: string): Promise<import("mongodb").DeleteResult>;
 }

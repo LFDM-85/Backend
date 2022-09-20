@@ -35,7 +35,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: lecture_entity_1.Lecture.name }] })),
     __metadata("design:type", Array)
-], Class.prototype, "lectures", void 0);
+], Class.prototype, "lecture", void 0);
 Class = __decorate([
     (0, mongoose_1.Schema)()
 ], Class);

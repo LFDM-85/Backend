@@ -7,28 +7,28 @@ import { UpdateWorkDto } from './dto/update-work.dto';
 export class WorkController {
   constructor(private readonly workService: WorkService) {}
 
-  @Post()
+  @Post('/create')
   create(@Body() createWorkDto: CreateWorkDto) {
     return this.workService.create(createWorkDto);
   }
 
-  @Get()
+  @Get('/all')
   findAll() {
     return this.workService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.workService.findOne(+id);
-  }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.workService.findOne(+id);
+  // }
 
-  @Patch(':id')
+  @Patch('/:id')
   update(@Param('id') id: string, @Body() updateWorkDto: UpdateWorkDto) {
-    return this.workService.update(+id, updateWorkDto);
+    return this.workService.update(id, updateWorkDto);
   }
 
-  @Delete(':id')
+  @Delete('/:id')
   remove(@Param('id') id: string) {
-    return this.workService.remove(+id);
+    return this.workService.remove(id);
   }
 }

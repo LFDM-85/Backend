@@ -1,26 +1,42 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { CreateWorkDto } from './dto/create-work.dto';
 import { UpdateWorkDto } from './dto/update-work.dto';
+import { Work } from './entities/work.entity';
 
 @Injectable()
 export class WorkService {
-  create(createWorkDto: CreateWorkDto) {
-    return 'This action adds a new work';
+  constructor(@InjectModel(Work.name) private workModel: Model<Work>) {}
+  async create(createWorkDto: CreateWorkDto) {
+
+    const { title} = createWorkDto
+    const findOneWork = await this.workModel.findOne({ title })
+    if(findOneWork) throw new BadRequestException('Work already exist!')
+    return await( await this.workModel.create(createWorkDto)).save();
   }
 
   findAll() {
-    return `This action returns all work`;
+    return this.workModel.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} work`;
+  // findOne(id: number) {
+  //   return `This action returns a #${id} work`;
+  // }
+
+  async update(id: string, updateWorkDto: UpdateWorkDto) {
+    return await this.workModel.findByIdAndUpdate(
+      {
+        _id: id,
+      },
+      {
+        $push: updateWorkDto
+      },
+      {new: true}
+    );
   }
 
-  update(id: number, updateWorkDto: UpdateWorkDto) {
-    return `This action updates a #${id} work`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} work`;
+  async remove(id: string) {
+    return this.workModel.deleteOne({id}).exec();
   }
 }

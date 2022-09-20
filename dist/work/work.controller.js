@@ -27,38 +27,28 @@ let WorkController = class WorkController {
     findAll() {
         return this.workService.findAll();
     }
-    findOne(id) {
-        return this.workService.findOne(+id);
-    }
     update(id, updateWorkDto) {
-        return this.workService.update(+id, updateWorkDto);
+        return this.workService.update(id, updateWorkDto);
     }
     remove(id) {
-        return this.workService.remove(+id);
+        return this.workService.remove(id);
     }
 };
 __decorate([
-    (0, common_1.Post)(),
+    (0, common_1.Post)('/create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_work_dto_1.CreateWorkDto]),
     __metadata("design:returntype", void 0)
 ], WorkController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)('/all'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], WorkController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], WorkController.prototype, "findOne", null);
-__decorate([
-    (0, common_1.Patch)(':id'),
+    (0, common_1.Patch)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -66,7 +56,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], WorkController.prototype, "update", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
+    (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

@@ -32,7 +32,7 @@ let UsersService = class UsersService {
         return user.save();
     }
     async findAll() {
-        return await this.usersModel.find().populate('classes').exec();
+        return await this.usersModel.find().populate('classes', 'lecture').exec();
     }
     async findOne(condition) {
         if (!condition) {

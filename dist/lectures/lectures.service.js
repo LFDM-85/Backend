@@ -22,8 +22,8 @@ let LecturesService = class LecturesService {
         this.lectureModel = lectureModel;
     }
     async create(createLectureDto) {
-        const { _id } = createLectureDto;
-        const findOneLecture = await this.lectureModel.findOne({ _id });
+        const { summary } = createLectureDto;
+        const findOneLecture = await this.lectureModel.findOne({ summary });
         if (findOneLecture)
             throw new common_1.BadRequestException('Lecture already exist!');
         return await (await this.lectureModel.create(createLectureDto)).save();
@@ -37,7 +37,6 @@ let LecturesService = class LecturesService {
         }, {
             $push: updateLectureDto
         }, { new: true });
-        ;
     }
     async remove(id) {
         return this.lectureModel.deleteOne({ id }).exec();

@@ -24,12 +24,10 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { Model } from 'mongoose';
 import { UpdateClassDto } from './dto/update-class.dto';
-import { UsersService } from '../users/users.service';
 import { Class } from './entities/class.entity';
 export declare class ClassService {
     private classModel;
-    private userService;
-    constructor(classModel: Model<Class>, userService: UsersService);
+    constructor(classModel: Model<Class>);
     create(nameClass: string, open: boolean): Promise<import("mongoose").Document<unknown, any, Class> & Class & {
         _id: import("mongoose").Types.ObjectId;
     }>;

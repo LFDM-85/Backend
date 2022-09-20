@@ -7,6 +7,6 @@ export declare class Class {
     nameClass: string;
     open: boolean;
     user: Users[];
-    lectures: [Lecture];
+    lecture: Lecture[];
 }
 export declare const ClassSchema: mongoose.Schema<Class, mongoose.Model<Class, any, any, any, any>, {}, {}, {}, {}, "type", Class>;

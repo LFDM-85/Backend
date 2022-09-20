@@ -4,6 +4,7 @@ import { ClassController } from './class.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Class, ClassSchema } from './schema/class.schema';
 import { UsersModule } from '../users/users.module';
+import { LecturesModule } from 'src/lectures/lectures.module';
 
 @Module({
   imports: [

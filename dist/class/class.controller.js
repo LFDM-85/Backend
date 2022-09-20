@@ -44,6 +44,15 @@ let ClassController = class ClassController {
     getClasses(classId) {
         return this.classService.getUsers(classId);
     }
+    addLecture(lectureId, classId) {
+        return this.classService.addLecture(lectureId, classId);
+    }
+    removeLecture(lectureId, classId) {
+        return this.classService.removeLecture(lectureId, classId);
+    }
+    getLectures(classId) {
+        return this.classService.getLectures(classId);
+    }
     remove(name) {
         return this.classService.remove(name);
     }
@@ -101,6 +110,29 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ClassController.prototype, "getClasses", null);
+__decorate([
+    (0, common_1.Patch)('/:lectureId/add-lecture/:classId'),
+    __param(0, (0, common_1.Param)('lectureId')),
+    __param(1, (0, common_1.Param)('classId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], ClassController.prototype, "addLecture", null);
+__decorate([
+    (0, common_1.Patch)('/:lectureId/remove-lecture/:classId'),
+    __param(0, (0, common_1.Param)('lectureId')),
+    __param(1, (0, common_1.Param)('classId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], ClassController.prototype, "removeLecture", null);
+__decorate([
+    (0, common_1.Get)('/:classId/lectures'),
+    __param(0, (0, common_1.Param)('classId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ClassController.prototype, "getLectures", null);
 __decorate([
     (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     (0, common_1.Delete)('/:name'),

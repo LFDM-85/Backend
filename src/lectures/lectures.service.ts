@@ -10,9 +10,9 @@ export class LecturesService {
   constructor(@InjectModel(Lecture.name) private lectureModel: Model<Lecture>){}
   async create(createLectureDto: CreateLectureDto) {
 
-    const { _id} = createLectureDto
+    const { summary} = createLectureDto
 
-    const findOneLecture = await this.lectureModel.findOne({ _id })
+    const findOneLecture = await this.lectureModel.findOne({ summary })
     
     if (findOneLecture) throw new BadRequestException('Lecture already exist!')
     
@@ -37,7 +37,7 @@ export class LecturesService {
         $push: updateLectureDto
       },
       { new: true}
-    );;
+    );
   }
 
   async remove(id: string) {

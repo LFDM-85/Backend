@@ -29,16 +29,16 @@ import { Lecture } from './entities/lecture.entity';
 export declare class LecturesService {
     private lectureModel;
     constructor(lectureModel: Model<Lecture>);
-    create(createLectureDto: CreateLectureDto): Promise<import("mongoose").Document<unknown, any, Lecture> & Lecture & Required<{
-        _id: string;
-    }>>;
-    findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, Lecture> & Lecture & Required<{
-        _id: string;
-    }>)[], import("mongoose").Document<unknown, any, Lecture> & Lecture & Required<{
-        _id: string;
-    }>, {}, Lecture>;
-    update(id: string, updateLectureDto: UpdateLectureDto): Promise<import("mongoose").Document<unknown, any, Lecture> & Lecture & Required<{
-        _id: string;
-    }>>;
+    create(createLectureDto: CreateLectureDto): Promise<import("mongoose").Document<unknown, any, Lecture> & Lecture & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, Lecture> & Lecture & {
+        _id: import("mongoose").Types.ObjectId;
+    })[], import("mongoose").Document<unknown, any, Lecture> & Lecture & {
+        _id: import("mongoose").Types.ObjectId;
+    }, {}, Lecture>;
+    update(id: string, updateLectureDto: UpdateLectureDto): Promise<import("mongoose").Document<unknown, any, Lecture> & Lecture & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     remove(id: string): Promise<import("mongodb").DeleteResult>;
 }
