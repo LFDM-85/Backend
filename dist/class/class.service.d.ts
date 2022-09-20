@@ -51,5 +51,14 @@ export declare class ClassService {
     getUsers(classId: string): Promise<import("mongoose").Document<unknown, any, Class> & Class & {
         _id: import("mongoose").Types.ObjectId;
     }>;
+    addLecture(lectureId: string, classId: string): Promise<import("mongoose").Document<unknown, any, Class> & Class & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    removeLecture(lectureId: string, classId: string): Promise<import("mongoose").Document<unknown, any, Class> & Class & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    getLectures(classId: string): Promise<import("mongoose").Document<unknown, any, Class> & Class & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     remove(nameClass: string): Promise<import("mongodb").DeleteResult>;
 }

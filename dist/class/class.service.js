@@ -52,8 +52,17 @@ let ClassService = class ClassService {
         return this.classModel.findByIdAndUpdate(classId, { $pull: { user: userId } }, { new: true });
     }
     async getUsers(classId) {
-        const classes = await this.classModel.findById(classId).populate('classes');
+        const classes = await this.classModel.findById(classId).populate('user');
         return classes;
+    }
+    async addLecture(lectureId, classId) {
+        return this.classModel.findByIdAndUpdate(classId, { $addToSet: { lectures: lectureId } }, { new: true });
+    }
+    async removeLecture(lectureId, classId) {
+        return this.classModel.findByIdAndUpdate(classId, { $pull: { lectures: lectureId } }, { new: true });
+    }
+    async getLectures(classId) {
+        return await this.classModel.findById(classId).populate('lectures');
     }
     async remove(nameClass) {
         return this.classModel.deleteOne({ nameClass }).exec();

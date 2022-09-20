@@ -1,26 +1,46 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { CreateLectureDto } from './dto/create-lecture.dto';
 import { UpdateLectureDto } from './dto/update-lecture.dto';
+import { Lecture } from './entities/lecture.entity';
 
 @Injectable()
 export class LecturesService {
-  create(createLectureDto: CreateLectureDto) {
-    return 'This action adds a new lecture';
+  constructor(@InjectModel(Lecture.name) private lectureModel: Model<Lecture>){}
+  async create(createLectureDto: CreateLectureDto) {
+
+    const { _id} = createLectureDto
+
+    const findOneLecture = await this.lectureModel.findOne({ _id })
+    
+    if (findOneLecture) throw new BadRequestException('Lecture already exist!')
+    
+    return await (await this.lectureModel.create(createLectureDto)).save()
+
   }
 
   findAll() {
-    return `This action returns all lectures`;
+    return this.lectureModel.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} lecture`;
+  // async findOne(id: string) {
+    
+  // }
+
+  async update(id: string, updateLectureDto: UpdateLectureDto) {
+    return await this.lectureModel.findByIdAndUpdate(
+      {
+        _id: id,
+      },
+      {
+        $push: updateLectureDto
+      },
+      { new: true}
+    );;
   }
 
-  update(id: number, updateLectureDto: UpdateLectureDto) {
-    return `This action updates a #${id} lecture`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} lecture`;
+  async remove(id: string) {
+    return this.lectureModel.deleteOne({ id }).exec();
   }
 }

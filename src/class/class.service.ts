@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UpdateClassDto } from './dto/update-class.dto';
@@ -64,8 +64,28 @@ export class ClassService {
   }
 
    async getUsers(classId: string) {
-    const classes = await this.classModel.findById(classId).populate('classes');
+    const classes = await this.classModel.findById(classId).populate('user');
     return classes;
+   }
+  
+  async addLecture(lectureId: string, classId: string) {
+    return this.classModel.findByIdAndUpdate(
+      classId,
+      { $addToSet: { lectures: lectureId } },
+      {new: true}
+    )
+  }
+
+  async removeLecture(lectureId: string, classId: string) {
+    return this.classModel.findByIdAndUpdate(
+      classId,
+      { $pull: { lectures: lectureId } },
+      {new: true}
+    )
+  }
+
+  async getLectures(classId: string) {
+    return await this.classModel.findById(classId).populate('lectures');
   }
 
   async remove(nameClass: string) {

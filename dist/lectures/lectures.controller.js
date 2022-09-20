@@ -27,38 +27,28 @@ let LecturesController = class LecturesController {
     findAll() {
         return this.lecturesService.findAll();
     }
-    findOne(id) {
-        return this.lecturesService.findOne(+id);
-    }
     update(id, updateLectureDto) {
-        return this.lecturesService.update(+id, updateLectureDto);
+        return this.lecturesService.update(id, updateLectureDto);
     }
     remove(id) {
-        return this.lecturesService.remove(+id);
+        return this.lecturesService.remove(id);
     }
 };
 __decorate([
-    (0, common_1.Post)(),
+    (0, common_1.Post)('/create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_lecture_dto_1.CreateLectureDto]),
     __metadata("design:returntype", void 0)
 ], LecturesController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)('/all'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], LecturesController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], LecturesController.prototype, "findOne", null);
-__decorate([
-    (0, common_1.Patch)(':id'),
+    (0, common_1.Patch)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -66,7 +56,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], LecturesController.prototype, "update", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
+    (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

@@ -7,28 +7,28 @@ import { UpdateLectureDto } from './dto/update-lecture.dto';
 export class LecturesController {
   constructor(private readonly lecturesService: LecturesService) {}
 
-  @Post()
+  @Post('/create')
   create(@Body() createLectureDto: CreateLectureDto) {
     return this.lecturesService.create(createLectureDto);
   }
 
-  @Get()
+  @Get('/all')
   findAll() {
     return this.lecturesService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.lecturesService.findOne(+id);
-  }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.lecturesService.findOne(id);
+  // }
 
-  @Patch(':id')
+  @Patch('/:id')
   update(@Param('id') id: string, @Body() updateLectureDto: UpdateLectureDto) {
-    return this.lecturesService.update(+id, updateLectureDto);
+    return this.lecturesService.update(id, updateLectureDto);
   }
 
-  @Delete(':id')
+  @Delete('/:id')
   remove(@Param('id') id: string) {
-    return this.lecturesService.remove(+id);
+    return this.lecturesService.remove(id);
   }
 }

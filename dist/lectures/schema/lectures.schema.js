@@ -9,36 +9,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ClassSchema = exports.Class = void 0;
+exports.LectureSchema = exports.Lecture = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const class_transformer_1 = require("class-transformer");
 const mongoose_2 = require("mongoose");
-const lecture_entity_1 = require("../../lectures/entities/lecture.entity");
-let Class = class Class {
+const class_schema_1 = require("../../class/schema/class.schema");
+let Lecture = class Lecture {
 };
 __decorate([
     (0, class_transformer_1.Transform)(({ value }) => value.toString()),
     __metadata("design:type", String)
-], Class.prototype, "_id", void 0);
+], Lecture.prototype, "_id", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Class.prototype, "nameClass", void 0);
+], Lecture.prototype, "summary", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Lecture.prototype, "description", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Boolean)
-], Class.prototype, "open", void 0);
+], Lecture.prototype, "finished", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: 'Users' }] })),
-    __metadata("design:type", Array)
-], Class.prototype, "user", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: lecture_entity_1.Lecture.name }] })),
-    __metadata("design:type", Array)
-], Class.prototype, "lectures", void 0);
-Class = __decorate([
+    (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: class_schema_1.Class.name }] })),
+    __metadata("design:type", class_schema_1.Class)
+], Lecture.prototype, "class", void 0);
+Lecture = __decorate([
     (0, mongoose_1.Schema)()
-], Class);
-exports.Class = Class;
-exports.ClassSchema = mongoose_1.SchemaFactory.createForClass(Class);
-//# sourceMappingURL=class.schema.js.map
+], Lecture);
+exports.Lecture = Lecture;
+exports.LectureSchema = mongoose_1.SchemaFactory.createForClass(Lecture);
+//# sourceMappingURL=lectures.schema.js.map
