@@ -10,12 +10,21 @@ exports.WorkModule = void 0;
 const common_1 = require("@nestjs/common");
 const work_service_1 = require("./work.service");
 const work_controller_1 = require("./work.controller");
+const lectures_module_1 = require("../lectures/lectures.module");
+const users_module_1 = require("../users/users.module");
+const mongoose_1 = require("@nestjs/mongoose");
+const work_schema_1 = require("./schema/work.schema");
 let WorkModule = class WorkModule {
 };
 WorkModule = __decorate([
     (0, common_1.Module)({
+        imports: [
+            lectures_module_1.LecturesModule,
+            users_module_1.UsersModule,
+            mongoose_1.MongooseModule.forFeature([{ name: work_schema_1.Work.name, schema: work_schema_1.WorkSchema }]),
+        ],
         controllers: [work_controller_1.WorkController],
-        providers: [work_service_1.WorkService]
+        providers: [work_service_1.WorkService],
     })
 ], WorkModule);
 exports.WorkModule = WorkModule;

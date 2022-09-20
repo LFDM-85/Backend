@@ -18,7 +18,6 @@ const path_1 = require("path");
 const class_module_1 = require("./class/class.module");
 const core_1 = require("@nestjs/core");
 const roles_guard_1 = require("./roleGuards/roles.guard");
-const class_user_module_1 = require("./class_user/class_user.module");
 const lectures_module_1 = require("./lectures/lectures.module");
 const assessments_module_1 = require("./assessments/assessments.module");
 const work_module_1 = require("./work/work.module");
@@ -41,7 +40,6 @@ AppModule = __decorate([
                 rootPath: (0, path_1.join)(__dirname, '..', 'client'),
             }),
             class_module_1.ClassModule,
-            class_user_module_1.ClassUserModule,
             lectures_module_1.LecturesModule,
             assessments_module_1.AssessmentsModule,
             work_module_1.WorkModule,

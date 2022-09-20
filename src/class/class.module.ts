@@ -5,7 +5,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Class, ClassSchema } from './schema/class.schema';
 import { UsersModule } from '../users/users.module';
 
-
 @Module({
   imports: [
     UsersModule,

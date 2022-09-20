@@ -19,5 +19,5 @@ export class Class {
   lectures: [Lecture];
 }
 
-export const ClassSchema = SchemaFactory.createForClass(Class)
+export const ClassSchema = SchemaFactory.createForClass(Class);
 

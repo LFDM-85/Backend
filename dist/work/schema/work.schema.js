@@ -9,19 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateWorkDto = void 0;
-const class_validator_1 = require("class-validator");
-class CreateWorkDto {
-}
+exports.WorkSchema = exports.Work = void 0;
+const mongoose_1 = require("@nestjs/mongoose");
+const class_transformer_1 = require("class-transformer");
+let Work = class Work {
+};
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsString)(),
+    (0, class_transformer_1.Transform)(({ value }) => value.toString()),
     __metadata("design:type", String)
-], CreateWorkDto.prototype, "title", void 0);
+], Work.prototype, "_id", void 0);
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsString)(),
+    (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], CreateWorkDto.prototype, "description", void 0);
-exports.CreateWorkDto = CreateWorkDto;
-//# sourceMappingURL=create-work.dto.js.map
+], Work.prototype, "title", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Work.prototype, "description", void 0);
+Work = __decorate([
+    (0, mongoose_1.Schema)()
+], Work);
+exports.Work = Work;
+exports.WorkSchema = mongoose_1.SchemaFactory.createForClass(Work);
+//# sourceMappingURL=work.schema.js.map
