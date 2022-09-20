@@ -38,6 +38,15 @@ let LecturesService = class LecturesService {
             $push: updateLectureDto
         }, { new: true });
     }
+    async addAssessment(assessmentId, lectureId) {
+        return this.lectureModel.findByIdAndUpdate(lectureId, { $addToSet: { assessment: assessmentId } }, { new: true });
+    }
+    async removeAssessment(assessmentId, lectureId) {
+        return this.lectureModel.findByIdAndUpdate(lectureId, { $pull: { assessment: assessmentId } }, { new: true });
+    }
+    async getAssessment(lectureId) {
+        return await this.lectureModel.findById(lectureId).populate('assessment');
+    }
     async remove(id) {
         return this.lectureModel.deleteOne({ id }).exec();
     }

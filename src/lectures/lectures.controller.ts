@@ -27,6 +27,21 @@ export class LecturesController {
     return this.lecturesService.update(id, updateLectureDto);
   }
 
+  @Patch('/:assessmentId/add-assessment/:lectureId')
+  addClass(@Param('assessmentId') assessmentId: string, @Param('lectureId') lectureId: string) {
+    return this.lecturesService.addAssessment(assessmentId, lectureId)
+    }
+
+   @Patch('/:assessmentId/remove-assessment/:lectureId')
+  removeClass(@Param('assessmentId') assessmentId: string, @Param('lectureId') lectureId: string) {
+    return this.lecturesService.removeAssessment(assessmentId, lectureId)
+  }
+  
+  @Get('/:classId/assessment')
+  getClasses(@Param('lectureId') lectureId: string) {
+    return this.lecturesService.getAssessment(lectureId)
+  }
+
   @Delete('/:id')
   remove(@Param('id') id: string) {
     return this.lecturesService.remove(id);

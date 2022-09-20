@@ -40,5 +40,14 @@ export declare class LecturesController {
     update(id: string, updateLectureDto: UpdateLectureDto): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
         _id: import("mongoose").Types.ObjectId;
     }>;
+    addClass(assessmentId: string, lectureId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    removeClass(assessmentId: string, lectureId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    getClasses(lectureId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     remove(id: string): Promise<import("mongodb").DeleteResult>;
 }

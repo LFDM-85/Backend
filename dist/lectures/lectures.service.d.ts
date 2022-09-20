@@ -40,5 +40,14 @@ export declare class LecturesService {
     update(id: string, updateLectureDto: UpdateLectureDto): Promise<import("mongoose").Document<unknown, any, Lecture> & Lecture & {
         _id: import("mongoose").Types.ObjectId;
     }>;
+    addAssessment(assessmentId: string, lectureId: string): Promise<import("mongoose").Document<unknown, any, Lecture> & Lecture & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    removeAssessment(assessmentId: string, lectureId: string): Promise<import("mongoose").Document<unknown, any, Lecture> & Lecture & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    getAssessment(lectureId: string): Promise<import("mongoose").Document<unknown, any, Lecture> & Lecture & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     remove(id: string): Promise<import("mongodb").DeleteResult>;
 }

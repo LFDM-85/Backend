@@ -40,6 +40,26 @@ export class LecturesService {
     );
   }
 
+  async addAssessment(assessmentId: string, lectureId: string) {
+    return this.lectureModel.findByIdAndUpdate(
+      lectureId,
+      { $addToSet: { assessment: assessmentId } },
+      {new: true}
+    )
+  }
+
+  async removeAssessment(assessmentId: string, lectureId: string) {
+    return this.lectureModel.findByIdAndUpdate(
+      lectureId,
+      { $pull: { assessment: assessmentId } },
+      {new: true}
+    )
+  }
+
+  async getAssessment(lectureId: string) {
+    return await this.lectureModel.findById(lectureId).populate('assessment')
+  }
+
   async remove(id: string) {
     return this.lectureModel.deleteOne({ id }).exec();
   }
