@@ -14,6 +14,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AttendanceController = void 0;
 const common_1 = require("@nestjs/common");
+const platform_express_1 = require("@nestjs/platform-express");
+const multer_1 = require("multer");
 const attendance_service_1 = require("./attendance.service");
 const create_attendance_dto_1 = require("./dto/create-attendance.dto");
 const update_attendance_dto_1 = require("./dto/update-attendance.dto");
@@ -26,6 +28,10 @@ let AttendanceController = class AttendanceController {
     }
     findAll() {
         return this.attendanceService.findAll();
+    }
+    handleUpload(file) {
+        console.log('file', file);
+        return 'File upload API';
     }
     update(id, updateAttendanceDto) {
         return this.attendanceService.update(id, updateAttendanceDto);
@@ -47,6 +53,22 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], AttendanceController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Post)('/upload'),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
+        storage: (0, multer_1.diskStorage)({
+            destination: './attendance',
+            filename: (req, file, callback) => {
+                const filename = `${file.originalname}`;
+                callback(null, filename);
+            }
+        })
+    })),
+    __param(0, (0, common_1.UploadedFile)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], AttendanceController.prototype, "handleUpload", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),

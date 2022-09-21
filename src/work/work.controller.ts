@@ -1,7 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { WorkService } from './work.service';
 import { CreateWorkDto } from './dto/create-work.dto';
 import { UpdateWorkDto } from './dto/update-work.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
 
 @Controller('work')
 export class WorkController {
@@ -21,6 +23,22 @@ export class WorkController {
   // findOne(@Param('id') id: string) {
   //   return this.workService.findOne(+id);
   // }
+
+  @Post('/upload')
+  @UseInterceptors(FileInterceptor('file', {
+    storage: diskStorage({
+      destination: './works',
+      filename: (req, file, callback) => {
+        const filename = `${file.originalname}`;
+        callback(null, filename)
+      }
+      })
+    }))
+  handleUpload(@UploadedFile() file: Express.Multer.File) {
+    console.log('file', file);
+    
+    return 'File upload API'
+    }
 
   @Patch('/:id')
   update(@Param('id') id: string, @Body() updateWorkDto: UpdateWorkDto) {

@@ -1,3 +1,4 @@
+/// <reference types="multer" />
 /// <reference types="mongoose/types/aggregate" />
 /// <reference types="mongoose/types/callback" />
 /// <reference types="mongoose/types/collection" />
@@ -37,6 +38,7 @@ export declare class AttendanceController {
     })[], import("mongoose").Document<unknown, any, import("./entities/attendance.entity").Attendance> & import("./entities/attendance.entity").Attendance & {
         _id: import("mongoose").Types.ObjectId;
     }, {}, import("./entities/attendance.entity").Attendance>;
+    handleUpload(file: Express.Multer.File): string;
     update(id: string, updateAttendanceDto: UpdateAttendanceDto): Promise<import("mongoose").Document<unknown, any, import("./entities/attendance.entity").Attendance> & import("./entities/attendance.entity").Attendance & {
         _id: import("mongoose").Types.ObjectId;
     }>;

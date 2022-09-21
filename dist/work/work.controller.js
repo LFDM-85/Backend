@@ -17,6 +17,8 @@ const common_1 = require("@nestjs/common");
 const work_service_1 = require("./work.service");
 const create_work_dto_1 = require("./dto/create-work.dto");
 const update_work_dto_1 = require("./dto/update-work.dto");
+const platform_express_1 = require("@nestjs/platform-express");
+const multer_1 = require("multer");
 let WorkController = class WorkController {
     constructor(workService) {
         this.workService = workService;
@@ -26,6 +28,10 @@ let WorkController = class WorkController {
     }
     findAll() {
         return this.workService.findAll();
+    }
+    handleUpload(file) {
+        console.log('file', file);
+        return 'File upload API';
     }
     update(id, updateWorkDto) {
         return this.workService.update(id, updateWorkDto);
@@ -47,6 +53,22 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], WorkController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Post)('/upload'),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
+        storage: (0, multer_1.diskStorage)({
+            destination: './works',
+            filename: (req, file, callback) => {
+                const filename = `${file.originalname}`;
+                callback(null, filename);
+            }
+        })
+    })),
+    __param(0, (0, common_1.UploadedFile)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], WorkController.prototype, "handleUpload", null);
 __decorate([
     (0, common_1.Patch)('/:id'),
     __param(0, (0, common_1.Param)('id')),

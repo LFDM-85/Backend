@@ -14,6 +14,7 @@ const lectures_module_1 = require("../lectures/lectures.module");
 const users_module_1 = require("../users/users.module");
 const mongoose_1 = require("@nestjs/mongoose");
 const work_schema_1 = require("./schema/work.schema");
+const platform_express_1 = require("@nestjs/platform-express");
 let WorkModule = class WorkModule {
 };
 WorkModule = __decorate([
@@ -21,6 +22,7 @@ WorkModule = __decorate([
         imports: [
             lectures_module_1.LecturesModule,
             users_module_1.UsersModule,
+            platform_express_1.MulterModule.register({ dest: './uploads' }),
             mongoose_1.MongooseModule.forFeature([{ name: work_schema_1.Work.name, schema: work_schema_1.WorkSchema }]),
         ],
         controllers: [work_controller_1.WorkController],

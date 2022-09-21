@@ -13,11 +13,13 @@ const attendance_controller_1 = require("./attendance.controller");
 const lectures_module_1 = require("../lectures/lectures.module");
 const mongoose_1 = require("@nestjs/mongoose");
 const attendance_schema_1 = require("./schema/attendance.schema");
+const platform_express_1 = require("@nestjs/platform-express");
 let AttendanceModule = class AttendanceModule {
 };
 AttendanceModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            platform_express_1.MulterModule.register({ dest: './uploads' }),
             lectures_module_1.LecturesModule,
             mongoose_1.MongooseModule.forFeature([
                 { name: attendance_schema_1.Attendance.name, schema: attendance_schema_1.AttendanceSchema },

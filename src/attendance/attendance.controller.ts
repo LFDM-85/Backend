@@ -1,4 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
 import { AttendanceService } from './attendance.service';
 import { CreateAttendanceDto } from './dto/create-attendance.dto';
 import { UpdateAttendanceDto } from './dto/update-attendance.dto';
@@ -21,6 +23,22 @@ export class AttendanceController {
   // findOne(@Param('id') id: string) {
   //   return this.attendanceService.findOne(+id);
   // }
+
+   @Post('/upload')
+  @UseInterceptors(FileInterceptor('file', {
+    storage: diskStorage({
+      destination: './attendance',
+      filename: (req, file, callback) => {
+        const filename = `${file.originalname}`;
+        callback(null, filename)
+      }
+      })
+    }))
+  handleUpload(@UploadedFile() file: Express.Multer.File) {
+    console.log('file', file);
+    
+    return 'File upload API'
+    }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAttendanceDto: UpdateAttendanceDto) {

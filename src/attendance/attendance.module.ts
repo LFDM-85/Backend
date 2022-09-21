@@ -4,9 +4,11 @@ import { AttendanceController } from './attendance.controller';
 import { LecturesModule } from 'src/lectures/lectures.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AttendanceSchema, Attendance } from './schema/attendance.schema';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
+    MulterModule.register({ dest: './uploads' }),
     LecturesModule,
     MongooseModule.forFeature([
       { name: Attendance.name, schema: AttendanceSchema },
