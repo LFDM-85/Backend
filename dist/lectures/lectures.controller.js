@@ -30,14 +30,32 @@ let LecturesController = class LecturesController {
     update(id, updateLectureDto) {
         return this.lecturesService.update(id, updateLectureDto);
     }
-    addClass(assessmentId, lectureId) {
+    addAssessment(assessmentId, lectureId) {
         return this.lecturesService.addAssessment(assessmentId, lectureId);
     }
-    removeClass(assessmentId, lectureId) {
+    removeAssessment(assessmentId, lectureId) {
         return this.lecturesService.removeAssessment(assessmentId, lectureId);
     }
-    getClasses(lectureId) {
+    getAssessment(lectureId) {
         return this.lecturesService.getAssessment(lectureId);
+    }
+    addAttendance(attendanceId, lectureId) {
+        return this.lecturesService.addAttendance(attendanceId, lectureId);
+    }
+    removeAttendance(attendanceId, lectureId) {
+        return this.lecturesService.removeAttendance(attendanceId, lectureId);
+    }
+    getAttendance(lectureId) {
+        return this.lecturesService.getAttendance(lectureId);
+    }
+    addWork(workId, lectureId) {
+        return this.lecturesService.addWork(workId, lectureId);
+    }
+    removeWork(workId, lectureId) {
+        return this.lecturesService.removeWork(workId, lectureId);
+    }
+    getWork(lectureId) {
+        return this.lecturesService.getWork(lectureId);
     }
     remove(id) {
         return this.lecturesService.remove(id);
@@ -71,7 +89,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", void 0)
-], LecturesController.prototype, "addClass", null);
+], LecturesController.prototype, "addAssessment", null);
 __decorate([
     (0, common_1.Patch)('/:assessmentId/remove-assessment/:lectureId'),
     __param(0, (0, common_1.Param)('assessmentId')),
@@ -79,14 +97,60 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", void 0)
-], LecturesController.prototype, "removeClass", null);
+], LecturesController.prototype, "removeAssessment", null);
 __decorate([
-    (0, common_1.Get)('/:classId/assessment'),
+    (0, common_1.Get)('/:lectureId/assessments'),
     __param(0, (0, common_1.Param)('lectureId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], LecturesController.prototype, "getClasses", null);
+], LecturesController.prototype, "getAssessment", null);
+__decorate([
+    (0, common_1.Patch)('/:attendanceId/add-attendance/:lectureId'),
+    __param(0, (0, common_1.Param)('attendanceId')),
+    __param(1, (0, common_1.Param)('lectureId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], LecturesController.prototype, "addAttendance", null);
+__decorate([
+    (0, common_1.Patch)('/:attendanceId/remove-attendance/:lectureId'),
+    __param(0, (0, common_1.Param)('attendanceId')),
+    __param(1, (0, common_1.Param)('lectureId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], LecturesController.prototype, "removeAttendance", null);
+__decorate([
+    (0, common_1.Get)('/:classId/attendances'),
+    __param(0, (0, common_1.Param)('lectureId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], LecturesController.prototype, "getAttendance", null);
+__decorate([
+    (0, common_1.Patch)('/:workId/add-work/:lectureId'),
+    __param(0, (0, common_1.Param)('workId')),
+    __param(1, (0, common_1.Param)('lectureId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], LecturesController.prototype, "addWork", null);
+__decorate([
+    (0, common_1.Patch)('/:workId/remove-work/:lectureId'),
+    __param(0, (0, common_1.Param)('workId')),
+    __param(1, (0, common_1.Param)('lectureId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], LecturesController.prototype, "removeWork", null);
+__decorate([
+    (0, common_1.Get)('/:lectureId/works'),
+    __param(0, (0, common_1.Param)('lectureId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], LecturesController.prototype, "getWork", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),

@@ -12,6 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WorkSchema = exports.Work = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const class_transformer_1 = require("class-transformer");
+const mongoose_2 = require("mongoose");
+const user_entity_1 = require("../../users/entities/user.entity");
 let Work = class Work {
 };
 __decorate([
@@ -26,6 +28,10 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Work.prototype, "description", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: user_entity_1.Users.name }] })),
+    __metadata("design:type", Array)
+], Work.prototype, "user", void 0);
 Work = __decorate([
     (0, mongoose_1.Schema)()
 ], Work);

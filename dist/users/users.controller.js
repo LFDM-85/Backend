@@ -47,6 +47,33 @@ let UsersController = class UsersController {
     getClasses(userId) {
         return this.usersService.getClasses(userId);
     }
+    addWork(userId, workId) {
+        return this.usersService.addWork(userId, workId);
+    }
+    removeWork(userId, workId) {
+        return this.usersService.removeWork(userId, workId);
+    }
+    getWork(userId) {
+        return this.usersService.getWork(userId);
+    }
+    addAssessment(userId, assessmentId) {
+        return this.usersService.addAssessment(userId, assessmentId);
+    }
+    removeAssessment(userId, assessmentId) {
+        return this.usersService.removeAssessment(userId, assessmentId);
+    }
+    getAssessment(userId) {
+        return this.usersService.getAssessment(userId);
+    }
+    addAttendance(userId, attendanceId) {
+        return this.usersService.addAttendance(userId, attendanceId);
+    }
+    removeAttendance(userId, attendanceId) {
+        return this.usersService.removeAttendance(userId, attendanceId);
+    }
+    getAttendance(userId) {
+        return this.usersService.getAttendance(userId);
+    }
     delete(id) {
         return this.usersService.remove(id);
     }
@@ -111,6 +138,75 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "getClasses", null);
+__decorate([
+    (0, common_1.Patch)('/:id/add-work/:workId'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Param)('workId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "addWork", null);
+__decorate([
+    (0, common_1.Patch)('/:id/remove-work/:workId'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Param)('workId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "removeWork", null);
+__decorate([
+    (0, common_1.Get)('/:id/works'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "getWork", null);
+__decorate([
+    (0, common_1.Patch)('/:id/add-assessment/:assessmentId'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Param)('assessmentId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "addAssessment", null);
+__decorate([
+    (0, common_1.Patch)('/:id/remove-work/:assessmentId'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Param)('assessmentId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "removeAssessment", null);
+__decorate([
+    (0, common_1.Get)('/:id/assessments'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "getAssessment", null);
+__decorate([
+    (0, common_1.Patch)('/:id/add-attendance/:attendanceId'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Param)('attendanceId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "addAttendance", null);
+__decorate([
+    (0, common_1.Patch)('/:id/remove-attendance/:attendanceId'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Param)('attendanceId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "removeAttendance", null);
+__decorate([
+    (0, common_1.Get)('/:id/attendances'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "getAttendance", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),

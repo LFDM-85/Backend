@@ -65,6 +65,36 @@ let UsersService = class UsersService {
         const user = await this.usersModel.findById(userId).populate('classes');
         return user;
     }
+    async addWork(userId, workId) {
+        return this.usersModel.findByIdAndUpdate(userId, { $addToSet: { work: workId } }, { new: true });
+    }
+    async removeWork(userId, workId) {
+        return this.usersModel.findByIdAndUpdate(userId, { $pull: { work: workId } }, { new: true });
+    }
+    async getWork(userId) {
+        const user = await this.usersModel.findById(userId).populate('work');
+        return user;
+    }
+    async addAssessment(userId, assessmentId) {
+        return this.usersModel.findByIdAndUpdate(userId, { $addToSet: { assessment: assessmentId } }, { new: true });
+    }
+    async removeAssessment(userId, assessmentId) {
+        return this.usersModel.findByIdAndUpdate(userId, { $pull: { assessment: assessmentId } }, { new: true });
+    }
+    async getAssessment(userId) {
+        const user = await this.usersModel.findById(userId).populate('assessment');
+        return user;
+    }
+    async addAttendance(userId, attendanceId) {
+        return this.usersModel.findByIdAndUpdate(userId, { $addToSet: { attendance: attendanceId } }, { new: true });
+    }
+    async removeAttendance(userId, attendanceId) {
+        return this.usersModel.findByIdAndUpdate(userId, { $pull: { attendance: attendanceId } }, { new: true });
+    }
+    async getAttendance(userId) {
+        const user = await this.usersModel.findById(userId).populate('attendance');
+        return user;
+    }
     async remove(id) {
         return await this.usersModel.deleteOne({
             _id: id

@@ -78,6 +78,69 @@ export class UsersService {
     return user;
   }
 
+  async addWork(userId: string, workId: string) {
+    return this.usersModel.findByIdAndUpdate(
+      userId,
+      { $addToSet:  { work: workId }},
+  { new: true}
+    )
+  }
+
+  async removeWork(userId: string, workId: string) {
+    return this.usersModel.findByIdAndUpdate(
+      userId,
+      { $pull: { work: workId } },
+      { new: true}
+    )
+  }
+
+   async getWork(userId: string) {
+    const user = await this.usersModel.findById(userId).populate('work');
+    return user;
+  }
+
+  async addAssessment(userId: string, assessmentId: string) {
+    return this.usersModel.findByIdAndUpdate(
+      userId,
+      { $addToSet:  { assessment: assessmentId }},
+  { new: true}
+    )
+  }
+
+  async removeAssessment(userId: string, assessmentId: string) {
+    return this.usersModel.findByIdAndUpdate(
+      userId,
+      { $pull: { assessment: assessmentId } },
+      { new: true}
+    )
+  }
+
+   async getAssessment(userId: string) {
+    const user = await this.usersModel.findById(userId).populate('assessment');
+    return user;
+  }
+
+   async addAttendance(userId: string, attendanceId: string) {
+    return this.usersModel.findByIdAndUpdate(
+      userId,
+      { $addToSet:  { attendance: attendanceId }},
+  { new: true}
+    )
+  }
+
+  async removeAttendance(userId: string, attendanceId: string) {
+    return this.usersModel.findByIdAndUpdate(
+      userId,
+      { $pull: { attendance: attendanceId } },
+      { new: true}
+    )
+  }
+
+   async getAttendance(userId: string) {
+    const user = await this.usersModel.findById(userId).populate('attendance');
+    return user;
+  }
+
   async remove(id: string) {
     return await this.usersModel.deleteOne({
       _id: id

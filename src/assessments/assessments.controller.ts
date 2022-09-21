@@ -28,17 +28,17 @@ export class AssessmentsController {
   }
 
   @Patch('/:id/add-user/:assessmentId')
-  addClass(@Param('id') userId: string, @Param('assessmentId') assessmentId: string) {
+  addAssessment(@Param('id') userId: string, @Param('assessmentId') assessmentId: string) {
     return this.assessmentsService.addUser(userId, assessmentId)
     }
 
    @Patch('/:id/remove-user/:assessmentId')
-  removeClass(@Param('id') userId: string, @Param('assessmentId') assessmentId: string) {
+  removeAssessment(@Param('id') userId: string, @Param('assessmentId') assessmentId: string) {
     return this.assessmentsService.removeUser(userId, assessmentId)
   }
   
   @Get('/:assessmentId/users')
-  getClasses(@Param('assessmentId') assessmentId: string) {
+  getAssessment(@Param('assessmentId') assessmentId: string) {
     return this.assessmentsService.getUsers(assessmentId)
   }
 

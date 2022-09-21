@@ -32,6 +32,28 @@ export class AttendanceService {
     );
   }
 
+
+  async addUser(userId: string, attendanceId: string) {
+    return this.attendanceModel.findByIdAndUpdate(
+      attendanceId,
+      { $addToSet:  { user: userId }},
+  { new: true}
+    )
+  }
+
+  async removeUser(userId: string, attendanceId: string) {
+    return this.attendanceModel.findByIdAndUpdate(
+      attendanceId,
+      { $pull: { user: userId } },
+      { new: true}
+    )
+  }
+
+   async getUsers(attendanceId: string) {
+    const assessment = await this.attendanceModel.findById(attendanceId).populate('user');
+    return assessment;
+   }
+  
   remove(id: string) {
     return this.attendanceModel.deleteOne({id}).exec();
   }

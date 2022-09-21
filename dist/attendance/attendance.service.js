@@ -34,6 +34,16 @@ let AttendanceService = class AttendanceService {
             $push: updateAttendanceDto
         }, { new: true });
     }
+    async addUser(userId, attendanceId) {
+        return this.attendanceModel.findByIdAndUpdate(attendanceId, { $addToSet: { user: userId } }, { new: true });
+    }
+    async removeUser(userId, attendanceId) {
+        return this.attendanceModel.findByIdAndUpdate(attendanceId, { $pull: { user: userId } }, { new: true });
+    }
+    async getUsers(attendanceId) {
+        const assessment = await this.attendanceModel.findById(attendanceId).populate('user');
+        return assessment;
+    }
     remove(id) {
         return this.attendanceModel.deleteOne({ id }).exec();
     }

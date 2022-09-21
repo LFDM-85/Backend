@@ -40,13 +40,13 @@ export declare class AssessmentsController {
     update(id: string, updateAssessmentDto: UpdateAssessmentDto): Promise<import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    addClass(userId: string, assessmentId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {
+    addAssessment(userId: string, assessmentId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    removeClass(userId: string, assessmentId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {
+    removeAssessment(userId: string, assessmentId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    getClasses(assessmentId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {
+    getAssessment(assessmentId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     remove(id: string): Promise<import("mongodb").DeleteResult>;

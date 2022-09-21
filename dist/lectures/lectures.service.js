@@ -47,6 +47,24 @@ let LecturesService = class LecturesService {
     async getAssessment(lectureId) {
         return await this.lectureModel.findById(lectureId).populate('assessment');
     }
+    async addAttendance(attendanceId, lectureId) {
+        return this.lectureModel.findByIdAndUpdate(lectureId, { $addToSet: { attendance: attendanceId } }, { new: true });
+    }
+    async removeAttendance(attendanceId, lectureId) {
+        return this.lectureModel.findByIdAndUpdate(lectureId, { $pull: { assessment: attendanceId } }, { new: true });
+    }
+    async getAttendance(lectureId) {
+        return await this.lectureModel.findById(lectureId).populate('attendance');
+    }
+    async addWork(workId, lectureId) {
+        return this.lectureModel.findByIdAndUpdate(lectureId, { $addToSet: { work: workId } }, { new: true });
+    }
+    async removeWork(workId, lectureId) {
+        return this.lectureModel.findByIdAndUpdate(lectureId, { $pull: { work: workId } }, { new: true });
+    }
+    async getWork(lectureId) {
+        return await this.lectureModel.findById(lectureId).populate('work');
+    }
     async remove(id) {
         return this.lectureModel.deleteOne({ id }).exec();
     }

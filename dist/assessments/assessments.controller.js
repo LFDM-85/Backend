@@ -30,13 +30,13 @@ let AssessmentsController = class AssessmentsController {
     update(id, updateAssessmentDto) {
         return this.assessmentsService.update(id, updateAssessmentDto);
     }
-    addClass(userId, assessmentId) {
+    addAssessment(userId, assessmentId) {
         return this.assessmentsService.addUser(userId, assessmentId);
     }
-    removeClass(userId, assessmentId) {
+    removeAssessment(userId, assessmentId) {
         return this.assessmentsService.removeUser(userId, assessmentId);
     }
-    getClasses(assessmentId) {
+    getAssessment(assessmentId) {
         return this.assessmentsService.getUsers(assessmentId);
     }
     remove(id) {
@@ -71,7 +71,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", void 0)
-], AssessmentsController.prototype, "addClass", null);
+], AssessmentsController.prototype, "addAssessment", null);
 __decorate([
     (0, common_1.Patch)('/:id/remove-user/:assessmentId'),
     __param(0, (0, common_1.Param)('id')),
@@ -79,14 +79,14 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", void 0)
-], AssessmentsController.prototype, "removeClass", null);
+], AssessmentsController.prototype, "removeAssessment", null);
 __decorate([
     (0, common_1.Get)('/:assessmentId/users'),
     __param(0, (0, common_1.Param)('assessmentId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], AssessmentsController.prototype, "getClasses", null);
+], AssessmentsController.prototype, "getAssessment", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),

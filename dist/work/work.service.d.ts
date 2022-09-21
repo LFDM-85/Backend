@@ -40,5 +40,14 @@ export declare class WorkService {
     update(id: string, updateWorkDto: UpdateWorkDto): Promise<import("mongoose").Document<unknown, any, Work> & Work & {
         _id: import("mongoose").Types.ObjectId;
     }>;
+    addUser(userId: string, workId: string): Promise<import("mongoose").Document<unknown, any, Work> & Work & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    removeUser(userId: string, workId: string): Promise<import("mongoose").Document<unknown, any, Work> & Work & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    getUsers(workId: string): Promise<import("mongoose").Document<unknown, any, Work> & Work & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     remove(id: string): Promise<import("mongodb").DeleteResult>;
 }

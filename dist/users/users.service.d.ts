@@ -52,5 +52,32 @@ export declare class UsersService {
     getClasses(userId: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
         _id: import("mongoose").Types.ObjectId;
     }>;
+    addWork(userId: string, workId: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    removeWork(userId: string, workId: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    getWork(userId: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    addAssessment(userId: string, assessmentId: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    removeAssessment(userId: string, assessmentId: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    getAssessment(userId: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    addAttendance(userId: string, attendanceId: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    removeAttendance(userId: string, attendanceId: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    getAttendance(userId: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     remove(id: string): Promise<import("mongodb").DeleteResult>;
 }

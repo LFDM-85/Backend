@@ -45,6 +45,22 @@ export class AttendanceController {
     return this.attendanceService.update(id, updateAttendanceDto);
   }
 
+   @Patch('/:id/add-user/:attendanceId')
+  addAttendance(@Param('id') userId: string, @Param('attendanceId') attendanceId: string) {
+    return this.attendanceService.addUser(userId, attendanceId)
+    }
+
+   @Patch('/:id/remove-user/:attendanceId')
+  removeAttendance(@Param('id') userId: string, @Param('attendanceId') attendanceId: string) {
+    return this.attendanceService.removeUser(userId, attendanceId)
+  }
+  
+  @Get('/:attendanceId/users')
+  getAttendance(@Param('attendanceId') attendanceId: string) {
+    return this.attendanceService.getUsers(attendanceId)
+  }
+
+
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.attendanceService.remove(id);

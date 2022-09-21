@@ -42,5 +42,14 @@ export declare class AttendanceController {
     update(id: string, updateAttendanceDto: UpdateAttendanceDto): Promise<import("mongoose").Document<unknown, any, import("./entities/attendance.entity").Attendance> & import("./entities/attendance.entity").Attendance & {
         _id: import("mongoose").Types.ObjectId;
     }>;
+    addAttendance(userId: string, attendanceId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/attendance.entity").Attendance> & import("./entities/attendance.entity").Attendance & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    removeAttendance(userId: string, attendanceId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/attendance.entity").Attendance> & import("./entities/attendance.entity").Attendance & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    getAttendance(attendanceId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/attendance.entity").Attendance> & import("./entities/attendance.entity").Attendance & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     remove(id: string): Promise<import("mongodb").DeleteResult>;
 }

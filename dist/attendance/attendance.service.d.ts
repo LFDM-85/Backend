@@ -40,5 +40,14 @@ export declare class AttendanceService {
     update(id: string, updateAttendanceDto: UpdateAttendanceDto): Promise<import("mongoose").Document<unknown, any, Attendance> & Attendance & {
         _id: import("mongoose").Types.ObjectId;
     }>;
+    addUser(userId: string, attendanceId: string): Promise<import("mongoose").Document<unknown, any, Attendance> & Attendance & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    removeUser(userId: string, attendanceId: string): Promise<import("mongoose").Document<unknown, any, Attendance> & Attendance & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    getUsers(attendanceId: string): Promise<import("mongoose").Document<unknown, any, Attendance> & Attendance & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     remove(id: string): Promise<import("mongodb").DeleteResult>;
 }

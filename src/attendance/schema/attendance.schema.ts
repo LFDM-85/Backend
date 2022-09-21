@@ -1,5 +1,7 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Transform } from "class-transformer";
+import mongoose from "mongoose";
+import  { Users } from '../../users/entities/user.entity'
 
 export type AttendanceDocument = Attendance & Document;
 
@@ -11,6 +13,8 @@ export class Attendance {
   attendance: boolean;
   @Prop()
   validation: boolean;
+   @Prop(({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Users' }] }))
+  user: Users;
 }
 
 export const AttendanceSchema = SchemaFactory.createForClass(Attendance)

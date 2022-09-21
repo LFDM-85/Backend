@@ -36,6 +36,15 @@ let AttendanceController = class AttendanceController {
     update(id, updateAttendanceDto) {
         return this.attendanceService.update(id, updateAttendanceDto);
     }
+    addAttendance(userId, attendanceId) {
+        return this.attendanceService.addUser(userId, attendanceId);
+    }
+    removeAttendance(userId, attendanceId) {
+        return this.attendanceService.removeUser(userId, attendanceId);
+    }
+    getAttendance(attendanceId) {
+        return this.attendanceService.getUsers(attendanceId);
+    }
     remove(id) {
         return this.attendanceService.remove(id);
     }
@@ -77,6 +86,29 @@ __decorate([
     __metadata("design:paramtypes", [String, update_attendance_dto_1.UpdateAttendanceDto]),
     __metadata("design:returntype", void 0)
 ], AttendanceController.prototype, "update", null);
+__decorate([
+    (0, common_1.Patch)('/:id/add-user/:attendanceId'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Param)('attendanceId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], AttendanceController.prototype, "addAttendance", null);
+__decorate([
+    (0, common_1.Patch)('/:id/remove-user/:attendanceId'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Param)('attendanceId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], AttendanceController.prototype, "removeAttendance", null);
+__decorate([
+    (0, common_1.Get)('/:attendanceId/users'),
+    __param(0, (0, common_1.Param)('attendanceId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AttendanceController.prototype, "getAttendance", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),

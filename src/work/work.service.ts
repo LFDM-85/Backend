@@ -36,6 +36,27 @@ export class WorkService {
     );
   }
 
+  async addUser(userId: string, workId: string) {
+    return this.workModel.findByIdAndUpdate(
+      workId,
+      { $addToSet:  { user: userId }},
+  { new: true}
+    )
+  }
+
+  async removeUser(userId: string, workId: string) {
+    return this.workModel.findByIdAndUpdate(
+      workId,
+      { $pull: { user: userId } },
+      { new: true}
+    )
+  }
+
+  async getUsers(workId: string) {
+    const assessment = await this.workModel.findById(workId).populate('user');
+    return assessment;
+  }
+
   async remove(id: string) {
     return this.workModel.deleteOne({id}).exec();
   }

@@ -40,13 +40,31 @@ export declare class LecturesController {
     update(id: string, updateLectureDto: UpdateLectureDto): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    addClass(assessmentId: string, lectureId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
+    addAssessment(assessmentId: string, lectureId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    removeClass(assessmentId: string, lectureId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
+    removeAssessment(assessmentId: string, lectureId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    getClasses(lectureId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
+    getAssessment(lectureId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    addAttendance(attendanceId: string, lectureId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    removeAttendance(attendanceId: string, lectureId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    getAttendance(lectureId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    addWork(workId: string, lectureId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    removeWork(workId: string, lectureId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    getWork(lectureId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     remove(id: string): Promise<import("mongodb").DeleteResult>;

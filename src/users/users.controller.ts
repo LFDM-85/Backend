@@ -61,6 +61,51 @@ export class UsersController {
   @Get('/:id/classes')
   getClasses(@Param('id') userId: string) {
     return this.usersService.getClasses(userId)
+  }
+  
+  @Patch('/:id/add-work/:workId')
+  addWork(@Param('id') userId: string, @Param('workId') workId: string) {
+    return this.usersService.addWork(userId, workId)
+    }
+
+   @Patch('/:id/remove-work/:workId')
+  removeWork(@Param('id') userId: string, @Param('workId') workId: string) {
+    return this.usersService.removeWork(userId, workId)
+  }
+  
+  @Get('/:id/works')
+  getWork(@Param('id') userId: string) {
+    return this.usersService.getWork(userId)
+  }
+  
+  @Patch('/:id/add-assessment/:assessmentId')
+  addAssessment(@Param('id') userId: string, @Param('assessmentId') assessmentId: string) {
+    return this.usersService.addAssessment(userId, assessmentId)
+    }
+
+   @Patch('/:id/remove-work/:assessmentId')
+  removeAssessment(@Param('id') userId: string, @Param('assessmentId') assessmentId: string) {
+    return this.usersService.removeAssessment(userId, assessmentId)
+  }
+  
+  @Get('/:id/assessments')
+  getAssessment(@Param('id') userId: string) {
+    return this.usersService.getAssessment(userId)
+  }
+  
+   @Patch('/:id/add-attendance/:attendanceId')
+  addAttendance(@Param('id') userId: string, @Param('attendanceId') attendanceId: string) {
+    return this.usersService.addAttendance(userId, attendanceId)
+    }
+
+   @Patch('/:id/remove-attendance/:attendanceId')
+  removeAttendance(@Param('id') userId: string, @Param('attendanceId') attendanceId: string) {
+    return this.usersService.removeAttendance(userId, attendanceId)
+  }
+  
+  @Get('/:id/attendances')
+  getAttendance(@Param('id') userId: string) {
+    return this.usersService.getAttendance(userId)
     }
   
   @Delete('/:id')

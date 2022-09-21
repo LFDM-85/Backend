@@ -45,6 +45,21 @@ export class WorkController {
     return this.workService.update(id, updateWorkDto);
   }
 
+  @Patch('/:id/add-user/:workId')
+  addUser(@Param('id') userId: string, @Param('workId') workId: string) {
+    return this.workService.addUser(userId, workId)
+    }
+
+   @Patch('/:id/remove-user/:workId')
+  removeUser(@Param('id') userId: string, @Param('workId') workId: string) {
+    return this.workService.removeUser(userId, workId)
+  }
+  
+  @Get('/:workId/users')
+  getUser(@Param('workId') workId: string) {
+    return this.workService.getUsers(workId)
+  }
+
   @Delete('/:id')
   remove(@Param('id') id: string) {
     return this.workService.remove(id);

@@ -38,6 +38,16 @@ let WorkService = class WorkService {
             $push: updateWorkDto
         }, { new: true });
     }
+    async addUser(userId, workId) {
+        return this.workModel.findByIdAndUpdate(workId, { $addToSet: { user: userId } }, { new: true });
+    }
+    async removeUser(userId, workId) {
+        return this.workModel.findByIdAndUpdate(workId, { $pull: { user: userId } }, { new: true });
+    }
+    async getUsers(workId) {
+        const assessment = await this.workModel.findById(workId).populate('user');
+        return assessment;
+    }
     async remove(id) {
         return this.workModel.deleteOne({ id }).exec();
     }
