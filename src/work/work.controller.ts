@@ -26,10 +26,10 @@ const storage = {
 export class WorkController {
   constructor(private readonly workService: WorkService) {}
 
-  @Post('/create')
-  create(@Body() createWorkDto: CreateWorkDto) {
-    return this.workService.create(createWorkDto);
-  }
+  // @Post('/create')
+  // create(@Body() createWorkDto: CreateWorkDto) {
+  //   return this.workService.create(createWorkDto);
+  // }
 
   @Get('/all')
   findAll() {

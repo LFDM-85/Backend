@@ -29,9 +29,6 @@ import { UpdateWorkDto } from './dto/update-work.dto';
 export declare class WorkController {
     private readonly workService;
     constructor(workService: WorkService);
-    create(createWorkDto: CreateWorkDto): Promise<import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
     findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
         _id: import("mongoose").Types.ObjectId;
     })[], import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {

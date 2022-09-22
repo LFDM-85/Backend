@@ -33,9 +33,6 @@ let WorkController = class WorkController {
     constructor(workService) {
         this.workService = workService;
     }
-    create(createWorkDto) {
-        return this.workService.create(createWorkDto);
-    }
     findAll() {
         return this.workService.findAll();
     }
@@ -61,13 +58,6 @@ let WorkController = class WorkController {
         return this.workService.remove(id);
     }
 };
-__decorate([
-    (0, common_1.Post)('/create'),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_work_dto_1.CreateWorkDto]),
-    __metadata("design:returntype", void 0)
-], WorkController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)('/all'),
     __metadata("design:type", Function),
