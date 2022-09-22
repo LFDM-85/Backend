@@ -1,0 +1,85 @@
+FrontEnd
+    SignPage
+        SignIn Page
+            UX
+                Remember checkbox - 1h (not essencial - do later)
+    MyPage
+        SideBar
+            UX
+                Responsive - 1h (not essencial - do later)
+        LayoutPage
+            Classes
+                List classes component - 1h
+                Class item component - 1h
+            Lecture
+                List lecture component - 1h
+                Lecture item component - 1h
+                Add lecture component - 1h
+                Add lecture modal component - 1h
+                List proposed work component(professor) - 2h
+                Add new work component - 2h
+                List student component Attendance - 2h
+                List student component Assessment - 1h
+                Add assessment modal component - 2h
+                confirm modal component - 1h
+                Finish lecture component (Professor) - 2h
+                Attendance component (student) - 2h
+                Submit work component (student) - 2h
+                List proposed work component(student) - 1h
+            Assessment
+                List class component - 1h
+                List lecture component - 2h
+                Assessments component - 1h
+            Management Classes
+                List classes component - 2h
+                Add button component - 1h
+                Add/edit Class Modal - 2h
+                Edit button component - 1h
+                Delete button component - 1h
+                Confirm delete class Modal component -1h
+                confirm modal component - 1h
+
+Backend
+    User role validations -4h
+    Class - 8h
+        Create
+        FindAll
+        FindOne
+        Update
+        Remove
+    Class_user - 8h
+        Create
+        FindAll
+        FindOne
+        Update
+        Remove
+    Lecture - 4h
+        Create
+        FindAll
+        FindOne
+        Update
+        Remove
+    Work - 4h
+        Create
+        FindAll
+        FindOne
+        Update
+        Remove
+    Attendance - 4h
+        Create
+        FindAll
+        FindOne
+        Update
+        Remove
+    Assessments - 4h
+        Create
+        FindAll
+        FindOne
+        Update
+        Remove
+    
+
+
+
+
+

@@ -10,9 +10,9 @@ export class WorkService {
   constructor(@InjectModel(Work.name) private workModel: Model<Work>) {}
   async create(createWorkDto: CreateWorkDto) {
 
-    const { title} = createWorkDto
-    const findOneWork = await this.workModel.findOne({ title })
-    if(findOneWork) throw new BadRequestException('Work already exist!')
+    const { filename} = createWorkDto
+    const findOneWork = await this.workModel.findOne({ filename })
+    if(findOneWork) throw new BadRequestException('Work already exist! Please change the name of the file and try again.')
     return await( await this.workModel.create(createWorkDto)).save();
   }
 
@@ -20,9 +20,9 @@ export class WorkService {
     return this.workModel.find();
   }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} work`;
-  // }
+  findOne(id: string) {
+    return this.workModel.findById(id);
+  }
 
   async update(id: string, updateWorkDto: UpdateWorkDto) {
     return await this.workModel.findByIdAndUpdate(
@@ -35,7 +35,20 @@ export class WorkService {
       {new: true}
     );
   }
+  
 
+  
+    async updateFile(id: string, updateWorkDto: UpdateWorkDto) {
+    return await this.workModel.findByIdAndUpdate(
+      {
+        _id: id,
+      },
+      {
+        $push: {filename: updateWorkDto.filename}
+      },
+      {new: true}
+    );
+  }
   async addUser(userId: string, workId: string) {
     return this.workModel.findByIdAndUpdate(
       workId,

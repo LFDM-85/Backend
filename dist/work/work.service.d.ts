@@ -37,7 +37,15 @@ export declare class WorkService {
     })[], import("mongoose").Document<unknown, any, Work> & Work & {
         _id: import("mongoose").Types.ObjectId;
     }, {}, Work>;
+    findOne(id: string): import("mongoose").Query<import("mongoose").Document<unknown, any, Work> & Work & {
+        _id: import("mongoose").Types.ObjectId;
+    }, import("mongoose").Document<unknown, any, Work> & Work & {
+        _id: import("mongoose").Types.ObjectId;
+    }, {}, Work>;
     update(id: string, updateWorkDto: UpdateWorkDto): Promise<import("mongoose").Document<unknown, any, Work> & Work & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    updateFile(id: string, updateWorkDto: UpdateWorkDto): Promise<import("mongoose").Document<unknown, any, Work> & Work & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     addUser(userId: string, workId: string): Promise<import("mongoose").Document<unknown, any, Work> & Work & {

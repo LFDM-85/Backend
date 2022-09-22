@@ -1,9 +1,26 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, Res } from '@nestjs/common';
 import { WorkService } from './work.service';
 import { CreateWorkDto } from './dto/create-work.dto';
 import { UpdateWorkDto } from './dto/update-work.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
+// import { v4 as uuidv4} from 'uuid'
+
+import { join } from 'path';
+
+const storage = {
+    storage: diskStorage({
+      destination: './uploads/works',
+      filename: (req, file, cb) => {
+        //  const filename: string = uuidv4() + file.originalname;
+         const filename: string = file.originalname;
+        
+         
+
+       cb(null, filename)
+       }
+    })
+  }
 
 @Controller('work')
 export class WorkController {
@@ -24,21 +41,40 @@ export class WorkController {
   //   return this.workService.findOne(+id);
   // }
 
+
   @Post('/upload')
-  @UseInterceptors(FileInterceptor('file', {
-    storage: diskStorage({
-      destination: './works',
-      filename: (req, file, callback) => {
-        const filename = `${file.originalname}`;
-        callback(null, filename)
-      }
-      })
-    }))
-  handleUpload(@UploadedFile() file: Express.Multer.File) {
-    console.log('file', file);
+  @UseInterceptors(FileInterceptor('file', storage ))
+  uploadFile(@UploadedFile() file, createWorkDto: CreateWorkDto) {
     
-    return 'File upload API'
+    return this.workService.create( {...createWorkDto, filename: file.filename, })
+      
     }
+
+  @Get('/download/:filename')
+  findFile(@Param('filename') filename, @Res() res){
+  return res.sendFile(join(process.cwd(), 'uploads/works/' + filename))
+  }
+  
+  // @Post('/upload')
+  // @UseInterceptors(FileInterceptor('file', {
+  //   storage: diskStorage({
+  //     destination: './works',
+  //     filename: (req, file, callback) => {
+  //       const filename = `${file.originalname}`;
+  //       callback(null, filename)
+  //     }
+  //     })
+  // }))
+  // uploadFile(@UploadedFile() file:Express.Multer.File) {
+  //   console.log(file);
+  //   return 'File uploaded'
+  // }
+  
+  // @Get('/download/:filepath')
+  // getFile(@Param('filepath') file, @Res() res) {
+  //   return res.sendFile(file, { root: '/works'})
+  //   }
+   
 
   @Patch('/:id')
   update(@Param('id') id: string, @Body() updateWorkDto: UpdateWorkDto) {

@@ -10,9 +10,7 @@ export class Work {
   @Transform(({ value }) => value.toString())
   _id: string;
   @Prop()
-  title: string;
-  @Prop()
-  description: string;
+  filename: string;
    @Prop(({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: Users.name }] }))
   user: Users[];
 }

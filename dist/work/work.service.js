@@ -22,20 +22,30 @@ let WorkService = class WorkService {
         this.workModel = workModel;
     }
     async create(createWorkDto) {
-        const { title } = createWorkDto;
-        const findOneWork = await this.workModel.findOne({ title });
+        const { filename } = createWorkDto;
+        const findOneWork = await this.workModel.findOne({ filename });
         if (findOneWork)
-            throw new common_1.BadRequestException('Work already exist!');
+            throw new common_1.BadRequestException('Work already exist! Please change the name of the file and try again.');
         return await (await this.workModel.create(createWorkDto)).save();
     }
     findAll() {
         return this.workModel.find();
+    }
+    findOne(id) {
+        return this.workModel.findById(id);
     }
     async update(id, updateWorkDto) {
         return await this.workModel.findByIdAndUpdate({
             _id: id,
         }, {
             $push: updateWorkDto
+        }, { new: true });
+    }
+    async updateFile(id, updateWorkDto) {
+        return await this.workModel.findByIdAndUpdate({
+            _id: id,
+        }, {
+            $push: { filename: updateWorkDto.filename }
         }, { new: true });
     }
     async addUser(userId, workId) {

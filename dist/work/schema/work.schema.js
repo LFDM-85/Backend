@@ -23,11 +23,7 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Work.prototype, "title", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], Work.prototype, "description", void 0);
+], Work.prototype, "filename", void 0);
 __decorate([
     (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: user_entity_1.Users.name }] })),
     __metadata("design:type", Array)

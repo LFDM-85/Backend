@@ -1,4 +1,3 @@
-/// <reference types="multer" />
 /// <reference types="mongoose/types/aggregate" />
 /// <reference types="mongoose/types/callback" />
 /// <reference types="mongoose/types/collection" />
@@ -38,7 +37,10 @@ export declare class WorkController {
     })[], import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
         _id: import("mongoose").Types.ObjectId;
     }, {}, import("./entities/work.entity").Work>;
-    handleUpload(file: Express.Multer.File): string;
+    uploadFile(file: any, createWorkDto: CreateWorkDto): Promise<import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
+    findFile(filename: any, res: any): any;
     update(id: string, updateWorkDto: UpdateWorkDto): Promise<import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
         _id: import("mongoose").Types.ObjectId;
     }>;
