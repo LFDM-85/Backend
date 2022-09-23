@@ -13,6 +13,8 @@ export class Users {
     _id: string
   @Prop()
   name: string;
+   @Prop()
+  image: string;
   @Prop({require: true, unique: true})
   email: string
   @Prop({require: true})

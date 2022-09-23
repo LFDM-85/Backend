@@ -28,6 +28,10 @@ __decorate([
     __metadata("design:type", String)
 ], Users.prototype, "name", void 0);
 __decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Users.prototype, "image", void 0);
+__decorate([
     (0, mongoose_1.Prop)({ require: true, unique: true }),
     __metadata("design:type", String)
 ], Users.prototype, "email", void 0);

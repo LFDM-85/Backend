@@ -7,6 +7,7 @@ export declare type UserDocument = Users & Document;
 export declare class Users {
     _id: string;
     name: string;
+    image: string;
     email: string;
     password: string;
     roles: string[];
