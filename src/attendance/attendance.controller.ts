@@ -10,12 +10,8 @@ const storage = {
     storage: diskStorage({
       destination: './uploads/attendance',
       filename: (req, file, cb) => {
-        //  const filename: string = uuidv4() + file.originalname;
          const filename: string = file.originalname;
-        
-         
-
-       cb(null, filename)
+        cb(null, filename)
        }
     })
   }
@@ -24,12 +20,7 @@ const storage = {
 export class AttendanceController {
   constructor(private readonly attendanceService: AttendanceService) {}
 
-  // @Post()
-  // create(@Body() createAttendanceDto: CreateAttendanceDto) {
-  //   return this.attendanceService.create(createAttendanceDto);
-  // }
-
-  // ********************
+ 
 @Post('/upload')
   @UseInterceptors(FileInterceptor('file', storage ))
 uploadFile(@UploadedFile() file, @Body() createAttendanceDto: CreateAttendanceDto) {
@@ -44,17 +35,10 @@ uploadFile(@UploadedFile() file, @Body() createAttendanceDto: CreateAttendanceDt
   }
 
 
-  // ********************
-
   @Get()
   findAll() {
     return this.attendanceService.findAll();
   }
-
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.attendanceService.findOne(+id);
-  // }
 
    @Post('/upload')
   @UseInterceptors(FileInterceptor('file', {

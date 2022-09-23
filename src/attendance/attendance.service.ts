@@ -8,9 +8,6 @@ import { Attendance } from './entities/attendance.entity';
 @Injectable()
 export class AttendanceService {
   constructor(@InjectModel(Attendance.name) private attendanceModel: Model<Attendance>) {}
-  // async create(createAttendanceDto: CreateAttendanceDto) {
-  //   return await(await this.attendanceModel.create(createAttendanceDto)).save();
-  // }
 
   async create(createAttendanceDto: CreateAttendanceDto) {
      const { filename} = createAttendanceDto
