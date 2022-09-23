@@ -29,6 +29,10 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Attendance.prototype, "validation", void 0);
 __decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Attendance.prototype, "filename", void 0);
+__decorate([
     (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: 'Users' }] })),
     __metadata("design:type", user_entity_1.Users)
 ], Attendance.prototype, "user", void 0);

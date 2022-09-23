@@ -1,18 +1,50 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, Res } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
+import { join } from 'path';
 import { AttendanceService } from './attendance.service';
 import { CreateAttendanceDto } from './dto/create-attendance.dto';
 import { UpdateAttendanceDto } from './dto/update-attendance.dto';
+
+const storage = {
+    storage: diskStorage({
+      destination: './uploads/attendance',
+      filename: (req, file, cb) => {
+        //  const filename: string = uuidv4() + file.originalname;
+         const filename: string = file.originalname;
+        
+         
+
+       cb(null, filename)
+       }
+    })
+  }
 
 @Controller('attendance')
 export class AttendanceController {
   constructor(private readonly attendanceService: AttendanceService) {}
 
-  @Post()
-  create(@Body() createAttendanceDto: CreateAttendanceDto) {
-    return this.attendanceService.create(createAttendanceDto);
+  // @Post()
+  // create(@Body() createAttendanceDto: CreateAttendanceDto) {
+  //   return this.attendanceService.create(createAttendanceDto);
+  // }
+
+  // ********************
+@Post('/upload')
+  @UseInterceptors(FileInterceptor('file', storage ))
+uploadFile(@UploadedFile() file, @Body() createAttendanceDto: CreateAttendanceDto) {
+    
+    return this.attendanceService.create({...createAttendanceDto, filename: file.filename})
+      
+    }
+
+  @Get('/download/:filename')
+  findFile(@Param('filename') filename, @Res() res){
+  return res.sendFile(join(process.cwd(), 'uploads/attendance/' + filename))
   }
+
+
+  // ********************
 
   @Get()
   findAll() {

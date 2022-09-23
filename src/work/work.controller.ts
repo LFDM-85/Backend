@@ -46,7 +46,7 @@ export class WorkController {
   @UseInterceptors(FileInterceptor('file', storage ))
   uploadFile(@UploadedFile() file, createWorkDto: CreateWorkDto) {
     
-    return this.workService.create( {...createWorkDto, filename: file.filename, })
+    return this.workService.create( {...createWorkDto, filename: file.filename })
       
     }
 

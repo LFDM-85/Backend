@@ -22,10 +22,17 @@ let AttendanceService = class AttendanceService {
         this.attendanceModel = attendanceModel;
     }
     async create(createAttendanceDto) {
+        const { filename } = createAttendanceDto;
+        const findOneAttendance = await this.attendanceModel.findOne({ filename });
+        if (findOneAttendance)
+            throw new common_1.BadRequestException('Attendance already exist! Please change the name of the file and try again.');
         return await (await this.attendanceModel.create(createAttendanceDto)).save();
     }
     findAll() {
         return this.attendanceModel.find();
+    }
+    findOne(id) {
+        return this.attendanceModel.findById(id);
     }
     async update(id, updateAttendanceDto) {
         return await this.attendanceModel.findByIdAndUpdate({

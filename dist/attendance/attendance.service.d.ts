@@ -37,6 +37,11 @@ export declare class AttendanceService {
     })[], import("mongoose").Document<unknown, any, Attendance> & Attendance & {
         _id: import("mongoose").Types.ObjectId;
     }, {}, Attendance>;
+    findOne(id: string): import("mongoose").Query<import("mongoose").Document<unknown, any, Attendance> & Attendance & {
+        _id: import("mongoose").Types.ObjectId;
+    }, import("mongoose").Document<unknown, any, Attendance> & Attendance & {
+        _id: import("mongoose").Types.ObjectId;
+    }, {}, Attendance>;
     update(id: string, updateAttendanceDto: UpdateAttendanceDto): Promise<import("mongoose").Document<unknown, any, Attendance> & Attendance & {
         _id: import("mongoose").Types.ObjectId;
     }>;

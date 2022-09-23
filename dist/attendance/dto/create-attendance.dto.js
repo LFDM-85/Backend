@@ -15,11 +15,18 @@ class CreateAttendanceDto {
 }
 __decorate([
     (0, class_validator_1.IsBoolean)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Boolean)
 ], CreateAttendanceDto.prototype, "attendance", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Boolean)
 ], CreateAttendanceDto.prototype, "validation", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateAttendanceDto.prototype, "filename", void 0);
 exports.CreateAttendanceDto = CreateAttendanceDto;
 //# sourceMappingURL=create-attendance.dto.js.map

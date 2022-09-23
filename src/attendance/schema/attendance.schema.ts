@@ -13,6 +13,8 @@ export class Attendance {
   attendance: boolean;
   @Prop()
   validation: boolean;
+  @Prop()
+  filename: string;
    @Prop(({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Users' }] }))
   user: Users;
 }

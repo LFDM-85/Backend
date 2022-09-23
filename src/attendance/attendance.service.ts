@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateAttendanceDto } from './dto/create-attendance.dto';
@@ -8,17 +8,24 @@ import { Attendance } from './entities/attendance.entity';
 @Injectable()
 export class AttendanceService {
   constructor(@InjectModel(Attendance.name) private attendanceModel: Model<Attendance>) {}
+  // async create(createAttendanceDto: CreateAttendanceDto) {
+  //   return await(await this.attendanceModel.create(createAttendanceDto)).save();
+  // }
+
   async create(createAttendanceDto: CreateAttendanceDto) {
-    return await(await this.attendanceModel.create(createAttendanceDto)).save();
+     const { filename} = createAttendanceDto
+    const findOneAttendance = await this.attendanceModel.findOne({ filename })
+    if(findOneAttendance) throw new BadRequestException('Attendance already exist! Please change the name of the file and try again.')
+    return await(await this.attendanceModel.create(createAttendanceDto)).save()
   }
 
   findAll() {
     return this.attendanceModel.find();
   }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} attendance`;
-  // }
+  findOne(id: string) {
+    return this.attendanceModel.findById(id);
+  }
 
   async update(id: string, updateAttendanceDto: UpdateAttendanceDto) {
     return await this.attendanceModel.findByIdAndUpdate(
