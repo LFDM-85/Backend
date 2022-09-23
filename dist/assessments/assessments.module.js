@@ -13,13 +13,17 @@ const assessments_controller_1 = require("./assessments.controller");
 const lectures_module_1 = require("../lectures/lectures.module");
 const mongoose_1 = require("@nestjs/mongoose");
 const assessments_schema_1 = require("./schema/assessments.schema");
+const platform_express_1 = require("@nestjs/platform-express");
 let AssessmentsModule = class AssessmentsModule {
 };
 AssessmentsModule = __decorate([
     (0, common_1.Module)({
         imports: [
             lectures_module_1.LecturesModule,
-            mongoose_1.MongooseModule.forFeature([{ name: assessments_schema_1.Assessment.name, schema: assessments_schema_1.AssessmentSchema }]),
+            platform_express_1.MulterModule.register({ dest: './uploads/attendance/' }),
+            mongoose_1.MongooseModule.forFeature([
+                { name: assessments_schema_1.Assessment.name, schema: assessments_schema_1.AssessmentSchema },
+            ]),
         ],
         controllers: [assessments_controller_1.AssessmentsController],
         providers: [assessments_service_1.AssessmentsService],

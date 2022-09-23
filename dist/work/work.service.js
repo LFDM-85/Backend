@@ -41,13 +41,6 @@ let WorkService = class WorkService {
             $push: updateWorkDto
         }, { new: true });
     }
-    async updateFile(id, updateWorkDto) {
-        return await this.workModel.findByIdAndUpdate({
-            _id: id,
-        }, {
-            $push: { filename: updateWorkDto.filename }
-        }, { new: true });
-    }
     async addUser(userId, workId) {
         return this.workModel.findByIdAndUpdate(workId, { $addToSet: { user: userId } }, { new: true });
     }
