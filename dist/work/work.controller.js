@@ -25,6 +25,8 @@ const storage = {
         destination: './uploads/works',
         filename: (req, file, cb) => {
             const filename = file.originalname;
+            if (!filename)
+                throw new common_1.NotFoundException('file not found');
             cb(null, filename);
         }
     })

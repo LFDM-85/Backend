@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, Res } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, Res, NotFoundException } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { join } from 'path';
@@ -10,7 +10,8 @@ const storage = {
     storage: diskStorage({
       destination: './uploads/attendance',
       filename: (req, file, cb) => {
-         const filename: string = file.originalname;
+        const filename: string = file.originalname;
+        if(!filename) throw new NotFoundException('file not found')
         cb(null, filename)
        }
     })
@@ -38,23 +39,7 @@ uploadFile(@UploadedFile() file, @Body() createAttendanceDto: CreateAttendanceDt
   @Get()
   findAll() {
     return this.attendanceService.findAll();
-  }
-
-   @Post('/upload')
-  @UseInterceptors(FileInterceptor('file', {
-    storage: diskStorage({
-      destination: './attendance',
-      filename: (req, file, callback) => {
-        const filename = `${file.originalname}`;
-        callback(null, filename)
-      }
-      })
-    }))
-  handleUpload(@UploadedFile() file: Express.Multer.File) {
-    console.log('file', file);
-    
-    return 'File upload API'
-    }
+  }  
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAttendanceDto: UpdateAttendanceDto) {

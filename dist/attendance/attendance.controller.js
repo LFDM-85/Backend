@@ -25,6 +25,8 @@ const storage = {
         destination: './uploads/attendance',
         filename: (req, file, cb) => {
             const filename = file.originalname;
+            if (!filename)
+                throw new common_1.NotFoundException('file not found');
             cb(null, filename);
         }
     })
@@ -41,10 +43,6 @@ let AttendanceController = class AttendanceController {
     }
     findAll() {
         return this.attendanceService.findAll();
-    }
-    handleUpload(file) {
-        console.log('file', file);
-        return 'File upload API';
     }
     update(id, updateAttendanceDto) {
         return this.attendanceService.update(id, updateAttendanceDto);
@@ -85,22 +83,6 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], AttendanceController.prototype, "findAll", null);
-__decorate([
-    (0, common_1.Post)('/upload'),
-    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', {
-        storage: (0, multer_1.diskStorage)({
-            destination: './attendance',
-            filename: (req, file, callback) => {
-                const filename = `${file.originalname}`;
-                callback(null, filename);
-            }
-        })
-    })),
-    __param(0, (0, common_1.UploadedFile)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], AttendanceController.prototype, "handleUpload", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),

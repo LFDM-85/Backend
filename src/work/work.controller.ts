@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, Res } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, Res, NotFoundException } from '@nestjs/common';
 import { WorkService } from './work.service';
 import { CreateWorkDto } from './dto/create-work.dto';
 import { UpdateWorkDto } from './dto/update-work.dto';
@@ -11,7 +11,8 @@ const storage = {
     storage: diskStorage({
       destination: './uploads/works',
       filename: (req, file, cb) => {
-         const filename: string = file.originalname;
+        const filename: string = file.originalname;
+        if(!filename) throw new NotFoundException('file not found')
        cb(null, filename)
        }
     })
