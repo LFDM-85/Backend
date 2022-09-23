@@ -7,16 +7,16 @@ import { diskStorage } from 'multer';
 
 import { join } from 'path';
 
-const storage = {
-    storage: diskStorage({
-      destination: './uploads/works',
-      filename: (req, file, cb) => {
-        const filename: string = file.originalname;
-        if(!filename) throw new NotFoundException('file not found')
-       cb(null, filename)
-       }
-    })
-  }
+// const storage = {
+//     storage: diskStorage({
+//       destination: './uploads/works',
+//       filename: (req, file, cb) => {
+//         const filename: string = file.originalname;
+//         if(!filename) throw new NotFoundException('file not found')
+//        cb(null, filename)
+//        }
+//     })
+//   }
 @Controller('work')
 export class WorkController {
   constructor(private readonly workService: WorkService) {}
@@ -27,18 +27,18 @@ export class WorkController {
     return this.workService.findAll();
   }
 
-  @Post('/upload')
-  @UseInterceptors(FileInterceptor('file', storage ))
-  uploadFile(@UploadedFile() file, createWorkDto: CreateWorkDto) {
+  // @Post('/upload')
+  // @UseInterceptors(FileInterceptor('file', storage ))
+  // uploadFile(@UploadedFile() file, createWorkDto: CreateWorkDto) {
     
-    return this.workService.create( {...createWorkDto, filename: file.filename })
+  //   return this.workService.create( {...createWorkDto, filename: file.filename })
       
-    }
+  //   }
 
-  @Get('/download/:filename')
-  findFile(@Param('filename') filename, @Res() res){
-  return res.sendFile(join(process.cwd(), 'uploads/works/' + filename))
-  }
+  // @Get('/download/:filename')
+  // findFile(@Param('filename') filename, @Res() res){
+  // return res.sendFile(join(process.cwd(), 'uploads/works/' + filename))
+  // }
    
 
   @Patch('/:id')

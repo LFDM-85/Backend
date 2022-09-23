@@ -15,34 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WorkController = void 0;
 const common_1 = require("@nestjs/common");
 const work_service_1 = require("./work.service");
-const create_work_dto_1 = require("./dto/create-work.dto");
 const update_work_dto_1 = require("./dto/update-work.dto");
-const platform_express_1 = require("@nestjs/platform-express");
-const multer_1 = require("multer");
-const path_1 = require("path");
-const storage = {
-    storage: (0, multer_1.diskStorage)({
-        destination: './uploads/works',
-        filename: (req, file, cb) => {
-            const filename = file.originalname;
-            if (!filename)
-                throw new common_1.NotFoundException('file not found');
-            cb(null, filename);
-        }
-    })
-};
 let WorkController = class WorkController {
     constructor(workService) {
         this.workService = workService;
     }
     findAll() {
         return this.workService.findAll();
-    }
-    uploadFile(file, createWorkDto) {
-        return this.workService.create(Object.assign(Object.assign({}, createWorkDto), { filename: file.filename }));
-    }
-    findFile(filename, res) {
-        return res.sendFile((0, path_1.join)(process.cwd(), 'uploads/works/' + filename));
     }
     update(id, updateWorkDto) {
         return this.workService.update(id, updateWorkDto);
@@ -66,22 +45,6 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], WorkController.prototype, "findAll", null);
-__decorate([
-    (0, common_1.Post)('/upload'),
-    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', storage)),
-    __param(0, (0, common_1.UploadedFile)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, create_work_dto_1.CreateWorkDto]),
-    __metadata("design:returntype", void 0)
-], WorkController.prototype, "uploadFile", null);
-__decorate([
-    (0, common_1.Get)('/download/:filename'),
-    __param(0, (0, common_1.Param)('filename')),
-    __param(1, (0, common_1.Res)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
-    __metadata("design:returntype", void 0)
-], WorkController.prototype, "findFile", null);
 __decorate([
     (0, common_1.Patch)('/:id'),
     __param(0, (0, common_1.Param)('id')),

@@ -6,34 +6,34 @@ import { AttendanceService } from './attendance.service';
 import { CreateAttendanceDto } from './dto/create-attendance.dto';
 import { UpdateAttendanceDto } from './dto/update-attendance.dto';
 
-const storage = {
-    storage: diskStorage({
-      destination: './uploads/attendance',
-      filename: (req, file, cb) => {
-        const filename: string = file.originalname;
-        if(!filename) throw new NotFoundException('file not found')
-        cb(null, filename)
-       }
-    })
-  }
+// const storage = {
+//     storage: diskStorage({
+//       destination: './uploads/attendance',
+//       filename: (req, file, cb) => {
+//         const filename: string = file.originalname;
+//         if(!filename) throw new NotFoundException('file not found')
+//         cb(null, filename)
+//        }
+//     })
+//   }
 
 @Controller('attendance')
 export class AttendanceController {
   constructor(private readonly attendanceService: AttendanceService) {}
 
  
-@Post('/upload')
-  @UseInterceptors(FileInterceptor('file', storage ))
-uploadFile(@UploadedFile() file, @Body() createAttendanceDto: CreateAttendanceDto) {
+// @Post('/upload')
+//   @UseInterceptors(FileInterceptor('file', storage ))
+// uploadFile(@UploadedFile() file, @Body() createAttendanceDto: CreateAttendanceDto) {
     
-    return this.attendanceService.create({...createAttendanceDto, filename: file.filename})
+//     return this.attendanceService.create({...createAttendanceDto, filename: file.filename})
       
-    }
+//     }
 
-  @Get('/download/:filename')
-  findFile(@Param('filename') filename, @Res() res){
-  return res.sendFile(join(process.cwd(), 'uploads/attendance/' + filename))
-  }
+//   @Get('/download/:filename')
+//   findFile(@Param('filename') filename, @Res() res){
+//   return res.sendFile(join(process.cwd(), 'uploads/attendance/' + filename))
+//   }
 
 
   @Get()
