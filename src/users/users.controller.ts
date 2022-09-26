@@ -26,14 +26,14 @@ export class UsersController {
     );
   }
 
-  @UseGuards(AuthenticatedGuard)
   @Get('/whoami')
+  // @UseGuards(AuthenticatedGuard)
   async whoami(@Request() req): Promise<string> {
     return req.user;
   }
 
   @Get('/all')
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   findAllUsers() {
     return this.usersService.findAll();
   }
