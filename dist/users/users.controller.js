@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const users_service_1 = require("./users.service");
 const create_user_dto_1 = require("./dto/create-user.dto");
 const jwt_auth_guard_1 = require("../auth/jwt-auth.guard");
+const authenticated_guard_1 = require("../auth/authenticated.guard");
 const update_user_dto_1 = require("./dto/update-user.dto");
 let UsersController = class UsersController {
     constructor(usersService) {
@@ -86,6 +87,7 @@ __decorate([
 ], UsersController.prototype, "createUser", null);
 __decorate([
     (0, common_1.Get)('/whoami'),
+    (0, common_1.UseGuards)(authenticated_guard_1.AuthenticatedGuard),
     __param(0, (0, common_1.Request)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

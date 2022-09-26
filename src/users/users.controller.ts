@@ -27,7 +27,7 @@ export class UsersController {
   }
 
   @Get('/whoami')
-  // @UseGuards(AuthenticatedGuard)
+  @UseGuards(AuthenticatedGuard)
   async whoami(@Request() req): Promise<string> {
     return req.user;
   }
