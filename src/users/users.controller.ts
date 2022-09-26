@@ -34,7 +34,6 @@ export class UsersController {
 
   @Get('/all')
   // @UseGuards(JwtAuthGuard)
-     @UseGuards(AuthenticatedGuard)
   findAllUsers() {
     return this.usersService.findAll();
   }
