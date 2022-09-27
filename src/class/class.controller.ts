@@ -1,16 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { ClassService } from './class.service';
 import { CreateClassDto } from './dto/create-class.dto';
 import { UpdateClassDto } from './dto/update-class.dto';
 import {Roles} from "../decorators/roles.decorator";
 import {Role} from "../enums/role.enum";
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('class')
 export class ClassController {
   constructor(private  classService: ClassService) {}
 
   @Post('/create')
-    @Roles(Role.Admin)
+    // @Roles(Role.Admin)
+    @UseGuards(JwtAuthGuard)
   create(@Body() createClassDto: CreateClassDto) {
     return this.classService.create(createClassDto.nameClass, createClassDto.open)
   }
