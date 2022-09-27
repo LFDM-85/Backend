@@ -28,6 +28,7 @@ import { UpdateAttendanceDto } from './dto/update-attendance.dto';
 export declare class AttendanceController {
     private readonly attendanceService;
     constructor(attendanceService: AttendanceService);
+    uploadFile(res: any, file: any): any;
     findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, import("./entities/attendance.entity").Attendance> & import("./entities/attendance.entity").Attendance & {
         _id: import("mongoose").Types.ObjectId;
     })[], import("mongoose").Document<unknown, any, import("./entities/attendance.entity").Attendance> & import("./entities/attendance.entity").Attendance & {
