@@ -7,8 +7,8 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { ClassModule } from './class/class.module';
-import {APP_GUARD} from "@nestjs/core";
-import {RolesGuard} from "./roleGuards/roles.guard";
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './roleGuards/roles.guard';
 import { LecturesModule } from './lectures/lectures.module';
 import { AssessmentsModule } from './assessments/assessments.module';
 import { WorkModule } from './work/work.module';
@@ -37,9 +37,11 @@ const URL = process.env.DATABASE_URL;
     AttendanceModule,
   ],
   controllers: [],
-  providers: [{
-    provide: APP_GUARD,
-    useClass: RolesGuard,
-  }],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
+  ],
 })
 export class AppModule {}

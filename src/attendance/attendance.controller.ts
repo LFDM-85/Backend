@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, Res, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, Res, HttpStatus } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { join } from 'path';
@@ -8,21 +8,34 @@ import { UpdateAttendanceDto } from './dto/update-attendance.dto';
 import {Roles} from "../decorators/roles.decorator";
 import {Role} from "../enums/role.enum";
 
-// const storage = {
-//     storage: diskStorage({
-//       destination: './uploads/attendance',
-//       filename: (req, file, cb) => {
-//         const filename: string = file.originalname;
-//         if(!filename) throw new NotFoundException('file not found')
-//         cb(null, filename)
-//        }
-//     })
-//   }
+const storage = {
+    storage: diskStorage({
+      destination: './uploads/attendance',
+      filename: (req, file, cb) => {
+        const filename = (file.originalname).replace(/\s/g, '');
+        
+        cb(null, filename);
+       
+       }
+    })
+  }
 
 @Controller('attendance')
 export class AttendanceController {
   constructor(private readonly attendanceService: AttendanceService) {}
 
+
+  @Post('/uploadFile')
+  @UseInterceptors(FileInterceptor('file', storage))
+  uploadFile(@Res() res, @UploadedFile() file, @Body() createAttendanceDto: CreateAttendanceDto) {
+
+    this.attendanceService.create({...createAttendanceDto, filename: file.filename})
+
+    return res.status(HttpStatus.OK).json({
+      sucess: true,
+      data: file.path
+    })
+    }
  
 // @Post('/upload')
 //   @UseInterceptors(FileInterceptor('file', storage ))
@@ -32,10 +45,10 @@ export class AttendanceController {
       
 //     }
 
-//   @Get('/download/:filename')
-//   findFile(@Param('filename') filename, @Res() res){
-//   return res.sendFile(join(process.cwd(), 'uploads/attendance/' + filename))
-//   }
+  // @Get('/download/:filename')
+  // findFile(@Param('filename') filename, @Res() res){
+  // return res.sendFile(join(process.cwd(), './uploads/attendance/' + filename))
+  // }
 
 
   @Get()

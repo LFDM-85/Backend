@@ -46,10 +46,12 @@ AppModule = __decorate([
             attendance_module_1.AttendanceModule,
         ],
         controllers: [],
-        providers: [{
+        providers: [
+            {
                 provide: core_1.APP_GUARD,
                 useClass: roles_guard_1.RolesGuard,
-            }],
+            },
+        ],
     })
 ], AppModule);
 exports.AppModule = AppModule;
