@@ -25,6 +25,7 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { WorkService } from './work.service';
 import { UpdateWorkDto } from './dto/update-work.dto';
+import { CreateAttendanceDto } from 'src/attendance/dto/create-attendance.dto';
 export declare class WorkController {
     private readonly workService;
     constructor(workService: WorkService);
@@ -33,6 +34,8 @@ export declare class WorkController {
     })[], import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
         _id: import("mongoose").Types.ObjectId;
     }, {}, import("./entities/work.entity").Work>;
+    uploadFile(res: any, file: any, createWorkDto: CreateAttendanceDto): any;
+    findFile(filename: any, res: any): any;
     update(id: string, updateWorkDto: UpdateWorkDto): Promise<import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
         _id: import("mongoose").Types.ObjectId;
     }>;

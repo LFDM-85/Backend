@@ -22,7 +22,7 @@ WorkModule = __decorate([
         imports: [
             lectures_module_1.LecturesModule,
             users_module_1.UsersModule,
-            platform_express_1.MulterModule.register({ dest: './uploads/works/' }),
+            platform_express_1.MulterModule.register({ dest: 'uploads/works' }),
             mongoose_1.MongooseModule.forFeature([{ name: work_schema_1.Work.name, schema: work_schema_1.WorkSchema }]),
         ],
         controllers: [work_controller_1.WorkController],
