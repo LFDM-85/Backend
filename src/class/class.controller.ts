@@ -12,7 +12,6 @@ export class ClassController {
 
   @Post('/create')
     // @Roles(Role.Admin)
-    @UseGuards(JwtAuthGuard)
   create(@Body() createClassDto: CreateClassDto) {
     return this.classService.create(createClassDto.nameClass, createClassDto.open)
   }

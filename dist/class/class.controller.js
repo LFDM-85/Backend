@@ -19,7 +19,6 @@ const create_class_dto_1 = require("./dto/create-class.dto");
 const update_class_dto_1 = require("./dto/update-class.dto");
 const roles_decorator_1 = require("../decorators/roles.decorator");
 const role_enum_1 = require("../enums/role.enum");
-const jwt_auth_guard_1 = require("../auth/jwt-auth.guard");
 let ClassController = class ClassController {
     constructor(classService) {
         this.classService = classService;
@@ -60,7 +59,6 @@ let ClassController = class ClassController {
 };
 __decorate([
     (0, common_1.Post)('/create'),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_class_dto_1.CreateClassDto]),
