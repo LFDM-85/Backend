@@ -19,7 +19,7 @@ let AttendanceModule = class AttendanceModule {
 AttendanceModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            platform_express_1.MulterModule.register({ dest: './uploads/attendance' }),
+            platform_express_1.MulterModule.register({ dest: 'uploads/attendance' }),
             lectures_module_1.LecturesModule,
             mongoose_1.MongooseModule.forFeature([
                 { name: attendance_schema_1.Attendance.name, schema: attendance_schema_1.AttendanceSchema },

@@ -10,7 +10,7 @@ import {Role} from "../enums/role.enum";
 
 const storage = {
     storage: diskStorage({
-      destination: './src/uploads/attendance',
+      destination: 'uploads/attendance',
       filename: (req, file, cb) => {
         const filename = (file.originalname).replace(/\s/g, '');
         
@@ -27,25 +27,19 @@ export class AttendanceController {
 
   @Post('/uploadFile')
   @UseInterceptors(FileInterceptor('file', storage))
-  uploadFile(@Res() res, @UploadedFile() file) {
+  uploadFile(@Res() res, @UploadedFile() file, @Body() createAttendanceDto: CreateAttendanceDto) {
+    this.attendanceService.create({...createAttendanceDto, filename: file.filename})
     return res.status(HttpStatus.OK).json({
       sucess: true,
       data: file.path
     })
     }
  
-// @Post('/upload')
-//   @UseInterceptors(FileInterceptor('file', storage ))
-// uploadFile(@UploadedFile() file, @Body() createAttendanceDto: CreateAttendanceDto) {
-    
-//     return this.attendanceService.create({...createAttendanceDto, filename: file.filename})
-      
-//     }
 
-//   @Get('/download/:filename')
-//   findFile(@Param('filename') filename, @Res() res){
-//   return res.sendFile(join(process.cwd(), 'uploads/attendance/' + filename))
-//   }
+  @Get('/download/:filename')
+  findFile(@Param('filename') filename, @Res() res){
+  return res.sendFile(join(process.cwd(), 'uploads/attendance/' + filename))
+  }
 
 
   @Get()
