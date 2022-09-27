@@ -15,13 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WorkController = void 0;
 const common_1 = require("@nestjs/common");
 const work_service_1 = require("./work.service");
+const create_work_dto_1 = require("./dto/create-work.dto");
 const update_work_dto_1 = require("./dto/update-work.dto");
 const platform_express_1 = require("@nestjs/platform-express");
 const multer_1 = require("multer");
 const roles_decorator_1 = require("../decorators/roles.decorator");
 const role_enum_1 = require("../enums/role.enum");
 const path_1 = require("path");
-const create_attendance_dto_1 = require("../attendance/dto/create-attendance.dto");
 const storage = {
     storage: (0, multer_1.diskStorage)({
         destination: 'uploads/works',
@@ -46,7 +46,7 @@ let WorkController = class WorkController {
         });
     }
     findFile(filename, res) {
-        return res.sendFile((0, path_1.join)(process.cwd(), 'uploads/attendance/' + filename));
+        return res.sendFile((0, path_1.join)(process.cwd(), 'uploads/works/' + filename));
     }
     update(id, updateWorkDto) {
         return this.workService.update(id, updateWorkDto);
@@ -77,7 +77,7 @@ __decorate([
     __param(1, (0, common_1.UploadedFile)()),
     __param(2, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object, create_attendance_dto_1.CreateAttendanceDto]),
+    __metadata("design:paramtypes", [Object, Object, create_work_dto_1.CreateWorkDto]),
     __metadata("design:returntype", void 0)
 ], WorkController.prototype, "uploadFile", null);
 __decorate([

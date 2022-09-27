@@ -31,7 +31,7 @@ export class WorkController {
   }
 @Post('/uploadFile')
   @UseInterceptors(FileInterceptor('file', storage))
-  uploadFile(@Res() res, @UploadedFile() file, @Body() createWorkDto: CreateAttendanceDto) {
+  uploadFile(@Res() res, @UploadedFile() file, @Body() createWorkDto: CreateWorkDto) {
     this.workService.create({...createWorkDto, filename: file.filename})
     return res.status(HttpStatus.OK).json({
       sucess: true,
@@ -41,7 +41,7 @@ export class WorkController {
   
   @Get('/download/:filename')
   findFile(@Param('filename') filename, @Res() res){
-  return res.sendFile(join(process.cwd(), 'uploads/attendance/' + filename))
+  return res.sendFile(join(process.cwd(), 'uploads/works/' + filename))
   }
   
   // @Post('/upload')
