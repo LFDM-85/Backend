@@ -16,6 +16,8 @@ exports.AttendanceController = void 0;
 const common_1 = require("@nestjs/common");
 const attendance_service_1 = require("./attendance.service");
 const update_attendance_dto_1 = require("./dto/update-attendance.dto");
+const roles_decorator_1 = require("../decorators/roles.decorator");
+const role_enum_1 = require("../enums/role.enum");
 let AttendanceController = class AttendanceController {
     constructor(attendanceService) {
         this.attendanceService = attendanceService;
@@ -47,6 +49,7 @@ __decorate([
 ], AttendanceController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Patch)(':id'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Student),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -55,6 +58,7 @@ __decorate([
 ], AttendanceController.prototype, "update", null);
 __decorate([
     (0, common_1.Patch)('/:id/add-user/:attendanceId'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Student),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('attendanceId')),
     __metadata("design:type", Function),
@@ -63,6 +67,7 @@ __decorate([
 ], AttendanceController.prototype, "addAttendance", null);
 __decorate([
     (0, common_1.Patch)('/:id/remove-user/:attendanceId'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Student),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('attendanceId')),
     __metadata("design:type", Function),
@@ -78,6 +83,7 @@ __decorate([
 ], AttendanceController.prototype, "getAttendance", null);
 __decorate([
     (0, common_1.Delete)(':id'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Student),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

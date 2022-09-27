@@ -17,6 +17,8 @@ const common_1 = require("@nestjs/common");
 const assessments_service_1 = require("./assessments.service");
 const create_assessment_dto_1 = require("./dto/create-assessment.dto");
 const update_assessment_dto_1 = require("./dto/update-assessment.dto");
+const roles_decorator_1 = require("../decorators/roles.decorator");
+const role_enum_1 = require("../enums/role.enum");
 let AssessmentsController = class AssessmentsController {
     constructor(assessmentsService) {
         this.assessmentsService = assessmentsService;
@@ -45,6 +47,7 @@ let AssessmentsController = class AssessmentsController {
 };
 __decorate([
     (0, common_1.Post)('/create'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_assessment_dto_1.CreateAssessmentDto]),
@@ -58,6 +61,7 @@ __decorate([
 ], AssessmentsController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Patch)('/:id'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -66,6 +70,7 @@ __decorate([
 ], AssessmentsController.prototype, "update", null);
 __decorate([
     (0, common_1.Patch)('/:id/add-user/:assessmentId'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('assessmentId')),
     __metadata("design:type", Function),
@@ -74,6 +79,7 @@ __decorate([
 ], AssessmentsController.prototype, "addAssessment", null);
 __decorate([
     (0, common_1.Patch)('/:id/remove-user/:assessmentId'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('assessmentId')),
     __metadata("design:type", Function),
@@ -82,6 +88,7 @@ __decorate([
 ], AssessmentsController.prototype, "removeAssessment", null);
 __decorate([
     (0, common_1.Get)('/:assessmentId/users'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
     __param(0, (0, common_1.Param)('assessmentId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -89,6 +96,7 @@ __decorate([
 ], AssessmentsController.prototype, "getAssessment", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

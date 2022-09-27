@@ -5,6 +5,8 @@ import { join } from 'path';
 import { AttendanceService } from './attendance.service';
 import { CreateAttendanceDto } from './dto/create-attendance.dto';
 import { UpdateAttendanceDto } from './dto/update-attendance.dto';
+import {Roles} from "../decorators/roles.decorator";
+import {Role} from "../enums/role.enum";
 
 // const storage = {
 //     storage: diskStorage({
@@ -42,27 +44,32 @@ export class AttendanceController {
   }  
 
   @Patch(':id')
+    @Roles(Role.Student)
   update(@Param('id') id: string, @Body() updateAttendanceDto: UpdateAttendanceDto) {
     return this.attendanceService.update(id, updateAttendanceDto);
   }
 
-   @Patch('/:id/add-user/:attendanceId')
+  @Patch('/:id/add-user/:attendanceId')
+     @Roles(Role.Student)
   addAttendance(@Param('id') userId: string, @Param('attendanceId') attendanceId: string) {
     return this.attendanceService.addUser(userId, attendanceId)
     }
 
-   @Patch('/:id/remove-user/:attendanceId')
+  @Patch('/:id/remove-user/:attendanceId')
+     @Roles(Role.Student)
   removeAttendance(@Param('id') userId: string, @Param('attendanceId') attendanceId: string) {
     return this.attendanceService.removeUser(userId, attendanceId)
   }
   
   @Get('/:attendanceId/users')
+    
   getAttendance(@Param('attendanceId') attendanceId: string) {
     return this.attendanceService.getUsers(attendanceId)
   }
 
 
   @Delete(':id')
+    @Roles(Role.Student)
   remove(@Param('id') id: string) {
     return this.attendanceService.remove(id);
   }

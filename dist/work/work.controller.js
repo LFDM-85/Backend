@@ -16,6 +16,8 @@ exports.WorkController = void 0;
 const common_1 = require("@nestjs/common");
 const work_service_1 = require("./work.service");
 const update_work_dto_1 = require("./dto/update-work.dto");
+const roles_decorator_1 = require("../decorators/roles.decorator");
+const role_enum_1 = require("../enums/role.enum");
 let WorkController = class WorkController {
     constructor(workService) {
         this.workService = workService;
@@ -47,6 +49,8 @@ __decorate([
 ], WorkController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Patch)('/:id'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Student),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -55,6 +59,8 @@ __decorate([
 ], WorkController.prototype, "update", null);
 __decorate([
     (0, common_1.Patch)('/:id/add-user/:workId'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Student),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('workId')),
     __metadata("design:type", Function),
@@ -63,6 +69,8 @@ __decorate([
 ], WorkController.prototype, "addUser", null);
 __decorate([
     (0, common_1.Patch)('/:id/remove-user/:workId'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Student),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('workId')),
     __metadata("design:type", Function),
@@ -71,6 +79,7 @@ __decorate([
 ], WorkController.prototype, "removeUser", null);
 __decorate([
     (0, common_1.Get)('/:workId/users'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
     __param(0, (0, common_1.Param)('workId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -78,6 +87,8 @@ __decorate([
 ], WorkController.prototype, "getUser", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Student),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
