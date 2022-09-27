@@ -8,34 +8,34 @@ import { UpdateAttendanceDto } from './dto/update-attendance.dto';
 import {Roles} from "../decorators/roles.decorator";
 import {Role} from "../enums/role.enum";
 
-const storage = {
-    storage: diskStorage({
-      destination: './uploads/attendance',
-      filename: (req, file, cb) => {
-        const filename = (file.originalname).replace(/\s/g, '');
+// const storage = {
+//     storage: diskStorage({
+//       destination: './uploads/attendance',
+//       filename: (req, file, cb) => {
+//         const filename = (file.originalname).replace(/\s/g, '');
         
-        cb(null, filename);
+//         cb(null, filename);
        
-       }
-    })
-  }
+//        }
+//     })
+//   }
 
 @Controller('attendance')
 export class AttendanceController {
   constructor(private readonly attendanceService: AttendanceService) {}
 
 
-  @Post('/uploadFile')
-  @UseInterceptors(FileInterceptor('file', storage))
-  uploadFile(@Res() res, @UploadedFile() file, @Body() createAttendanceDto: CreateAttendanceDto) {
+  // @Post('/uploadFile')
+  // @UseInterceptors(FileInterceptor('file', storage))
+  // uploadFile(@Res() res, @UploadedFile() file, @Body() createAttendanceDto: CreateAttendanceDto) {
 
-    this.attendanceService.create({...createAttendanceDto, filename: file.filename})
+  //   this.attendanceService.create({...createAttendanceDto, filename: file.filename})
 
-    return res.status(HttpStatus.OK).json({
-      sucess: true,
-      data: file.path
-    })
-    }
+  //   return res.status(HttpStatus.OK).json({
+  //     sucess: true,
+  //     data: file.path
+  //   })
+  //   }
  
 // @Post('/upload')
 //   @UseInterceptors(FileInterceptor('file', storage ))
