@@ -48,24 +48,24 @@ export class AttendanceController {
   }  
 
   @Patch(':id')
-    @Roles(Role.Student)
+    // @Roles(Role.Student)
   update(@Param('id') id: string, @Body() updateAttendanceDto: UpdateAttendanceDto) {
     return this.attendanceService.update(id, updateAttendanceDto);
   }
 
   @Patch('/:id/add-user/:attendanceId')
-     @Roles(Role.Student)
+    //  @Roles(Role.Student)
   addAttendance(@Param('id') userId: string, @Param('attendanceId') attendanceId: string) {
     return this.attendanceService.addUser(userId, attendanceId)
     }
 
   @Patch('/:id/remove-user/:attendanceId')
-     @Roles(Role.Student)
+    //  @Roles(Role.Student)
   removeAttendance(@Param('id') userId: string, @Param('attendanceId') attendanceId: string) {
     return this.attendanceService.removeUser(userId, attendanceId)
   }
   
-  @Get('/:attendanceId/users')
+  // @Get('/:attendanceId/users')
     
   getAttendance(@Param('attendanceId') attendanceId: string) {
     return this.attendanceService.getUsers(attendanceId)
@@ -73,7 +73,7 @@ export class AttendanceController {
 
 
   @Delete(':id')
-    @Roles(Role.Student)
+    // @Roles(Role.Student)
   remove(@Param('id') id: string) {
     return this.attendanceService.remove(id);
   }

@@ -17,8 +17,6 @@ const common_1 = require("@nestjs/common");
 const lectures_service_1 = require("./lectures.service");
 const create_lecture_dto_1 = require("./dto/create-lecture.dto");
 const update_lecture_dto_1 = require("./dto/update-lecture.dto");
-const roles_decorator_1 = require("../decorators/roles.decorator");
-const role_enum_1 = require("../enums/role.enum");
 let LecturesController = class LecturesController {
     constructor(lecturesService) {
         this.lecturesService = lecturesService;
@@ -65,7 +63,6 @@ let LecturesController = class LecturesController {
 };
 __decorate([
     (0, common_1.Post)('/create'),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_lecture_dto_1.CreateLectureDto]),
@@ -79,7 +76,6 @@ __decorate([
 ], LecturesController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Patch)('/:id'),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -88,7 +84,6 @@ __decorate([
 ], LecturesController.prototype, "update", null);
 __decorate([
     (0, common_1.Patch)('/:assessmentId/add-assessment/:lectureId'),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
     __param(0, (0, common_1.Param)('assessmentId')),
     __param(1, (0, common_1.Param)('lectureId')),
     __metadata("design:type", Function),
@@ -97,7 +92,6 @@ __decorate([
 ], LecturesController.prototype, "addAssessment", null);
 __decorate([
     (0, common_1.Patch)('/:assessmentId/remove-assessment/:lectureId'),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
     __param(0, (0, common_1.Param)('assessmentId')),
     __param(1, (0, common_1.Param)('lectureId')),
     __metadata("design:type", Function),
@@ -113,8 +107,6 @@ __decorate([
 ], LecturesController.prototype, "getAssessment", null);
 __decorate([
     (0, common_1.Patch)('/:attendanceId/add-attendance/:lectureId'),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Student),
     __param(0, (0, common_1.Param)('attendanceId')),
     __param(1, (0, common_1.Param)('lectureId')),
     __metadata("design:type", Function),
@@ -123,8 +115,6 @@ __decorate([
 ], LecturesController.prototype, "addAttendance", null);
 __decorate([
     (0, common_1.Patch)('/:attendanceId/remove-attendance/:lectureId'),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Student),
     __param(0, (0, common_1.Param)('attendanceId')),
     __param(1, (0, common_1.Param)('lectureId')),
     __metadata("design:type", Function),
@@ -140,8 +130,6 @@ __decorate([
 ], LecturesController.prototype, "getAttendance", null);
 __decorate([
     (0, common_1.Patch)('/:workId/add-work/:lectureId'),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Student),
     __param(0, (0, common_1.Param)('workId')),
     __param(1, (0, common_1.Param)('lectureId')),
     __metadata("design:type", Function),
@@ -150,8 +138,6 @@ __decorate([
 ], LecturesController.prototype, "addWork", null);
 __decorate([
     (0, common_1.Patch)('/:workId/remove-work/:lectureId'),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Student),
     __param(0, (0, common_1.Param)('workId')),
     __param(1, (0, common_1.Param)('lectureId')),
     __metadata("design:type", Function),
@@ -167,7 +153,6 @@ __decorate([
 ], LecturesController.prototype, "getWork", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Professor),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

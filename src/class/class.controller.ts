@@ -34,14 +34,14 @@ export class ClassController {
   
 
   @Patch('/:id/add-user/:classId')
-         @Roles(Role.Admin)
+        //  @Roles(Role.Admin)
 
   addClass(@Param('id') userId: string, @Param('classId') classId: string) {
     return this.classService.addUser(userId, classId)
     }
 
   @Patch('/:id/remove-user/:classId')
-         @Roles(Role.Admin)
+        //  @Roles(Role.Admin)
 
   removeClass(@Param('id') userId: string, @Param('classId') classId: string) {
     return this.classService.removeUser(userId, classId)
@@ -53,14 +53,14 @@ export class ClassController {
   }
   
   @Patch('/:lectureId/add-lecture/:classId')
-    @Roles(Role.Professor)
+    // @Roles(Role.Professor)
 
   addLecture(@Param('lectureId') lectureId: string, @Param('classId') classId: string) {
     return this.classService.addLecture(lectureId, classId)
   }
 
   @Patch('/:lectureId/remove-lecture/:classId')
-    @Roles(Role.Professor)
+    // @Roles(Role.Professor)
   removeLecture(@Param('lectureId') lectureId: string, @Param('classId') classId: string) {
     return this.classService.removeLecture(lectureId, classId)
   }
@@ -73,7 +73,7 @@ export class ClassController {
 
 
   @Delete('/:name')
-     @Roles(Role.Admin)
+    //  @Roles(Role.Admin)
   remove(@Param('name') name: string) {
     return this.classService.remove(name);
   }

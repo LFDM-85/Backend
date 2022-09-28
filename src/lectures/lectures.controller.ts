@@ -10,7 +10,7 @@ export class LecturesController {
   constructor(private readonly lecturesService: LecturesService) {}
 
   @Post('/create')
-    @Roles(Role.Professor)
+    // @Roles(Role.Professor)
   create(@Body() createLectureDto: CreateLectureDto) {
     return this.lecturesService.create(createLectureDto);
   }
@@ -26,19 +26,19 @@ export class LecturesController {
   // }
 
   @Patch('/:id')
-    @Roles(Role.Professor)
+    // @Roles(Role.Professor)
   update(@Param('id') id: string, @Body() updateLectureDto: UpdateLectureDto) {
     return this.lecturesService.update(id, updateLectureDto);
   }
 
   @Patch('/:assessmentId/add-assessment/:lectureId')
-    @Roles(Role.Professor)
+    // @Roles(Role.Professor)
   addAssessment(@Param('assessmentId') assessmentId: string, @Param('lectureId') lectureId: string) {
     return this.lecturesService.addAssessment(assessmentId, lectureId)
     }
 
   @Patch('/:assessmentId/remove-assessment/:lectureId')
-     @Roles(Role.Professor)
+    //  @Roles(Role.Professor)
   removeAssessment(@Param('assessmentId') assessmentId: string, @Param('lectureId') lectureId: string) {
     return this.lecturesService.removeAssessment(assessmentId, lectureId)
   }
@@ -49,15 +49,15 @@ export class LecturesController {
   }
 
   @Patch('/:attendanceId/add-attendance/:lectureId')
-    @Roles(Role.Professor)
-      @Roles(Role.Student)
+    // @Roles(Role.Professor)632df5c659a0375a46a65527
+      // @Roles(Role.Student)
   addAttendance(@Param('attendanceId') attendanceId: string, @Param('lectureId') lectureId: string) {
     return this.lecturesService.addAttendance(attendanceId, lectureId)
     }
 
   @Patch('/:attendanceId/remove-attendance/:lectureId')
-       @Roles(Role.Professor)
-      @Roles(Role.Student)
+      //  @Roles(Role.Professor)
+      // @Roles(Role.Student)
   removeAttendance(@Param('attendanceId') attendanceId: string, @Param('lectureId') lectureId: string) {
     return this.lecturesService.removeAttendance(attendanceId, lectureId)
   }
@@ -68,15 +68,15 @@ export class LecturesController {
   }
 
   @Patch('/:workId/add-work/:lectureId')
-        @Roles(Role.Professor)
-      @Roles(Role.Student)
+        // @Roles(Role.Professor)
+      // @Roles(Role.Student)
   addWork(@Param('workId') workId: string, @Param('lectureId') lectureId: string) {
     return this.lecturesService.addWork(workId, lectureId)
     }
 
   @Patch('/:workId/remove-work/:lectureId')
-       @Roles(Role.Professor)
-      @Roles(Role.Student)
+      //  @Roles(Role.Professor)
+      // @Roles(Role.Student)
   removeWork(@Param('workId') workId: string, @Param('lectureId') lectureId: string) {
     return this.lecturesService.removeWork(workId, lectureId)
   }
@@ -87,7 +87,7 @@ export class LecturesController {
   }
 
   @Delete('/:id')
-      @Roles(Role.Professor)
+      // @Roles(Role.Professor)
   remove(@Param('id') id: string) {
     return this.lecturesService.remove(id);
   }
