@@ -37,6 +37,9 @@ export declare class ClassService {
     findOne(nameClass: string): Promise<import("mongoose").Document<unknown, any, Class> & Class & {
         _id: import("mongoose").Types.ObjectId;
     }>;
+    findId(id: string): Promise<import("mongoose").Document<unknown, any, Class> & Class & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     update(id: string, updateClassDto: UpdateClassDto): Promise<import("mongoose").Document<unknown, any, Class> & Class & {
         _id: import("mongoose").Types.ObjectId;
     }>;

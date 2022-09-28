@@ -26,6 +26,10 @@ export class ClassController {
     return this.classService.findOne(name);
   }
 
+   @Get('/:id')
+  findId(@Param('id') id: string) {
+    return this.classService.findOne(id);
+  }
   @Patch('/:id')
     // @Roles(Role.Admin)
   update(@Param('id') id: string, @Body() updateClassDto: UpdateClassDto) {

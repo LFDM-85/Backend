@@ -38,6 +38,9 @@ export declare class ClassController {
     findOne(name: string): Promise<import("mongoose").Document<unknown, any, import("./entities/class.entity").Class> & import("./entities/class.entity").Class & {
         _id: import("mongoose").Types.ObjectId;
     }>;
+    findId(id: string): Promise<import("mongoose").Document<unknown, any, import("./entities/class.entity").Class> & import("./entities/class.entity").Class & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     update(id: string, updateClassDto: UpdateClassDto): Promise<import("mongoose").Document<unknown, any, import("./entities/class.entity").Class> & import("./entities/class.entity").Class & {
         _id: import("mongoose").Types.ObjectId;
     }>;

@@ -36,6 +36,11 @@ let ClassService = class ClassService {
             throw new common_1.BadRequestException((`Class with this name: ${nameClass} does not exist!`));
         return this.classModel.findOne({ nameClass }).exec();
     }
+    async findId(id) {
+        if (!id)
+            throw new common_1.BadRequestException((`Class with this name: ${id} does not exist!`));
+        return this.classModel.findOne({ id }).exec();
+    }
     async update(id, updateClassDto) {
         return await this.classModel.findByIdAndUpdate({
             _id: id,

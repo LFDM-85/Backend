@@ -30,6 +30,11 @@ export class ClassService {
     return this.classModel.findOne({nameClass}).exec();
   }
 
+  async findId(id: string) {
+    if(!id) throw new BadRequestException((`Class with this name: ${id} does not exist!`))
+    return this.classModel.findOne({id}).exec();
+  }
+
   async update(id: string, updateClassDto: UpdateClassDto) {
      
 

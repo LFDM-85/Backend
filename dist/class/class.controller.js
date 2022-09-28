@@ -30,6 +30,9 @@ let ClassController = class ClassController {
     findOne(name) {
         return this.classService.findOne(name);
     }
+    findId(id) {
+        return this.classService.findOne(id);
+    }
     update(id, updateClassDto) {
         return this.classService.update(id, updateClassDto);
     }
@@ -75,6 +78,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ClassController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Get)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ClassController.prototype, "findId", null);
 __decorate([
     (0, common_1.Patch)('/:id'),
     __param(0, (0, common_1.Param)('id')),
