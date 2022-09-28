@@ -27,10 +27,8 @@ export class UsersService {
     return await this.usersModel.find().populate('classes', 'lecture').exec();
   }
 
-  async findOne(id: string): Promise<Users> {
-    if (!id) {
-      return null;
-    }
+  async findOne(id: string){
+    if (!id) throw new BadRequestException('Class does not exist!')
     return await this.usersModel.findOne({ id }).exec();
   }
 
