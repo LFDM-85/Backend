@@ -79,7 +79,6 @@ __decorate([
 ], ClassController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)('/:id'),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
