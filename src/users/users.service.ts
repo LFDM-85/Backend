@@ -27,10 +27,12 @@ export class UsersService {
     return await this.usersModel.find().populate('classes', 'lecture').exec();
   }
 
-  // async findOne(id: string){
-  //   if (!id) throw new BadRequestException('Class does not exist!')
-  //   return await this.usersModel.findOne({ id }).exec();
-  // }
+  async findOne(condition: any): Promise<Users> {
+    if (!condition) {
+      return null;
+    }
+    return await this.usersModel.findOne(condition).exec();
+  }
 
   async findEmail(email: string) {
     return await this.usersModel.findOne({ email }).exec();

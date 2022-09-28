@@ -36,10 +36,10 @@ export class UsersController {
   findAllUsers() {
     return this.usersService.findAll();
   }
-  @Get('/:email')
+  @Get('/:id')
   // @UseGuards(JwtAuthGuard)
   findUser(@Param('email') email: string) {
-    return this.usersService.findEmail(email);
+    return this.usersService.findOne(email);
   }
 
   @Patch('/:id')
