@@ -36,7 +36,7 @@ export class UsersController {
   findAllUsers() {
     return this.usersService.findAll();
   }
-  @Get('/:id')
+  @Get('/:email')
   // @UseGuards(JwtAuthGuard)
   findUser(@Param('email') email: string) {
     return this.usersService.findEmail(email);
