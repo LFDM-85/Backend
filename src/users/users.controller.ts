@@ -39,7 +39,7 @@ export class UsersController {
   @Get('/:id')
   // @UseGuards(JwtAuthGuard)
   findUser(@Param('email') email: string) {
-    return this.usersService.findOne(email);
+    return this.usersService.findEmail(email);
   }
 
   @Patch('/:id')

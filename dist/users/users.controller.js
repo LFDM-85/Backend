@@ -32,7 +32,7 @@ let UsersController = class UsersController {
         return this.usersService.findAll();
     }
     findUser(email) {
-        return this.usersService.findOne(email);
+        return this.usersService.findEmail(email);
     }
     update(id, updateUserDto) {
         return this.usersService.update(id, updateUserDto);

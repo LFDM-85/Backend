@@ -34,12 +34,6 @@ let UsersService = class UsersService {
     async findAll() {
         return await this.usersModel.find().populate('classes', 'lecture').exec();
     }
-    async findOne(condition) {
-        if (!condition) {
-            return null;
-        }
-        return await this.usersModel.findOne(condition).exec();
-    }
     async findEmail(email) {
         return await this.usersModel.findOne({ email }).exec();
     }

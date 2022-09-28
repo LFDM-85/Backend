@@ -33,7 +33,6 @@ export declare class UsersService {
     findAll(): Promise<Omit<import("mongoose").Document<unknown, any, Users> & Users & {
         _id: import("mongoose").Types.ObjectId;
     }, never>[]>;
-    findOne(condition: any): Promise<Users>;
     findEmail(email: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
         _id: import("mongoose").Types.ObjectId;
     }>;
