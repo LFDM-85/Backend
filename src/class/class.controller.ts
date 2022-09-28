@@ -27,7 +27,7 @@ export class ClassController {
   }
 
   @Patch('/:id')
-    @Roles(Role.Admin)
+    // @Roles(Role.Admin)
   update(@Param('id') id: string, @Body() updateClassDto: UpdateClassDto) {
     return this.classService.update(id, updateClassDto);
   }
