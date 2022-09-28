@@ -34,7 +34,7 @@ export declare class UsersController {
     findAllUsers(): Promise<Omit<import("mongoose").Document<unknown, any, import("./entities/user.entity").Users> & import("./entities/user.entity").Users & {
         _id: import("mongoose").Types.ObjectId;
     }, never>[]>;
-    findUser(email: string): Promise<import("./entities/user.entity").Users>;
+    findUser(id: string): Promise<import("./entities/user.entity").Users>;
     update(id: string, updateUserDto: UpdateUserDto): Promise<import("mongoose").Document<unknown, any, import("./entities/user.entity").Users> & import("./entities/user.entity").Users & {
         _id: import("mongoose").Types.ObjectId;
     }>;

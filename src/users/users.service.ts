@@ -27,11 +27,11 @@ export class UsersService {
     return await this.usersModel.find().populate('classes', 'lecture').exec();
   }
 
-  async findOne(condition: any): Promise<Users> {
-    if (!condition) {
+  async findOne(id: string): Promise<Users> {
+    if (!id) {
       return null;
     }
-    return await this.usersModel.findOne(condition).exec();
+    return await this.usersModel.findOne({ id }).exec();
   }
 
   async findEmail(email: string) {
