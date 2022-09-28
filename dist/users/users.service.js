@@ -34,11 +34,6 @@ let UsersService = class UsersService {
     async findAll() {
         return await this.usersModel.find().populate('classes', 'lecture').exec();
     }
-    async findOne(id) {
-        if (!id)
-            throw new common_1.BadRequestException('Class does not exist!');
-        return await this.usersModel.findOne({ id }).exec();
-    }
     async findEmail(email) {
         return await this.usersModel.findOne({ email }).exec();
     }

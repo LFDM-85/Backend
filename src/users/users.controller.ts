@@ -38,8 +38,8 @@ export class UsersController {
   }
   @Get('/:id')
   // @UseGuards(JwtAuthGuard)
-  findUser(@Param('id') id: string) {
-    return this.usersService.findOne(id);
+  findUser(@Param('email') email: string) {
+    return this.usersService.findEmail(email);
   }
 
   @Patch('/:id')
