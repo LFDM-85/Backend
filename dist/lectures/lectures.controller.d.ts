@@ -32,9 +32,9 @@ export declare class LecturesController {
     create(createLectureDto: CreateLectureDto): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    findAll(): import("mongoose").Query<Omit<Omit<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
+    findAll(): import("mongoose").Query<Omit<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>, never>[], import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
+    }, never>[], import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
         _id: import("mongoose").Types.ObjectId;
     }, {}, import("./entities/lecture.entity").Lecture>;
     update(id: string, updateLectureDto: UpdateLectureDto): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
