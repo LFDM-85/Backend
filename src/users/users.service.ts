@@ -34,7 +34,12 @@ export class UsersService {
 
 
   async findEmail(email: string) {
-    return await this.usersModel.findOne({ email }).exec();
+    return await this.usersModel.findOne({ email }).populate({
+      path: 'classes', populate: [{
+        path: 'lecture', populate: [{ path: 'assessment'},{path: 'work'},{path: 'attendance'}],
+      }],
+
+    }).exec();
   }
 
   async whoami(email: string) {

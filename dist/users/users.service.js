@@ -39,7 +39,11 @@ let UsersService = class UsersService {
         }).exec();
     }
     async findEmail(email) {
-        return await this.usersModel.findOne({ email }).exec();
+        return await this.usersModel.findOne({ email }).populate({
+            path: 'classes', populate: [{
+                    path: 'lecture', populate: [{ path: 'assessment' }, { path: 'work' }, { path: 'attendance' }],
+                }],
+        }).exec();
     }
     async whoami(email) {
         return await this.usersModel.findOne({ email }).exec();
