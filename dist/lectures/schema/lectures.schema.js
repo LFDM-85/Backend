@@ -35,7 +35,7 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Lecture.prototype, "finished", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: assessment_entity_1.Assessment.name }] })),
+    (0, mongoose_1.Prop)({ type: { type: mongoose_2.default.Schema.Types.ObjectId, ref: assessment_entity_1.Assessment.name } }),
     __metadata("design:type", assessment_entity_1.Assessment)
 ], Lecture.prototype, "assessment", void 0);
 __decorate([
