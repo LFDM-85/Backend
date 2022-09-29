@@ -11,7 +11,7 @@ export class Work {
   _id: string;
   @Prop()
   filename: string;
-   @Prop(({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: Users.name }] }))
+   @Prop({type:({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: Users.name }] })})
   user: Users[];
 }
 

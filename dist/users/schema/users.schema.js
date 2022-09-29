@@ -48,19 +48,19 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Users.prototype, "isValidated", void 0);
 __decorate([
-    (0, mongoose_1.Prop)([{ type: mongoose_2.default.Schema.Types.ObjectId, ref: class_schema_1.Class.name }]),
+    (0, mongoose_1.Prop)({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: class_schema_1.Class.name }] }),
     __metadata("design:type", Array)
 ], Users.prototype, "classes", void 0);
 __decorate([
-    (0, mongoose_1.Prop)([{ type: mongoose_2.default.Schema.Types.ObjectId, ref: work_entity_1.Work.name }]),
+    (0, mongoose_1.Prop)({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: work_entity_1.Work.name }] }),
     __metadata("design:type", Array)
 ], Users.prototype, "work", void 0);
 __decorate([
-    (0, mongoose_1.Prop)([{ type: mongoose_2.default.Schema.Types.ObjectId, ref: assessment_entity_1.Assessment.name }]),
+    (0, mongoose_1.Prop)({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: assessment_entity_1.Assessment.name }] }),
     __metadata("design:type", Array)
 ], Users.prototype, "assessment", void 0);
 __decorate([
-    (0, mongoose_1.Prop)([{ type: mongoose_2.default.Schema.Types.ObjectId, ref: attendance_entity_1.Attendance.name }]),
+    (0, mongoose_1.Prop)({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: attendance_entity_1.Attendance.name }] }),
     __metadata("design:type", Array)
 ], Users.prototype, "attendance", void 0);
 Users = __decorate([

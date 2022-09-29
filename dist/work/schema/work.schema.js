@@ -25,7 +25,7 @@ __decorate([
     __metadata("design:type", String)
 ], Work.prototype, "filename", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: user_entity_1.Users.name }] })),
+    (0, mongoose_1.Prop)({ type: ({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: user_entity_1.Users.name }] }) }),
     __metadata("design:type", Array)
 ], Work.prototype, "user", void 0);
 Work = __decorate([

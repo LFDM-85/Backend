@@ -23,13 +23,14 @@ export class Users {
   roles: string[]
   @Prop()
   isValidated: boolean;
-  @Prop([{type: mongoose.Schema.Types.ObjectId, ref: Class.name}])
+  // @Prop([{type: mongoose.Schema.Types.ObjectId, ref: Class.name}])
+  @Prop({ type:[{ type: mongoose.Schema.Types.ObjectId, ref: Class.name}]})
   classes: [Class]
-  @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: Work.name }])
+  @Prop({type: [{ type: mongoose.Schema.Types.ObjectId, ref: Work.name }]})
   work: Work[];
-    @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: Assessment.name }])
+    @Prop({type: [{ type: mongoose.Schema.Types.ObjectId, ref: Assessment.name }]})
     assessment: Assessment[];
-    @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: Attendance.name }])
+    @Prop({type: [{ type: mongoose.Schema.Types.ObjectId, ref: Attendance.name }]})
   attendance: Attendance[];
 
 }

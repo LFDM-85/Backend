@@ -24,15 +24,14 @@ export class UsersService {
   }
 
   async findAll() {
-    return await this.usersModel.find().populate('classes', 'lecture').exec();
+    return await this.usersModel.find().populate({
+      path: 'classes', populate: [{
+        path: 'lecture', populate: [{ path: 'assessment'},{path: 'work'},{path: 'attendance'}],
+      }],
+
+    }).exec();
   }
 
-  // async findOne(id: any): Promise<Users> {
-  //   if (!id) {
-  //     return null;
-  //   }
-  //   return await this.usersModel.find({ id }).exec();
-  // }
 
   async findEmail(email: string) {
     return await this.usersModel.findOne({ email }).exec();

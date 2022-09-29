@@ -32,7 +32,11 @@ let UsersService = class UsersService {
         return user.save();
     }
     async findAll() {
-        return await this.usersModel.find().populate('classes', 'lecture').exec();
+        return await this.usersModel.find().populate({
+            path: 'classes', populate: [{
+                    path: 'lecture', populate: [{ path: 'assessment' }, { path: 'work' }, { path: 'attendance' }],
+                }],
+        }).exec();
     }
     async findEmail(email) {
         return await this.usersModel.findOne({ email }).exec();
