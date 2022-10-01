@@ -31,7 +31,7 @@ export class WorkController {
   }
 @Post('/uploadFile')
   @UseInterceptors(FileInterceptor('file', storage))
-  uploadFile(@Res() res, @UploadedFile() file, @Body() createWorkDto: CreateWorkDto) {
+  uploadFile(@Res() res, @UploadedFile() file: Express.Multer.File, @Body() createWorkDto: CreateWorkDto) {
     this.workService.create({...createWorkDto, filename: file.filename})
     return res.status(HttpStatus.OK).json({
       sucess: true,
