@@ -22,7 +22,7 @@ const multer_1 = require("multer");
 const path_1 = require("path");
 const storage = {
     storage: (0, multer_1.diskStorage)({
-        destination: 'tmp/uploads/works',
+        destination: 'uploads/works',
         filename: (req, file, cb) => {
             const filename = (file.originalname).replace(/\s/g, '');
             cb(null, filename);

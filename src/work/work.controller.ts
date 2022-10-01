@@ -12,7 +12,7 @@ import { CreateAttendanceDto } from 'src/attendance/dto/create-attendance.dto';
 
 const storage = {
     storage: diskStorage({
-      destination: 'tmp/uploads/works',
+      destination: 'uploads/works',
       filename: (req, file, cb) => {
         const filename = (file.originalname).replace(/\s/g, '');
         
