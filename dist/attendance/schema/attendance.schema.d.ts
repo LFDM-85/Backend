@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 import { Users } from '../../users/entities/user.entity';
 export declare type AttendanceDocument = Attendance & Document;
 export declare class Attendance {
