@@ -10,9 +10,9 @@ export class AttendanceService {
   constructor(@InjectModel(Attendance.name) private attendanceModel: Model<Attendance>) {}
 
   async create(createAttendanceDto: CreateAttendanceDto) {
-     const { filename} = createAttendanceDto
-    const findOneAttendance = await this.attendanceModel.findOne({ filename })
-    if(findOneAttendance) throw new BadRequestException('Attendance already exist! Please change the name of the file and try again.')
+    //  const { filename} = createAttendanceDto
+    // const findOneAttendance = await this.attendanceModel.findOne({ filename })
+    // if(findOneAttendance) throw new BadRequestException('Attendance already exist! Please change the name of the file and try again.')
     return await(await this.attendanceModel.create(createAttendanceDto)).save()
   }
 

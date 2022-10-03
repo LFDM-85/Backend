@@ -24,6 +24,12 @@ const storage = {
 export class AttendanceController {
   constructor(private readonly attendanceService: AttendanceService) {}
 
+@Post('/create')
+  // @Roles(Role.Professor)
+  create(@Body() createAttendanceDto: CreateAttendanceDto) {
+    return this.attendanceService.create(createAttendanceDto);
+  }
+
 
   @Post('/uploadFile')
   @UseInterceptors(FileInterceptor('file', storage))

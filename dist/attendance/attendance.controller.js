@@ -33,6 +33,9 @@ let AttendanceController = class AttendanceController {
     constructor(attendanceService) {
         this.attendanceService = attendanceService;
     }
+    create(createAttendanceDto) {
+        return this.attendanceService.create(createAttendanceDto);
+    }
     uploadFile(res, file, createAttendanceDto) {
         this.attendanceService.create(Object.assign(Object.assign({}, createAttendanceDto), { filename: file.filename }));
         return res.status(common_1.HttpStatus.OK).json({
@@ -62,6 +65,13 @@ let AttendanceController = class AttendanceController {
         return this.attendanceService.remove(id);
     }
 };
+__decorate([
+    (0, common_1.Post)('/create'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_attendance_dto_1.CreateAttendanceDto]),
+    __metadata("design:returntype", void 0)
+], AttendanceController.prototype, "create", null);
 __decorate([
     (0, common_1.Post)('/uploadFile'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', storage)),
