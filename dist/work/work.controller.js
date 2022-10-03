@@ -39,7 +39,7 @@ let WorkController = class WorkController {
     uploadFile(res, file, createWorkDto) {
         this.workService.create(Object.assign(Object.assign({}, createWorkDto), { filename: file.filename }));
         return res.status(common_1.HttpStatus.OK).json({
-            sucess: true,
+            success: true,
             data: file.path
         });
     }

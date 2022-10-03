@@ -34,7 +34,7 @@ export class WorkController {
   uploadFile(@Res() res, @UploadedFile() file: Express.Multer.File, @Body() createWorkDto: CreateWorkDto) {
     this.workService.create({...createWorkDto, filename: file.filename})
     return res.status(HttpStatus.OK).json({
-      sucess: true,
+      success: true,
       data: file.path
     })
 }
