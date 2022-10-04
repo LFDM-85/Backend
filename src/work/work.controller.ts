@@ -38,17 +38,6 @@ export class WorkController {
     return this.workService.create({...createWorkDto, filename: file.filename})
     
   }
-
-    // @Post('/uploadfile')
-//   @UseInterceptors(FileInterceptor('file', storage))
-// uploadFile(@Res() res, @UploadedFile() file: Express.Multer.File, @Body() createWorkDto: CreateWorkDto) {
-//   console.log(file)
-//     this.workService.create({...createWorkDto, filename: file.filename})
-//     return res.status(HttpStatus.OK).json({
-//       success: true,
-//       data: file.path
-//     })
-// }
   
   @Get('/download/:filename')
   findFile(@Param('filename') filename, @Res() res){
