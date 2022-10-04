@@ -22,6 +22,7 @@ const lectures_module_1 = require("./lectures/lectures.module");
 const assessments_module_1 = require("./assessments/assessments.module");
 const work_module_1 = require("./work/work.module");
 const attendance_module_1 = require("./attendance/attendance.module");
+const cloudinary_module_1 = require("./cloudinary/cloudinary.module");
 dotenv.config();
 const URL = process.env.DATABASE_URL;
 let AppModule = class AppModule {
@@ -44,6 +45,7 @@ AppModule = __decorate([
             assessments_module_1.AssessmentsModule,
             work_module_1.WorkModule,
             attendance_module_1.AttendanceModule,
+            cloudinary_module_1.CloudinaryModule,
         ],
         controllers: [],
         providers: [

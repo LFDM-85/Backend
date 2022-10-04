@@ -1,19 +1,26 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { CreateWorkDto } from './dto/create-work.dto';
 import { UpdateWorkDto } from './dto/update-work.dto';
 import { Work } from './entities/work.entity';
 
 @Injectable()
 export class WorkService {
-  constructor(@InjectModel(Work.name) private workModel: Model<Work>) {}
+  constructor(@InjectModel(Work.name) private workModel: Model<Work>, private cloudinary: CloudinaryService) {}
   async create(createWorkDto: CreateWorkDto) {
 
     const { filename} = createWorkDto
     const findOneWork = await this.workModel.findOne({ filename })
     if(findOneWork) throw new BadRequestException('Work already exist! Please change the name of the file and try again.')
     return await( await this.workModel.create(createWorkDto)).save();
+  }
+
+  async uploadFileToCloudinary(file: Express.Multer.File) {
+    return await this.cloudinary.uploadfile(file).catch(() => {
+      throw new BadRequestException('Invalid File')
+    })
   }
 
   findAll() {

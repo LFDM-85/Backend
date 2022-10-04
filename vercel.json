@@ -3,7 +3,10 @@
   "env": {
    
       "DATABASE_URL":"mongodb+srv://luismelo:3986088lm@cluster0.lbzvv.mongodb.net/?retryWrites=true&w=majority",
-      "SESSION_SECRET": "vwnrv03b8w4gr07dwbv78_&RE$DYCRVJBNILÇÇP__MNH30rb0"
+      "SESSION_SECRET": "vwnrv03b8w4gr07dwbv78_&RE$DYCRVJBNILÇÇP__MNH30rb0",
+      "CLD_CLOUD_NAME" : "dp9h6rkbl",
+      "CLD_API_KEY": "826935283429225",
+      "CLD_API_SECRET": "SbRPB6QR8kugfP4qCm-LQDRvcl0"
     },
   "builds": [
     {

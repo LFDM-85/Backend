@@ -5,20 +5,38 @@ import { UpdateWorkDto } from './dto/update-work.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import {Roles} from "../decorators/roles.decorator";
-import {Role} from "../enums/role.enum";
+import { Role } from "../enums/role.enum";
+import { CloudinaryStorage } from 'multer-storage-cloudinary'
+import { v2 as cloudinary } from 'cloudinary';
+
 
 import { join } from 'path';
 import { CreateAttendanceDto } from 'src/attendance/dto/create-attendance.dto';
 
 const storage = {
-    storage: diskStorage({
-      destination: 'uploads/works',
-      filename: (_req, file, cb) => {
+  
+  storage: new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: async (req, file) => {
+      filename: (cb) => {
         const filename = (file.originalname).replace(/\s/g, '');
         
         cb(null, filename);
-       }
-    })
+      }
+      return {
+        folder: 'works',
+        public_id: file.filename
+      }
+    }   
+  })
+    // diskStorage({
+    //   destination: 'uploads/works',
+    //   filename: (_req, file, cb) => {
+    //     const filename = (file.originalname).replace(/\s/g, '');
+        
+    //     cb(null, filename);
+    //    }
+    // })
   }
 @Controller('work')
 export class WorkController {
@@ -31,11 +49,11 @@ export class WorkController {
   }
   
   @Post('/uploadfile')
-  @UseInterceptors(FileInterceptor('filename', storage))
-  uploadFile(@UploadedFile() file: Express.Multer.File, @Body() createWorkDto: CreateWorkDto) {
+  @UseInterceptors(FileInterceptor('file', storage))
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
     console.log('file', file)
    
-    return this.workService.create({...createWorkDto, filename: file.filename})
+    return this.workService.uploadFileToCloudinary(file)
     
   }
   

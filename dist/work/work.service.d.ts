@@ -1,3 +1,4 @@
+/// <reference types="multer" />
 /// <reference types="mongoose/types/aggregate" />
 /// <reference types="mongoose/types/callback" />
 /// <reference types="mongoose/types/collection" />
@@ -23,15 +24,18 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { Model } from 'mongoose';
+import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { CreateWorkDto } from './dto/create-work.dto';
 import { UpdateWorkDto } from './dto/update-work.dto';
 import { Work } from './entities/work.entity';
 export declare class WorkService {
     private workModel;
-    constructor(workModel: Model<Work>);
+    private cloudinary;
+    constructor(workModel: Model<Work>, cloudinary: CloudinaryService);
     create(createWorkDto: CreateWorkDto): Promise<import("mongoose").Document<unknown, any, Work> & Work & {
         _id: import("mongoose").Types.ObjectId;
     }>;
+    uploadFileToCloudinary(file: Express.Multer.File): Promise<import("cloudinary").UploadApiResponse | import("cloudinary").UploadApiErrorResponse>;
     findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, Work> & Work & {
         _id: import("mongoose").Types.ObjectId;
     })[], import("mongoose").Document<unknown, any, Work> & Work & {

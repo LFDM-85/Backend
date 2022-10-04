@@ -15,14 +15,17 @@ const users_module_1 = require("../users/users.module");
 const mongoose_1 = require("@nestjs/mongoose");
 const work_schema_1 = require("./schema/work.schema");
 const platform_express_1 = require("@nestjs/platform-express");
+const cloudinary_module_1 = require("../cloudinary/cloudinary.module");
+const multer_1 = require("multer");
 let WorkModule = class WorkModule {
 };
 WorkModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            cloudinary_module_1.CloudinaryModule,
             lectures_module_1.LecturesModule,
             users_module_1.UsersModule,
-            platform_express_1.MulterModule.register({ dest: 'uploads/works' }),
+            platform_express_1.MulterModule.register({ storage: (0, multer_1.memoryStorage)() }),
             mongoose_1.MongooseModule.forFeature([{ name: work_schema_1.Work.name, schema: work_schema_1.WorkSchema }]),
         ],
         controllers: [work_controller_1.WorkController],

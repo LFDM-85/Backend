@@ -16,10 +16,12 @@ exports.WorkService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
+const cloudinary_service_1 = require("../cloudinary/cloudinary.service");
 const work_entity_1 = require("./entities/work.entity");
 let WorkService = class WorkService {
-    constructor(workModel) {
+    constructor(workModel, cloudinary) {
         this.workModel = workModel;
+        this.cloudinary = cloudinary;
     }
     async create(createWorkDto) {
         const { filename } = createWorkDto;
@@ -27,6 +29,11 @@ let WorkService = class WorkService {
         if (findOneWork)
             throw new common_1.BadRequestException('Work already exist! Please change the name of the file and try again.');
         return await (await this.workModel.create(createWorkDto)).save();
+    }
+    async uploadFileToCloudinary(file) {
+        return await this.cloudinary.uploadfile(file).catch(() => {
+            throw new common_1.BadRequestException('Invalid File');
+        });
     }
     findAll() {
         return this.workModel.find();
@@ -58,7 +65,7 @@ let WorkService = class WorkService {
 WorkService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(work_entity_1.Work.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model])
+    __metadata("design:paramtypes", [mongoose_2.Model, cloudinary_service_1.CloudinaryService])
 ], WorkService);
 exports.WorkService = WorkService;
 //# sourceMappingURL=work.service.js.map

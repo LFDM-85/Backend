@@ -13,6 +13,7 @@ import { LecturesModule } from './lectures/lectures.module';
 import { AssessmentsModule } from './assessments/assessments.module';
 import { WorkModule } from './work/work.module';
 import { AttendanceModule } from './attendance/attendance.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ const URL = process.env.DATABASE_URL;
     AssessmentsModule,
     WorkModule,
     AttendanceModule,
+    CloudinaryModule,
   ],
   controllers: [],
   providers: [
