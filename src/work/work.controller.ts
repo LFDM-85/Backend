@@ -13,7 +13,7 @@ import { CreateAttendanceDto } from 'src/attendance/dto/create-attendance.dto';
 const storage = {
     storage: diskStorage({
       destination: 'uploads/works',
-      filename: (req, file, cb) => {
+      filename: (_req, file, cb) => {
         const filename = (file.originalname).replace(/\s/g, '');
         
         cb(null, filename);
@@ -29,35 +29,32 @@ export class WorkController {
   findAll() {
     return this.workService.findAll();
   }
-@Post('/uploadFile')
-  @UseInterceptors(FileInterceptor('file', storage))
-  uploadFile(@Res() res, @UploadedFile() file: Express.Multer.File, @Body() createWorkDto: CreateWorkDto) {
-    this.workService.create({...createWorkDto, filename: file.filename})
-    return res.status(HttpStatus.OK).json({
-      success: true,
-      data: file.path
-    })
-}
+  
+  @Post('/uploadfile')
+  @UseInterceptors(FileInterceptor('filename', storage))
+  uploadFile(@UploadedFile() file: Express.Multer.File, @Body() createWorkDto: CreateWorkDto) {
+    console.log('file', file)
+   
+    return this.workService.create({...createWorkDto, filename: file.filename})
+    
+  }
+
+    // @Post('/uploadfile')
+//   @UseInterceptors(FileInterceptor('file', storage))
+// uploadFile(@Res() res, @UploadedFile() file: Express.Multer.File, @Body() createWorkDto: CreateWorkDto) {
+//   console.log(file)
+//     this.workService.create({...createWorkDto, filename: file.filename})
+//     return res.status(HttpStatus.OK).json({
+//       success: true,
+//       data: file.path
+//     })
+// }
   
   @Get('/download/:filename')
   findFile(@Param('filename') filename, @Res() res){
   return res.sendFile(join(process.cwd(), 'uploads/works/' + filename))
   }
-  
-  // @Post('/upload')
-  // @UseInterceptors(FileInterceptor('file', storage ))
-  // uploadFile(@UploadedFile() file, createWorkDto: CreateWorkDto) {
-    
-  //   return this.workService.create( {...createWorkDto, filename: file.filename })
-      
-  //   }
-
-  // @Get('/download/:filename')
-  // findFile(@Param('filename') filename, @Res() res){
-  // return res.sendFile(join(process.cwd(), 'uploads/works/' + filename))
-  // }
-   
-
+ 
   @Patch('/:id')
   // @Roles(Role.Professor)
     // @Roles(Role.Student)

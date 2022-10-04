@@ -23,7 +23,7 @@ const path_1 = require("path");
 const storage = {
     storage: (0, multer_1.diskStorage)({
         destination: 'uploads/works',
-        filename: (req, file, cb) => {
+        filename: (_req, file, cb) => {
             const filename = (file.originalname).replace(/\s/g, '');
             cb(null, filename);
         }
@@ -36,12 +36,9 @@ let WorkController = class WorkController {
     findAll() {
         return this.workService.findAll();
     }
-    uploadFile(res, file, createWorkDto) {
-        this.workService.create(Object.assign(Object.assign({}, createWorkDto), { filename: file.filename }));
-        return res.status(common_1.HttpStatus.OK).json({
-            success: true,
-            data: file.path
-        });
+    uploadFile(file, createWorkDto) {
+        console.log('file', file);
+        return this.workService.create(Object.assign(Object.assign({}, createWorkDto), { filename: file.filename }));
     }
     findFile(filename, res) {
         return res.sendFile((0, path_1.join)(process.cwd(), 'uploads/works/' + filename));
@@ -69,13 +66,12 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], WorkController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Post)('/uploadFile'),
-    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', storage)),
-    __param(0, (0, common_1.Res)()),
-    __param(1, (0, common_1.UploadedFile)()),
-    __param(2, (0, common_1.Body)()),
+    (0, common_1.Post)('/uploadfile'),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('filename', storage)),
+    __param(0, (0, common_1.UploadedFile)()),
+    __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object, create_work_dto_1.CreateWorkDto]),
+    __metadata("design:paramtypes", [Object, create_work_dto_1.CreateWorkDto]),
     __metadata("design:returntype", void 0)
 ], WorkController.prototype, "uploadFile", null);
 __decorate([

@@ -35,7 +35,9 @@ export declare class WorkController {
     })[], import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
         _id: import("mongoose").Types.ObjectId;
     }, {}, import("./entities/work.entity").Work>;
-    uploadFile(res: any, file: Express.Multer.File, createWorkDto: CreateWorkDto): any;
+    uploadFile(file: Express.Multer.File, createWorkDto: CreateWorkDto): Promise<import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     findFile(filename: any, res: any): any;
     update(id: string, updateWorkDto: UpdateWorkDto): Promise<import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
         _id: import("mongoose").Types.ObjectId;
