@@ -32,7 +32,7 @@ let WorkService = class WorkService {
     }
     async uploadFileToCloudinary(file) {
         return await this.cloudinary.uploadfile(file).catch(() => {
-            throw new common_1.HttpException({ message: Error }, common_1.HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new common_1.BadRequestException('error');
         });
     }
     findAll() {
