@@ -13,11 +13,7 @@ const toStream = require("buffer-to-stream");
 let CloudinaryService = class CloudinaryService {
     async uploadfile(file) {
         return new Promise((resolve, reject) => {
-            const upload = cloudinary_1.v2.uploader.upload_stream({ upload_preset: 'ml_default' }, (error, result) => {
-                if (error)
-                    return reject(error);
-                resolve(result);
-            });
+            const upload = cloudinary_1.v2.uploader.upload_stream({ upload_preset: 'ml_default' });
             toStream(file.buffer).pipe(upload);
         });
     }
