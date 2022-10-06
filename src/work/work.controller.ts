@@ -3,7 +3,7 @@ import { WorkService } from './work.service';
 import { CreateWorkDto } from './dto/create-work.dto';
 import { UpdateWorkDto } from './dto/update-work.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
+import multer, { diskStorage } from 'multer';
 import {Roles} from "../decorators/roles.decorator";
 import { Role } from "../enums/role.enum";
 import { CloudinaryStorage } from 'multer-storage-cloudinary'
@@ -13,31 +13,6 @@ import { v2 as cloudinary } from 'cloudinary';
 import { join } from 'path';
 import { CreateAttendanceDto } from 'src/attendance/dto/create-attendance.dto';
 
-const storage = {
-  
-  storage: new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: async (req, file) => {
-      filename: (cb) => {
-        const filename = (file.originalname).replace(/\s/g, '');
-        
-        cb(null, filename);
-      }
-      return {
-        folder: 'works',
-        public_id: file.filename
-      }
-    }   
-  })
-    // diskStorage({
-    //   destination: 'uploads/works',
-    //   filename: (_req, file, cb) => {
-    //     const filename = (file.originalname).replace(/\s/g, '');
-        
-    //     cb(null, filename);
-    //    }
-    // })
-  }
 @Controller('work')
 export class WorkController {
   constructor(private readonly workService: WorkService) {}
@@ -49,7 +24,7 @@ export class WorkController {
   }
   
   @Post('/uploadfile')
-  @UseInterceptors(FileInterceptor('file', storage))
+  @UseInterceptors(FileInterceptor('file'))
   uploadFile(@UploadedFile() file: Express.Multer.File) {
     console.log('file', file)
    

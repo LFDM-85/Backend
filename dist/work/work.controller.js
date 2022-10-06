@@ -17,24 +17,7 @@ const common_1 = require("@nestjs/common");
 const work_service_1 = require("./work.service");
 const update_work_dto_1 = require("./dto/update-work.dto");
 const platform_express_1 = require("@nestjs/platform-express");
-const multer_storage_cloudinary_1 = require("multer-storage-cloudinary");
-const cloudinary_1 = require("cloudinary");
 const path_1 = require("path");
-const storage = {
-    storage: new multer_storage_cloudinary_1.CloudinaryStorage({
-        cloudinary: cloudinary_1.v2,
-        params: async (req, file) => {
-            filename: (cb) => {
-                const filename = (file.originalname).replace(/\s/g, '');
-                cb(null, filename);
-            };
-            return {
-                folder: 'works',
-                public_id: file.filename
-            };
-        }
-    })
-};
 let WorkController = class WorkController {
     constructor(workService) {
         this.workService = workService;
@@ -73,7 +56,7 @@ __decorate([
 ], WorkController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Post)('/uploadfile'),
-    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', storage)),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file')),
     __param(0, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
