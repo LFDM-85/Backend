@@ -7,11 +7,15 @@ export type AttendanceDocument = Attendance & Document;
 
 @Schema()
 export class Attendance {
+@Transform(({ value }) => value.toString())
   _id: string;
+  @Prop()
   attendance: boolean;
+  @Prop()
   validation: boolean;
+  @Prop()
   filename: string;
-  user: Users;
+  // user: Users;
 }
 
 export const AttendanceSchema = SchemaFactory.createForClass(Attendance);
