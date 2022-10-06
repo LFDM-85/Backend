@@ -14,7 +14,7 @@ export class WorkService {
     const { filename} = createWorkDto
     const findOneWork = await this.workModel.findOne({ filename })
     if(findOneWork) throw new BadRequestException('Work already exist! Please change the name of the file and try again.')
-    return await( await this.workModel.create(createWorkDto)).save();
+    return  await (await this.workModel.create(createWorkDto)).save();
   }
 
   async uploadFileToCloudinary(file: Express.Multer.File) {
