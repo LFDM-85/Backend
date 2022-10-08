@@ -20,12 +20,7 @@ export class WorkService {
 
   async uploadFileToCloudinary(file: Express.Multer.File) {
     return await this.cloudinary.uploadfile(file).catch(() => {
-      throw new HttpException(
-        {
-          message: error,
-        },
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      )
+      throw new BadRequestException('error' )
     })
   }
 

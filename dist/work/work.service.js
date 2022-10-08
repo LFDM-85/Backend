@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WorkService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
-const console_1 = require("console");
 const mongoose_2 = require("mongoose");
 const cloudinary_service_1 = require("../cloudinary/cloudinary.service");
 const work_entity_1 = require("./entities/work.entity");
@@ -33,9 +32,7 @@ let WorkService = class WorkService {
     }
     async uploadFileToCloudinary(file) {
         return await this.cloudinary.uploadfile(file).catch(() => {
-            throw new common_1.HttpException({
-                message: console_1.error,
-            }, common_1.HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new common_1.BadRequestException('error');
         });
     }
     findAll() {
