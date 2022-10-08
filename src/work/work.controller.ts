@@ -34,15 +34,18 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: async (req, file, cb) => {
 
-    storage: diskStorage({
-      destination: './uploads/works/',
-      filename: (req, file, cb) => {
-        const filename = new Date().toISOString()+'-'+file.originalname;
-        
-        cb(null, filename);
-        
+   diskStorage({
+      destination: function (req, file, cb) {
+        cb(null, file.path=
+          './uploads/works/',
+        )
+      },
+      filename: function (req, file, cb) {
+        cb(null, new Date().toISOString()+'-'+file.originalname);
+                
       }
-    })
+   })
+    return {file,cb}
   }
   })
 
@@ -76,7 +79,7 @@ export class WorkController {
   }
   
   @Post('/uploadfile')
-  @UseInterceptors(FileInterceptor('file', {storage}))
+  @UseInterceptors(FileInterceptor('file',{ storage}))
   uploadFile(@Res() res,@UploadedFile() file: Express.Multer.File) {
     console.log('file', file)
     this.workService.uploadFileToCloudinary(file)

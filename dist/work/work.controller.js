@@ -24,13 +24,16 @@ const path_1 = require("path");
 const storage = new multer_storage_cloudinary_1.CloudinaryStorage({
     cloudinary: cloudinary_1.v2,
     params: async (req, file, cb) => {
-        storage: (0, multer_1.diskStorage)({
-            destination: './uploads/works/',
-            filename: (req, file, cb) => {
-                const filename = new Date().toISOString() + '-' + file.originalname;
-                cb(null, filename);
+        (0, multer_1.diskStorage)({
+            destination: function (req, file, cb) {
+                cb(null, file.path =
+                    './uploads/works/');
+            },
+            filename: function (req, file, cb) {
+                cb(null, new Date().toISOString() + '-' + file.originalname);
             }
         });
+        return { file, cb };
     }
 });
 let WorkController = class WorkController {
