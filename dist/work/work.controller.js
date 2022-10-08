@@ -26,8 +26,6 @@ const storage = new multer_storage_cloudinary_1.CloudinaryStorage({
     params: async (req, file, cb) => {
         (0, multer_1.diskStorage)({
             destination: function (req, file, cb) {
-                cb(null, file.path =
-                    './uploads/works/');
             },
             filename: function (req, file, cb) {
                 cb(null, new Date().toISOString() + '-' + file.originalname);

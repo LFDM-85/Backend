@@ -36,9 +36,9 @@ const storage = new CloudinaryStorage({
 
    diskStorage({
       destination: function (req, file, cb) {
-        cb(null, file.path=
-          './uploads/works/',
-        )
+        // cb(null, file.path=
+        //   './uploads/works/',
+        // )
       },
       filename: function (req, file, cb) {
         cb(null, new Date().toISOString()+'-'+file.originalname);
