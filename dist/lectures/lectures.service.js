@@ -35,7 +35,7 @@ let LecturesService = class LecturesService {
         return await this.lectureModel.findByIdAndUpdate({
             _id: id,
         }, {
-            $push: updateLectureDto
+            $set: updateLectureDto
         }, { new: true });
     }
     async addAssessment(assessmentId, lectureId) {

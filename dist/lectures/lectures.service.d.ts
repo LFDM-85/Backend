@@ -37,9 +37,7 @@ export declare class LecturesService {
     }, never>[], import("mongoose").Document<unknown, any, Lecture> & Lecture & {
         _id: import("mongoose").Types.ObjectId;
     }, {}, Lecture>;
-    update(id: string, updateLectureDto: UpdateLectureDto): Promise<import("mongoose").Document<unknown, any, Lecture> & Lecture & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
+    update(id: string, updateLectureDto: UpdateLectureDto): Promise<Lecture>;
     addAssessment(assessmentId: string, lectureId: string): Promise<import("mongoose").Document<unknown, any, Lecture> & Lecture & {
         _id: import("mongoose").Types.ObjectId;
     }>;

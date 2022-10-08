@@ -37,9 +37,7 @@ export declare class LecturesController {
     }, never>[], import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
         _id: import("mongoose").Types.ObjectId;
     }, {}, import("./entities/lecture.entity").Lecture>;
-    update(id: string, updateLectureDto: UpdateLectureDto): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
+    update(id: string, updateLectureDto: UpdateLectureDto): Promise<import("./entities/lecture.entity").Lecture>;
     addAssessment(assessmentId: string, lectureId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
         _id: import("mongoose").Types.ObjectId;
     }>;

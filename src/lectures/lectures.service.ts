@@ -28,13 +28,13 @@ export class LecturesService {
     
   // }
 
-  async update(id: string, updateLectureDto: UpdateLectureDto) {
+  async update(id: string, updateLectureDto: UpdateLectureDto): Promise<Lecture> {
     return await this.lectureModel.findByIdAndUpdate(
       {
         _id: id,
       },
       {
-        $push: updateLectureDto
+        $set: updateLectureDto
       },
       { new: true}
     );
