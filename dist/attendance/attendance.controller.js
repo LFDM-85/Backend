@@ -14,20 +14,10 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AttendanceController = void 0;
 const common_1 = require("@nestjs/common");
-const multer_1 = require("multer");
 const path_1 = require("path");
 const attendance_service_1 = require("./attendance.service");
 const create_attendance_dto_1 = require("./dto/create-attendance.dto");
 const update_attendance_dto_1 = require("./dto/update-attendance.dto");
-const storage = {
-    storage: (0, multer_1.diskStorage)({
-        destination: 'uploads/attendance',
-        filename: (req, file, cb) => {
-            const filename = (file.originalname).replace(/\s/g, '');
-            cb(null, filename);
-        }
-    })
-};
 let AttendanceController = class AttendanceController {
     constructor(attendanceService) {
         this.attendanceService = attendanceService;

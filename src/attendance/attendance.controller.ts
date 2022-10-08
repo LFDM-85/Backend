@@ -8,17 +8,17 @@ import { UpdateAttendanceDto } from './dto/update-attendance.dto';
 import {Roles} from "../decorators/roles.decorator";
 import {Role} from "../enums/role.enum";
 
-const storage = {
-    storage: diskStorage({
-      destination: 'uploads/attendance',
-      filename: (req, file, cb) => {
-        const filename = (file.originalname).replace(/\s/g, '');
+// const storage = {
+//     storage: diskStorage({
+//       destination: 'uploads/attendance',
+//       filename: (req, file, cb) => {
+//         const filename = (file.originalname).replace(/\s/g, '');
         
-        cb(null, filename);
+//         cb(null, filename);
        
-       }
-    })
-  }
+//        }
+//     })
+//   }
 
 @Controller('attendance')
 export class AttendanceController {
@@ -27,7 +27,7 @@ export class AttendanceController {
 @Post('/create')
   // @Roles(Role.Professor)
   create(@Body() createAttendanceDto: CreateAttendanceDto) {
-    return this.attendanceService.create(createAttendanceDto);
+  return this.attendanceService.create(createAttendanceDto);
   }
 
 
