@@ -31,15 +31,15 @@ export class AttendanceController {
   }
 
 
-  @Post('/uploadFile')
-  @UseInterceptors(FileInterceptor('file', storage))
-  uploadFile(@Res() res, @UploadedFile() file, @Body() createAttendanceDto: CreateAttendanceDto) {
-    this.attendanceService.create({...createAttendanceDto, filename: file.filename})
-    return res.status(HttpStatus.OK).json({
-      success: true,
-      data: file.path
-    })
-    }
+  // @Post('/uploadFile')
+  // @UseInterceptors(FileInterceptor('file', storage))
+  // uploadFile(@Res() res, @UploadedFile() file, @Body() createAttendanceDto: CreateAttendanceDto) {
+  //   this.attendanceService.create({...createAttendanceDto, filename: file.filename})
+  //   return res.status(HttpStatus.OK).json({
+  //     success: true,
+  //     data: file.path
+  //   })
+  //   }
  
 
   @Get('/download/:filename')

@@ -14,7 +14,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AttendanceController = void 0;
 const common_1 = require("@nestjs/common");
-const platform_express_1 = require("@nestjs/platform-express");
 const multer_1 = require("multer");
 const path_1 = require("path");
 const attendance_service_1 = require("./attendance.service");
@@ -35,13 +34,6 @@ let AttendanceController = class AttendanceController {
     }
     create(createAttendanceDto) {
         return this.attendanceService.create(createAttendanceDto);
-    }
-    uploadFile(res, file, createAttendanceDto) {
-        this.attendanceService.create(Object.assign(Object.assign({}, createAttendanceDto), { filename: file.filename }));
-        return res.status(common_1.HttpStatus.OK).json({
-            success: true,
-            data: file.path
-        });
     }
     findFile(filename, res) {
         return res.sendFile((0, path_1.join)(process.cwd(), 'uploads/attendance/' + filename));
@@ -72,16 +64,6 @@ __decorate([
     __metadata("design:paramtypes", [create_attendance_dto_1.CreateAttendanceDto]),
     __metadata("design:returntype", void 0)
 ], AttendanceController.prototype, "create", null);
-__decorate([
-    (0, common_1.Post)('/uploadFile'),
-    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', storage)),
-    __param(0, (0, common_1.Res)()),
-    __param(1, (0, common_1.UploadedFile)()),
-    __param(2, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object, create_attendance_dto_1.CreateAttendanceDto]),
-    __metadata("design:returntype", void 0)
-], AttendanceController.prototype, "uploadFile", null);
 __decorate([
     (0, common_1.Get)('/download/:filename'),
     __param(0, (0, common_1.Param)('filename')),
