@@ -9,16 +9,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CloudinaryService = void 0;
 const common_1 = require("@nestjs/common");
 const cloudinary_1 = require("cloudinary");
-const buffer_to_stream_1 = require("buffer-to-stream");
+const streamifier_1 = require("streamifier");
 let CloudinaryService = class CloudinaryService {
     async uploadfile(file) {
         return new Promise((resolve, reject) => {
-            const upload = cloudinary_1.v2.uploader.upload_stream({ upload_preset: 'ml_default' }, (error, result) => {
+            const upload = cloudinary_1.v2.uploader.upload_stream({
+                upload_preset: 'ml_default',
+            }, (error, result) => {
                 if (error)
                     return reject(error);
-                resolve(result);
+                resolve({
+                    url: result.url,
+                    id: result.public_id,
+                    resource_type: 'auto',
+                });
             });
-            (0, buffer_to_stream_1.default)(file.buffer).pipe(upload);
+            streamifier_1.default.createReadStream(file.buffer).pipe(upload);
         });
     }
 };

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, Res, NotFoundException, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, Res, NotFoundException, HttpStatus, Req } from '@nestjs/common';
 import { WorkService } from './work.service';
 import { CreateWorkDto } from './dto/create-work.dto';
 import { UpdateWorkDto } from './dto/update-work.dto';
@@ -8,10 +8,46 @@ import {Roles} from "../decorators/roles.decorator";
 import { Role } from "../enums/role.enum";
 import { CloudinaryStorage } from 'multer-storage-cloudinary'
 import { v2 as cloudinary } from 'cloudinary';
-
-
 import { join } from 'path';
 import { CreateAttendanceDto } from 'src/attendance/dto/create-attendance.dto';
+
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: async (req, file, cb) => {
+    diskStorage({
+      destination: function (req, file, cb) {
+        cb(null, './uploads/works/')
+
+      },
+      filename: function (req, file, cb) {
+    cb(null, new Date().toISOString()+'-'+file.originalname)
+  }
+      
+    })
+    return {
+      file: file.filename,
+    }
+  }
+})
+
+// const storage = diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, './uploads/works/')
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, new Date().toISOString()+'-'+file.originalname)
+//   }
+// })
+// const storage = diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, './uploads/works/')
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, new Date().toISOString()+'-'+file.originalname)
+//   }
+// })
+
+
 
 @Controller('work')
 export class WorkController {
@@ -24,7 +60,7 @@ export class WorkController {
   }
   
   @Post('/uploadfile')
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(FileInterceptor('file', {storage}))
   uploadFile(@UploadedFile() file: Express.Multer.File) {
     console.log('file', file)
    

@@ -35,7 +35,7 @@ export declare class WorkService {
     create(createWorkDto: CreateWorkDto): Promise<import("mongoose").Document<unknown, any, Work> & Work & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    uploadFileToCloudinary(file: Express.Multer.File): Promise<import("cloudinary").UploadApiResponse | import("cloudinary").UploadApiErrorResponse>;
+    uploadFileToCloudinary(file: Express.Multer.File): Promise<unknown>;
     findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, Work> & Work & {
         _id: import("mongoose").Types.ObjectId;
     })[], import("mongoose").Document<unknown, any, Work> & Work & {

@@ -1,5 +1,6 @@
 import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { error } from 'console';
 import { Model } from 'mongoose';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { CreateWorkDto } from './dto/create-work.dto';
@@ -19,7 +20,12 @@ export class WorkService {
 
   async uploadFileToCloudinary(file: Express.Multer.File) {
     return await this.cloudinary.uploadfile(file).catch(() => {
-      throw new BadRequestException('error')
+      throw new HttpException(
+        {
+          message: error,
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      )
     })
   }
 
