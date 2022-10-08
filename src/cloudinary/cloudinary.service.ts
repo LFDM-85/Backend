@@ -6,7 +6,7 @@ import streamifier from 'streamifier';
 @Injectable()
 export class CloudinaryService {
   async uploadfile(file: Express.Multer.File) {
-    return new Promise((resolve, reject) => {
+    return (resolve, reject) => {
       const upload = v2.uploader.upload_stream(
         {
           upload_preset: 'ml_default',
@@ -20,8 +20,8 @@ export class CloudinaryService {
           });
         },
       );
-      // toStream(file.buffer).pipe(upload);
-      streamifier.createReadStream(file.buffer).pipe(upload);
-    });
+      toStream(file.buffer).pipe(upload);
+      // streamifier.createReadStream(file.buffer).pipe(upload);
+    };
   }
 }

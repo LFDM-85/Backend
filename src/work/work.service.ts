@@ -19,9 +19,7 @@ export class WorkService {
   }
 
   async uploadFileToCloudinary(file: Express.Multer.File) {
-    return await this.cloudinary.uploadfile(file).catch(() => {
-      throw new BadRequestException('error' )
-    })
+    return await this.cloudinary.uploadfile(file)
   }
 
   findAll() {

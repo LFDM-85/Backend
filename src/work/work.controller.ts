@@ -11,24 +11,40 @@ import { v2 as cloudinary } from 'cloudinary';
 import { join } from 'path';
 import { CreateAttendanceDto } from 'src/attendance/dto/create-attendance.dto';
 
+// const storage = new CloudinaryStorage({
+//   cloudinary: cloudinary,
+//   params: async (req, file, cb) => {
+//     diskStorage({
+//       destination: function (req, file, cb) {
+//         cb(null, './uploads/works/')
+
+//       },
+//       filename: function (req, file, cb) {
+//     cb(null, new Date().toISOString()+'-'+file.originalname)
+//   }
+      
+//     })
+//     return {
+//       file: file.filename,
+//     }
+//   }
+// })
+
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: async (req, file, cb) => {
-    diskStorage({
-      destination: function (req, file, cb) {
-        cb(null, './uploads/works/')
 
-      },
-      filename: function (req, file, cb) {
-    cb(null, new Date().toISOString()+'-'+file.originalname)
-  }
-      
+    storage: diskStorage({
+      destination: './uploads/works/',
+      filename: (req, file, cb) => {
+        const filename = new Date().toISOString()+'-'+file.originalname;
+        
+        cb(null, filename);
+        
+      }
     })
-    return {
-      file: file.filename,
-    }
   }
-})
+  })
 
 // const storage = diskStorage({
 //   destination: function (req, file, cb) {
@@ -61,10 +77,14 @@ export class WorkController {
   
   @Post('/uploadfile')
   @UseInterceptors(FileInterceptor('file', {storage}))
-  uploadFile(@UploadedFile() file: Express.Multer.File) {
+  uploadFile(@Res() res,@UploadedFile() file: Express.Multer.File) {
     console.log('file', file)
+    this.workService.uploadFileToCloudinary(file)
    
-    return this.workService.uploadFileToCloudinary(file)
+    return res.status(HttpStatus.OK).json({
+      success: true,
+      data: file.path
+    })
     
   }
   

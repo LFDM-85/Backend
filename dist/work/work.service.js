@@ -31,9 +31,7 @@ let WorkService = class WorkService {
         return await (await this.workModel.create(createWorkDto)).save();
     }
     async uploadFileToCloudinary(file) {
-        return await this.cloudinary.uploadfile(file).catch(() => {
-            throw new common_1.BadRequestException('error');
-        });
+        return await this.cloudinary.uploadfile(file);
     }
     findAll() {
         return this.workModel.find();

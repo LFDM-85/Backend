@@ -24,17 +24,13 @@ const path_1 = require("path");
 const storage = new multer_storage_cloudinary_1.CloudinaryStorage({
     cloudinary: cloudinary_1.v2,
     params: async (req, file, cb) => {
-        (0, multer_1.diskStorage)({
-            destination: function (req, file, cb) {
-                cb(null, './uploads/works/');
-            },
-            filename: function (req, file, cb) {
-                cb(null, new Date().toISOString() + '-' + file.originalname);
+        storage: (0, multer_1.diskStorage)({
+            destination: './uploads/works/',
+            filename: (req, file, cb) => {
+                const filename = new Date().toISOString() + '-' + file.originalname;
+                cb(null, filename);
             }
         });
-        return {
-            file: file.filename,
-        };
     }
 });
 let WorkController = class WorkController {
@@ -44,9 +40,13 @@ let WorkController = class WorkController {
     findAll() {
         return this.workService.findAll();
     }
-    uploadFile(file) {
+    uploadFile(res, file) {
         console.log('file', file);
-        return this.workService.uploadFileToCloudinary(file);
+        this.workService.uploadFileToCloudinary(file);
+        return res.status(common_1.HttpStatus.OK).json({
+            success: true,
+            data: file.path
+        });
     }
     findFile(filename, res) {
         return res.sendFile((0, path_1.join)(process.cwd(), 'uploads/works/' + filename));
@@ -76,9 +76,10 @@ __decorate([
 __decorate([
     (0, common_1.Post)('/uploadfile'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file', { storage })),
-    __param(0, (0, common_1.UploadedFile)()),
+    __param(0, (0, common_1.Res)()),
+    __param(1, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", void 0)
 ], WorkController.prototype, "uploadFile", null);
 __decorate([
