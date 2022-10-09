@@ -65,7 +65,7 @@ export class WorkController {
   }
   
   @Get('/download/:filename')
-  findFile(@Param('filename') filename, @Res() res){
+  findFile(@Param('filename') filename, @Res() res) {
   return res.sendFile(join(process.cwd(), 'uploads/works/' + filename))
   }
  
