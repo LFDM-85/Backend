@@ -3,6 +3,7 @@ import { WorkService } from './work.service';
 import { CreateWorkDto } from './dto/create-work.dto';
 import { UpdateWorkDto } from './dto/update-work.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import Path from 'path'
 import multer, { diskStorage } from 'multer';
 import {Roles} from "../decorators/roles.decorator";
 import { Role } from "../enums/role.enum";
@@ -11,60 +12,31 @@ import { v2 as cloudinary } from 'cloudinary';
 import { join } from 'path';
 import { CreateAttendanceDto } from 'src/attendance/dto/create-attendance.dto';
 
-// const storage = new CloudinaryStorage({
-//   cloudinary: cloudinary,
-//   params: async (req, file, cb) => {
-//     diskStorage({
-//       destination: function (req, file, cb) {
-//         cb(null, './uploads/works/')
-
-//       },
-//       filename: function (req, file, cb) {
-//     cb(null, new Date().toISOString()+'-'+file.originalname)
-//   }
-      
-//     })
-//     return {
-//       file: file.filename,
-//     }
-//   }
-// })
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: async (req, file, cb) => {
-
-   diskStorage({
-      destination: function (req, file, cb) {
-        // cb(null, file.path=
-        //   './uploads/works/',
-        // )
-      },
-      filename: function (req, file, cb) {
-        cb(null, new Date().toISOString()+'-'+file.originalname);
+  //   const fileStr = req.body.data
+    
+  //   diskStorage({
+  //    filename: function (req, file, cb) {
+  //       cb(null, new Date().toISOString()+'-'+file.originalname);
                 
-      }
-   })
-    return {file,cb}
+  //     }
+  //  })
+  //   return {fileStr,file,cb}
+    
+     storage : diskStorage({
+        destination: './uploads/works',
+        filename: (req, file, cb) =>{
+            const filename: string = new Date().toISOString()+'-'+file.originalname;
+           
+            cb(null, filename)
+        }
+    })
   }
   })
 
-// const storage = diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, './uploads/works/')
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, new Date().toISOString()+'-'+file.originalname)
-//   }
-// })
-// const storage = diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, './uploads/works/')
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, new Date().toISOString()+'-'+file.originalname)
-//   }
-// })
 
 
 
@@ -79,7 +51,7 @@ export class WorkController {
   }
   
   @Post('/uploadfile')
-  @UseInterceptors(FileInterceptor('file',{ storage}))
+  @UseInterceptors(FileInterceptor('file', { storage }))
   uploadFile(@Res() res,@UploadedFile() file: Express.Multer.File) {
     console.log('file', file)
     this.workService.uploadFileToCloudinary(file)
@@ -87,7 +59,7 @@ export class WorkController {
     return res.status(HttpStatus.OK).json({
       success: true,
       path: file.path,
-      filename: new Date().toISOString()+'-'+file.filename
+      filename: new Date().toISOString() + '-' + file.filename
     })
     
   }
