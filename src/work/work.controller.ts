@@ -86,7 +86,8 @@ export class WorkController {
    
     return res.status(HttpStatus.OK).json({
       success: true,
-      data: file.path
+      path: file.path,
+      filename: new Date().toISOString()+'-'+file.filename
     })
     
   }

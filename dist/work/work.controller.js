@@ -46,7 +46,8 @@ let WorkController = class WorkController {
         this.workService.uploadFileToCloudinary(file);
         return res.status(common_1.HttpStatus.OK).json({
             success: true,
-            data: file.path
+            path: file.path,
+            filename: new Date().toISOString() + '-' + file.filename
         });
     }
     findFile(filename, res) {
