@@ -20,7 +20,6 @@ const platform_express_1 = require("@nestjs/platform-express");
 const multer_1 = require("multer");
 const multer_storage_cloudinary_1 = require("multer-storage-cloudinary");
 const cloudinary_1 = require("cloudinary");
-const path_1 = require("path");
 const storage = new multer_storage_cloudinary_1.CloudinaryStorage({
     cloudinary: cloudinary_1.v2,
     params: async (req, file, cb) => {
@@ -49,8 +48,8 @@ let WorkController = class WorkController {
             filename: new Date().toISOString() + '-' + file.filename
         });
     }
-    findFile(filename, res) {
-        return res.sendFile((0, path_1.join)(process.cwd(), 'uploads/works/' + filename));
+    findFile(fileId, res) {
+        return res.sendFile(cloudinary_1.v2.utils.download_archive_url(filename));
     }
     update(id, updateWorkDto) {
         return this.workService.update(id, updateWorkDto);
@@ -84,8 +83,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], WorkController.prototype, "uploadFile", null);
 __decorate([
-    (0, common_1.Get)('/download/:filename'),
-    __param(0, (0, common_1.Param)('filename')),
+    (0, common_1.Get)('/download/:fileId'),
+    __param(0, (0, common_1.Param)('fileId')),
     __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),

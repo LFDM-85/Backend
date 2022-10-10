@@ -16,15 +16,6 @@ import { CreateAttendanceDto } from 'src/attendance/dto/create-attendance.dto';
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: async (req, file, cb) => {
-  //   const fileStr = req.body.data
-    
-  //   diskStorage({
-  //    filename: function (req, file, cb) {
-  //       cb(null, new Date().toISOString()+'-'+file.originalname);
-                
-  //     }
-  //  })
-  //   return {fileStr,file,cb}
     
      storage : diskStorage({
         destination: './uploads/works',
@@ -64,9 +55,9 @@ export class WorkController {
     
   }
   
-  @Get('/download/:filename')
-  findFile(@Param('filename') filename, @Res() res) {
-  return res.sendFile(join(process.cwd(), 'uploads/works/' + filename))
+  @Get('/download/:fileId')
+  findFile(@Param('fileId') fileId, @Res() res) {
+  return res.sendFile(cloudinary.utils.download_archive_url(fileId))
   }
  
   @Patch('/:id')
