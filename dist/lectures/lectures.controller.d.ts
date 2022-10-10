@@ -44,7 +44,9 @@ export declare class LecturesController {
     removeAssessment(assessmentId: string, lectureId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    getAssessment(lectureId: string): Promise<any>;
+    getAssessment(lectureId: string): Promise<Omit<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>>;
     addAttendance(attendanceId: string, lectureId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/lecture.entity").Lecture> & import("./entities/lecture.entity").Lecture & {
         _id: import("mongoose").Types.ObjectId;
     }>;
