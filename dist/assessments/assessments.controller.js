@@ -25,7 +25,7 @@ let AssessmentsController = class AssessmentsController {
         return this.assessmentsService.create(createAssessmentDto);
     }
     findAll() {
-        return this.assessmentsService.findAll().populate('user');
+        return this.assessmentsService.findAll();
     }
     update(id, updateAssessmentDto) {
         return this.assessmentsService.update(id, updateAssessmentDto);

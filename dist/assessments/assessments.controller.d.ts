@@ -32,9 +32,9 @@ export declare class AssessmentsController {
     create(createAssessmentDto: CreateAssessmentDto): Promise<import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    findAll(): import("mongoose").Query<Omit<import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {
+    findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {
         _id: import("mongoose").Types.ObjectId;
-    }, never>[], import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {
+    })[], import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {
         _id: import("mongoose").Types.ObjectId;
     }, {}, import("./entities/assessment.entity").Assessment>;
     update(id: string, updateAssessmentDto: UpdateAssessmentDto): Promise<import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {

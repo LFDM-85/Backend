@@ -17,7 +17,7 @@ export class AssessmentsController {
 
   @Get('/all')
   findAll() {
-    return this.assessmentsService.findAll().populate('user');
+    return this.assessmentsService.findAll();
   }
 
   // @Get(':id')
