@@ -57,7 +57,7 @@ export class LecturesService {
   }
 
   async getAssessment(lectureId: string) {
-    return await this.lectureModel.findById(lectureId)
+    return await (await this.lectureModel.findById(lectureId)).populated('assessment')
   }
 
   async addAttendance(attendanceId: string, lectureId: string) {

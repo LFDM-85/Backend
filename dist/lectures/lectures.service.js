@@ -45,7 +45,7 @@ let LecturesService = class LecturesService {
         return this.lectureModel.findByIdAndUpdate(lectureId, { $pull: { assessment: assessmentId } }, { new: true });
     }
     async getAssessment(lectureId) {
-        return await this.lectureModel.findById(lectureId);
+        return await (await this.lectureModel.findById(lectureId)).populated('assessment');
     }
     async addAttendance(attendanceId, lectureId) {
         return this.lectureModel.findByIdAndUpdate(lectureId, { $addToSet: { attendance: attendanceId } }, { new: true });
