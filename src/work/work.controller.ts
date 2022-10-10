@@ -13,24 +13,6 @@ import { join } from 'path';
 import { CreateAttendanceDto } from 'src/attendance/dto/create-attendance.dto';
 
 
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: async (req, file, cb) => {
-    
-     storage : diskStorage({
-        destination: './uploads/works',
-        filename: (req, file, cb) =>{
-            const filename: string = new Date().toISOString()+'-'+file.originalname;
-           
-            cb(null, filename)
-        }
-    })
-  }
-  })
-
-
-
-
 @Controller('work')
 export class WorkController {
   constructor(private readonly workService: WorkService) {}
@@ -42,7 +24,7 @@ export class WorkController {
   }
   
   @Post('/uploadfile')
-  @UseInterceptors(FileInterceptor('file', { storage }))
+  @UseInterceptors(FileInterceptor('file'))
   uploadFile(@Res() res,@UploadedFile() file: Express.Multer.File) {
     console.log('file', file)
     this.workService.uploadFileToCloudinary(file)
