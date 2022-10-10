@@ -15,7 +15,7 @@ export class AssessmentsController {
     return this.assessmentsService.create(createAssessmentDto);
   }
 
-  @Get()
+  @Get('/all')
   findAll() {
     return this.assessmentsService.findAll().populate('user');
   }
