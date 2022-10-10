@@ -28,6 +28,6 @@ export declare class Assessment {
     _id: string;
     assessmentValue: number;
     userId: string;
-    lecture: string;
+    lectureId: string;
 }
 export declare const AssessmentSchema: import("mongoose").Schema<Assessment, import("mongoose").Model<Assessment, any, any, any, any>, {}, {}, {}, {}, "type", Assessment>;
