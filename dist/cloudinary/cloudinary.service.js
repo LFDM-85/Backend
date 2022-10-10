@@ -14,7 +14,7 @@ let CloudinaryService = class CloudinaryService {
     async uploadfile(file) {
         return (resolve, reject) => {
             const upload = cloudinary_1.v2.uploader.upload_stream({
-                upload_preset: 'ml_default',
+                upload_preset: 'elearning_preset',
             }, (error, result) => {
                 if (error)
                     return reject(error);
