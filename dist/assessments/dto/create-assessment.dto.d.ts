@@ -1,5 +1,5 @@
 export declare class CreateAssessmentDto {
     assessmentValue: number;
-    userId: string;
+    userEmail: string;
     lectureId: string;
 }

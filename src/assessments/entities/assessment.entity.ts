@@ -1,5 +1,5 @@
 export class Assessment {
   assessmentValue: number;
-  userId: string;
+  userEmail: string;
   lectureId: string;
 }

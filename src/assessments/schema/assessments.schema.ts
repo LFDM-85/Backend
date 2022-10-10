@@ -11,7 +11,7 @@ export class Assessment {
   @Prop()
   assessmentValue: number;
   @Prop()
-  userId: string;
+  userEmail: string;
 
   @Prop()
   lectureId: string;

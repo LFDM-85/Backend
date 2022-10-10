@@ -22,7 +22,7 @@ __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateAssessmentDto.prototype, "userId", void 0);
+], CreateAssessmentDto.prototype, "userEmail", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
