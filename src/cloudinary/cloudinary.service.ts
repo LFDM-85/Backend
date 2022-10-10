@@ -9,7 +9,7 @@ export class CloudinaryService {
     return (resolve, reject) => {
       const upload = v2.uploader.upload_stream(
         {
-          upload_preset: 'elearning_preset',
+          upload_preset: 'ml_default',
         },
         (error, result) => {
           if (error) return reject(error);
