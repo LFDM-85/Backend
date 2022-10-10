@@ -7,8 +7,5 @@ export class CreateAssessmentDto {
   @IsString()
   @IsNotEmpty()
   userEmail: string;
-  @IsString()
-  @IsNotEmpty()
-  lectureId: string;
 
 }

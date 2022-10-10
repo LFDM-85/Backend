@@ -26,10 +26,6 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Assessment.prototype, "userEmail", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], Assessment.prototype, "lectureId", void 0);
 Assessment = __decorate([
     (0, mongoose_1.Schema)()
 ], Assessment);

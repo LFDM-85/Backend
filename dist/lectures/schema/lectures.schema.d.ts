@@ -8,7 +8,7 @@ export declare class Lecture {
     summary: string;
     description: string;
     finished: boolean;
-    assessment: Assessment;
+    assessment: Assessment[];
     work: Work[];
     attendance: Attendance;
 }

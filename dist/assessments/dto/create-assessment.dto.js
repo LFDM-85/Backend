@@ -23,10 +23,5 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateAssessmentDto.prototype, "userEmail", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CreateAssessmentDto.prototype, "lectureId", void 0);
 exports.CreateAssessmentDto = CreateAssessmentDto;
 //# sourceMappingURL=create-assessment.dto.js.map
