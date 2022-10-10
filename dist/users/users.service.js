@@ -84,7 +84,7 @@ let UsersService = class UsersService {
         return this.usersModel.findByIdAndUpdate(userId, { $pull: { assessment: assessmentId } }, { new: true });
     }
     async getAssessment(userId) {
-        const user = await this.usersModel.findById(userId).populate('assessment');
+        const user = await this.usersModel.findById(userId);
         return user;
     }
     async addAttendance(userId, attendanceId) {

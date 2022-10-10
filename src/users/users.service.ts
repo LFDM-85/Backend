@@ -120,7 +120,7 @@ export class UsersService {
   }
 
    async getAssessment(userId: string) {
-    const user = await this.usersModel.findById(userId).populate('assessment');
+    const user = await this.usersModel.findById(userId)
     return user;
   }
 
