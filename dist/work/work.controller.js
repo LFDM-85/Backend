@@ -49,7 +49,7 @@ let WorkController = class WorkController {
         });
     }
     findFile(fileId, res) {
-        return res.sendFile(cloudinary_1.v2.utils.download_archive_url(filename));
+        return res.sendFile(cloudinary_1.v2.utils.download_archive_url(fileId));
     }
     update(id, updateWorkDto) {
         return this.workService.update(id, updateWorkDto);
