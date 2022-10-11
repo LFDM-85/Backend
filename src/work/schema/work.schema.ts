@@ -13,8 +13,8 @@ export class Work {
   filename: string;
   @Prop()
   filepath: string;
-   @Prop({type:({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: Users.name }] })})
-  user: Users[];
+   @Prop()
+  owner: string;
 }
 
 export const WorkSchema = SchemaFactory.createForClass(Work)

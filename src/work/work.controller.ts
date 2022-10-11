@@ -13,25 +13,31 @@ import { join } from 'path';
 import { CreateAttendanceDto } from 'src/attendance/dto/create-attendance.dto';
 
 
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: async (req, file, cb) => {
+// const storage = new CloudinaryStorage({
+//   cloudinary: cloudinary,
+//   params: async (req, file, cb) => {
     
-     storage : diskStorage({
+//      storage : diskStorage({
 
-        filename: (req, file, cb) =>{
-            const filename: string = new Date().toISOString()+'-'+file.originalname;
+//         filename: (req, file, cb) =>{
+//             const filename: string = new Date().toISOString()+'-'+file.originalname;
            
-            cb(null, filename)
-        }
-    })
-  }
-  })
+//             cb(null, filename)
+//         }
+//     })
+//   }
+//   })
 
 
 @Controller('work')
 export class WorkController {
-  constructor(private readonly workService: WorkService) {}
+  constructor(private readonly workService: WorkService) { }
+  
+  @Post('/create')
+  // @Roles(Role.Professor)
+  create(@Body() createWorkDto: CreateWorkDto) {
+  return this.workService.create(createWorkDto);
+  }
 
 
   @Get('/all')
@@ -39,24 +45,24 @@ export class WorkController {
     return this.workService.findAll();
   }
   
-  @Post('/uploadfile')
-  @UseInterceptors(FileInterceptor('file', { storage }))
-  uploadFile(@Res() res,@UploadedFile() file: Express.Multer.File) {
-    console.log('file', file)
-    this.workService.uploadFileToCloudinary(file)
+  // @Post('/uploadfile')
+  // @UseInterceptors(FileInterceptor('file', { storage }))
+  // uploadFile(@Res() res,@UploadedFile() file: Express.Multer.File) {
+  //   console.log('file', file)
+  //   this.workService.uploadFileToCloudinary(file)
    
-    return res.status(HttpStatus.OK).json({
-      success: true,
-      path: file.path,
-      filename: new Date().toISOString() + '-' + file.filename
-    })
+  //   return res.status(HttpStatus.OK).json({
+  //     success: true,
+  //     path: file.path,
+  //     filename: new Date().toISOString() + '-' + file.filename
+  //   })
     
-  }
+  // }
   
-  @Get('/download/:fileId')
-  findFile(@Param('fileId') fileId, @Res() res) {
-  return res.sendFile(cloudinary.utils.download_archive_url(fileId))
-  }
+  // @Get('/download/:fileId')
+  // findFile(@Param('fileId') fileId, @Res() res) {
+  // return res.sendFile(cloudinary.utils.download_archive_url(fileId))
+  // }
  
   @Patch('/:id')
   // @Roles(Role.Professor)

@@ -1,4 +1,3 @@
-/// <reference types="multer" />
 /// <reference types="mongoose/types/aggregate" />
 /// <reference types="mongoose/types/callback" />
 /// <reference types="mongoose/types/collection" />
@@ -25,17 +24,19 @@
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
 import { WorkService } from './work.service';
+import { CreateWorkDto } from './dto/create-work.dto';
 import { UpdateWorkDto } from './dto/update-work.dto';
 export declare class WorkController {
     private readonly workService;
     constructor(workService: WorkService);
+    create(createWorkDto: CreateWorkDto): Promise<import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
         _id: import("mongoose").Types.ObjectId;
     })[], import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
         _id: import("mongoose").Types.ObjectId;
     }, {}, import("./entities/work.entity").Work>;
-    uploadFile(res: any, file: Express.Multer.File): any;
-    findFile(fileId: any, res: any): any;
     update(id: string, updateWorkDto: UpdateWorkDto): Promise<import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
         _id: import("mongoose").Types.ObjectId;
     }>;

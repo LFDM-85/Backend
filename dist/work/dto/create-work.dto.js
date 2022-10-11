@@ -18,5 +18,15 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateWorkDto.prototype, "filename", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateWorkDto.prototype, "filepath", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateWorkDto.prototype, "owner", void 0);
 exports.CreateWorkDto = CreateWorkDto;
 //# sourceMappingURL=create-work.dto.js.map
