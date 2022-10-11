@@ -5,5 +5,7 @@ export declare class Attendance {
     attendance: boolean;
     validation: boolean;
     filename: string;
+    filepath: string;
+    owner: string;
 }
 export declare const AttendanceSchema: mongoose.Schema<Attendance, mongoose.Model<Attendance, any, any, any, any>, {}, {}, {}, {}, "type", Attendance>;

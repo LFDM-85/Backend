@@ -10,4 +10,10 @@ export class CreateAttendanceDto {
   @IsString()
     @IsOptional()
   filename: string
+  @IsString()
+    @IsOptional()
+  filepath: string
+  @IsString()
+    @IsOptional()
+  owner: string
 }

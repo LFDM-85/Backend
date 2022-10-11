@@ -30,6 +30,14 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Attendance.prototype, "filename", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Attendance.prototype, "filepath", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Attendance.prototype, "owner", void 0);
 Attendance = __decorate([
     (0, mongoose_1.Schema)()
 ], Attendance);

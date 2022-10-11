@@ -15,6 +15,10 @@ export class Attendance {
   validation: boolean;
   @Prop()
   filename: string;
+  @Prop()
+  filepath: string;
+  @Prop()
+  owner: string;
   // user: Users;
 }
 

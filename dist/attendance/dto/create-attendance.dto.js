@@ -28,5 +28,15 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateAttendanceDto.prototype, "filename", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateAttendanceDto.prototype, "filepath", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreateAttendanceDto.prototype, "owner", void 0);
 exports.CreateAttendanceDto = CreateAttendanceDto;
 //# sourceMappingURL=create-attendance.dto.js.map
