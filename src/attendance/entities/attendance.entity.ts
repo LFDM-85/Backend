@@ -3,5 +3,5 @@ export class Attendance {
   validation: boolean;
   filename: string;
   filepath: string;
-  owner: string
+  owner: string;
 }

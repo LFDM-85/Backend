@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Transform } from "class-transformer";
 
@@ -16,4 +15,4 @@ export class Assessment {
 
 }
 
-export const AssessmentSchema = SchemaFactory.createForClass(Assessment)
+export const AssessmentSchema = SchemaFactory.createForClass(Assessment);
