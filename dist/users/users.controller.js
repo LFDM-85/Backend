@@ -97,14 +97,12 @@ __decorate([
 __decorate([
     (0, common_1.Get)('/all'),
     (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
-    (0, common_1.UseGuards)(authenticated_guard_1.AuthenticatedGuard),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findAllUsers", null);
 __decorate([
     (0, common_1.Get)('/:email'),
-    (0, common_1.UseGuards)(authenticated_guard_1.AuthenticatedGuard),
     __param(0, (0, common_1.Param)('email')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

@@ -35,12 +35,12 @@ export class UsersController {
 
   @Get('/all')
     @Roles(Role.Admin)
-  @UseGuards(AuthenticatedGuard)
+  // @UseGuards(AuthenticatedGuard)
   findAllUsers() {
     return this.usersService.findAll();
   }
   @Get('/:email')
-  @UseGuards(AuthenticatedGuard)
+  // @UseGuards(AuthenticatedGuard)
   findUser(@Param('email') email: string) {
     return this.usersService.findEmail(email);
   }
