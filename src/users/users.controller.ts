@@ -14,6 +14,8 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { Roles } from 'src/decorators/roles.decorator';
+import { Role } from 'src/enums/role.enum';
 
 @Controller('auth')
 export class UsersController {
@@ -32,27 +34,31 @@ export class UsersController {
   }
 
   @Get('/all')
-  // @UseGuards(JwtAuthGuard)
+    @Roles(Role.Admin)
+  @UseGuards(AuthenticatedGuard)
   findAllUsers() {
     return this.usersService.findAll();
   }
   @Get('/:email')
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(AuthenticatedGuard)
   findUser(@Param('email') email: string) {
     return this.usersService.findEmail(email);
   }
 
   @Patch('/:id')
+    @Roles(Role.Admin)
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(id, updateUserDto)
   }
 
   @Patch('/:id/add-class/:classId')
+    @Roles(Role.Admin)
   addClass(@Param('id') userId: string, @Param('classId') classId: string) {
     return this.usersService.addClass(userId, classId)
     }
 
-   @Patch('/:id/remove-class/:classId')
+  @Patch('/:id/remove-class/:classId')
+     @Roles(Role.Admin)
   removeClass(@Param('id') userId: string, @Param('classId') classId: string) {
     return this.usersService.removeClass(userId, classId)
   }
@@ -108,6 +114,7 @@ export class UsersController {
     }
   
   @Delete('/:id')
+    @Roles(Role.Admin)
   delete(@Param('id') id: string) {
     return this.usersService.remove(id)
   }

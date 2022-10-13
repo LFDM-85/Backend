@@ -18,6 +18,8 @@ const users_service_1 = require("./users.service");
 const create_user_dto_1 = require("./dto/create-user.dto");
 const authenticated_guard_1 = require("../auth/authenticated.guard");
 const update_user_dto_1 = require("./dto/update-user.dto");
+const roles_decorator_1 = require("../decorators/roles.decorator");
+const role_enum_1 = require("../enums/role.enum");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
@@ -94,12 +96,15 @@ __decorate([
 ], UsersController.prototype, "whoami", null);
 __decorate([
     (0, common_1.Get)('/all'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
+    (0, common_1.UseGuards)(authenticated_guard_1.AuthenticatedGuard),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findAllUsers", null);
 __decorate([
     (0, common_1.Get)('/:email'),
+    (0, common_1.UseGuards)(authenticated_guard_1.AuthenticatedGuard),
     __param(0, (0, common_1.Param)('email')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -107,6 +112,7 @@ __decorate([
 ], UsersController.prototype, "findUser", null);
 __decorate([
     (0, common_1.Patch)('/:id'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -115,6 +121,7 @@ __decorate([
 ], UsersController.prototype, "update", null);
 __decorate([
     (0, common_1.Patch)('/:id/add-class/:classId'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('classId')),
     __metadata("design:type", Function),
@@ -123,6 +130,7 @@ __decorate([
 ], UsersController.prototype, "addClass", null);
 __decorate([
     (0, common_1.Patch)('/:id/remove-class/:classId'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('classId')),
     __metadata("design:type", Function),
@@ -207,6 +215,7 @@ __decorate([
 ], UsersController.prototype, "getAttendance", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
