@@ -18,8 +18,6 @@ const users_service_1 = require("./users.service");
 const create_user_dto_1 = require("./dto/create-user.dto");
 const authenticated_guard_1 = require("../auth/authenticated.guard");
 const update_user_dto_1 = require("./dto/update-user.dto");
-const roles_decorator_1 = require("../decorators/roles.decorator");
-const role_enum_1 = require("../enums/role.enum");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
@@ -96,7 +94,6 @@ __decorate([
 ], UsersController.prototype, "whoami", null);
 __decorate([
     (0, common_1.Get)('/all'),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.Admin),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
