@@ -46,19 +46,19 @@ export class UsersController {
   }
 
   @Patch('/:id')
-    @Roles(Role.Admin)
+    // @Roles(Role.Admin)
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(id, updateUserDto)
   }
 
   @Patch('/:id/add-class/:classId')
-    @Roles(Role.Admin)
+    // @Roles(Role.Admin)
   addClass(@Param('id') userId: string, @Param('classId') classId: string) {
     return this.usersService.addClass(userId, classId)
     }
 
   @Patch('/:id/remove-class/:classId')
-     @Roles(Role.Admin)
+    //  @Roles(Role.Admin)
   removeClass(@Param('id') userId: string, @Param('classId') classId: string) {
     return this.usersService.removeClass(userId, classId)
   }
@@ -114,7 +114,7 @@ export class UsersController {
     }
   
   @Delete('/:id')
-    @Roles(Role.Admin)
+    // @Roles(Role.Admin)
   delete(@Param('id') id: string) {
     return this.usersService.remove(id)
   }
