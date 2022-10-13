@@ -43,8 +43,8 @@ let UsersController = class UsersController {
     removeClass(userId, classId) {
         return this.usersService.removeClass(userId, classId);
     }
-    getClasses(userId) {
-        return this.usersService.getClasses(userId);
+    getClasses(email) {
+        return this.usersService.getClasses(email);
     }
     addWork(userId, workId) {
         return this.usersService.addWork(userId, workId);
@@ -61,8 +61,8 @@ let UsersController = class UsersController {
     removeAssessment(userId, assessmentId) {
         return this.usersService.removeAssessment(userId, assessmentId);
     }
-    getAssessment(userId) {
-        return this.usersService.getAssessment(userId);
+    getAssessment(userEmail) {
+        return this.usersService.getAssessment(userEmail);
     }
     addAttendance(userId, attendanceId) {
         return this.usersService.addAttendance(userId, attendanceId);
@@ -130,8 +130,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "removeClass", null);
 __decorate([
-    (0, common_1.Get)('/:id/classes'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)('/:email/classes'),
+    __param(0, (0, common_1.Param)('email')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
@@ -176,8 +176,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "removeAssessment", null);
 __decorate([
-    (0, common_1.Get)('/:id/assessments'),
-    __param(0, (0, common_1.Param)('id')),
+    (0, common_1.Get)('/:email/assessments'),
+    __param(0, (0, common_1.Param)('email')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)

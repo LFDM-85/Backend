@@ -46,7 +46,7 @@ export declare class UsersController {
     removeClass(userId: string, classId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/user.entity").Users> & import("./entities/user.entity").Users & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    getClasses(userId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/user.entity").Users> & import("./entities/user.entity").Users & {
+    getClasses(email: string): Promise<import("mongoose").Document<unknown, any, import("./entities/user.entity").Users> & import("./entities/user.entity").Users & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     addWork(userId: string, workId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/user.entity").Users> & import("./entities/user.entity").Users & {
@@ -64,7 +64,7 @@ export declare class UsersController {
     removeAssessment(userId: string, assessmentId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/user.entity").Users> & import("./entities/user.entity").Users & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    getAssessment(userId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/user.entity").Users> & import("./entities/user.entity").Users & {
+    getAssessment(userEmail: string): Promise<import("mongoose").Document<unknown, any, import("./entities/user.entity").Users> & import("./entities/user.entity").Users & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     addAttendance(userId: string, attendanceId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/user.entity").Users> & import("./entities/user.entity").Users & {

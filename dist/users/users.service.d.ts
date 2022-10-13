@@ -48,7 +48,7 @@ export declare class UsersService {
     removeClass(userId: string, classId: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    getClasses(userId: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
+    getClasses(email: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     addWork(userId: string, workId: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
@@ -66,7 +66,7 @@ export declare class UsersService {
     removeAssessment(userId: string, assessmentId: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    getAssessment(userId: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
+    getAssessment(email: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {
         _id: import("mongoose").Types.ObjectId;
     }>;
     addAttendance(userId: string, attendanceId: string): Promise<import("mongoose").Document<unknown, any, Users> & Users & {

@@ -63,8 +63,8 @@ let UsersService = class UsersService {
     async removeClass(userId, classId) {
         return this.usersModel.findByIdAndUpdate(userId, { $pull: { classes: classId } }, { new: true });
     }
-    async getClasses(userId) {
-        const user = await this.usersModel.findById(userId).populate('classes');
+    async getClasses(email) {
+        const user = await this.usersModel.findOne({ email }).populate('classes');
         return user;
     }
     async addWork(userId, workId) {
@@ -83,8 +83,8 @@ let UsersService = class UsersService {
     async removeAssessment(userId, assessmentId) {
         return this.usersModel.findByIdAndUpdate(userId, { $pull: { assessment: assessmentId } }, { new: true });
     }
-    async getAssessment(userId) {
-        const user = await this.usersModel.findById(userId);
+    async getAssessment(email) {
+        const user = await this.usersModel.findOne({ email });
         return user;
     }
     async addAttendance(userId, attendanceId) {

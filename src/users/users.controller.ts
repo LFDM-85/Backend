@@ -57,9 +57,9 @@ export class UsersController {
     return this.usersService.removeClass(userId, classId)
   }
   
-  @Get('/:id/classes')
-  getClasses(@Param('id') userId: string) {
-    return this.usersService.getClasses(userId)
+  @Get('/:email/classes')
+  getClasses(@Param('email') email: string) {
+    return this.usersService.getClasses(email)
   }
   
   @Patch('/:id/add-work/:workId')
@@ -87,9 +87,9 @@ export class UsersController {
     return this.usersService.removeAssessment(userId, assessmentId)
   }
   
-  @Get('/:id/assessments')
-  getAssessment(@Param('id') userId: string) {
-    return this.usersService.getAssessment(userId)
+  @Get('/:email/assessments')
+  getAssessment(@Param('email') userEmail: string) {
+    return this.usersService.getAssessment(userEmail)
   }
   
    @Patch('/:id/add-attendance/:attendanceId')

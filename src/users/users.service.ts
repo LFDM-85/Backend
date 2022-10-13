@@ -77,8 +77,8 @@ export class UsersService {
     )
   }
 
-   async getClasses(userId: string) {
-    const user = await this.usersModel.findById(userId).populate('classes');
+   async getClasses(email: string) {
+    const user = await this.usersModel.findOne({email}).populate('classes');
     return user;
   }
 
@@ -119,8 +119,8 @@ export class UsersService {
     )
   }
 
-   async getAssessment(userId: string) {
-    const user = await this.usersModel.findById(userId)
+   async getAssessment(email: string) {
+     const user = await this.usersModel.findOne({ email })
     return user;
   }
 
