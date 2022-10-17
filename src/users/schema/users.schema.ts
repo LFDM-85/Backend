@@ -26,12 +26,12 @@ export class Users {
   // @Prop([{type: mongoose.Schema.Types.ObjectId, ref: Class.name}])
   @Prop({ type:[{ type: mongoose.Schema.Types.ObjectId, ref: Class.name}]})
   classes: [Class]
-  @Prop({type: [{ type: mongoose.Schema.Types.ObjectId, ref: Work.name }]})
-  work: Work[];
-    @Prop({type: [{ type: mongoose.Schema.Types.ObjectId, ref: Assessment.name }]})
-    assessment: Assessment[];
-    @Prop({type: [{ type: mongoose.Schema.Types.ObjectId, ref: Attendance.name }]})
-  attendance: Attendance[];
+  // @Prop({type: [{ type: mongoose.Schema.Types.ObjectId, ref: Work.name }]})
+  // work: Work[];
+  //   @Prop({type: [{ type: mongoose.Schema.Types.ObjectId, ref: Assessment.name }]})
+  //   assessment: Assessment[];
+  //   @Prop({type: [{ type: mongoose.Schema.Types.ObjectId, ref: Attendance.name }]})
+  // attendance: Attendance[];
 
 }
 

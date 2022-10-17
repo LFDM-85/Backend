@@ -13,10 +13,7 @@ exports.UsersSchema = exports.Users = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const class_transformer_1 = require("class-transformer");
 const mongoose_2 = require("mongoose");
-const assessment_entity_1 = require("../../assessments/entities/assessment.entity");
-const attendance_entity_1 = require("../../attendance/entities/attendance.entity");
 const class_schema_1 = require("../../class/schema/class.schema");
-const work_entity_1 = require("../../work/entities/work.entity");
 let Users = class Users {
 };
 __decorate([
@@ -51,18 +48,6 @@ __decorate([
     (0, mongoose_1.Prop)({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: class_schema_1.Class.name }] }),
     __metadata("design:type", Array)
 ], Users.prototype, "classes", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: work_entity_1.Work.name }] }),
-    __metadata("design:type", Array)
-], Users.prototype, "work", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: assessment_entity_1.Assessment.name }] }),
-    __metadata("design:type", Array)
-], Users.prototype, "assessment", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: attendance_entity_1.Attendance.name }] }),
-    __metadata("design:type", Array)
-], Users.prototype, "attendance", void 0);
 Users = __decorate([
     (0, mongoose_1.Schema)()
 ], Users);
