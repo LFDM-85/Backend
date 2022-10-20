@@ -1,4 +1,4 @@
-import mongoose, { Document } from "mongoose";
+import mongoose, { Document } from 'mongoose';
 import { Class } from "src/class/schema/class.schema";
 export declare type UserDocument = Users & Document;
 export declare class Users {
