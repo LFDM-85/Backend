@@ -4,6 +4,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { ExtractJwt } from "passport-jwt";
 import { jwtConstants } from "./constants";
+import { Types } from 'mongoose';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
@@ -20,7 +21,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
   }
 
 
-  async validate(email: string, password: string): Promise<any> {
+  async validate(email: string, password: string): Promise<{id: Types.ObjectId, name: string, email: string, roles: string[], isValidated: boolean}> {
     const user = await this.authService.validateUser(email, password);
     if (!user) {
       throw new UnauthorizedException();
