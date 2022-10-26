@@ -21,7 +21,7 @@ export class AuthController {
   ) {}
   @UseGuards(LocalAuthGuard)
   @Post('auth/signin')
-  async signin(@Request() req: any, @Res({ passthrough: true }) res: Response) {
+  async signin(@Request() req, @Res({ passthrough: true }) res: Response) {
     const user = req.user;
 
     if (!user) throw new BadRequestException('invalid credentials');
@@ -30,7 +30,7 @@ export class AuthController {
   }
 
   @Post('auth/signout')
-        logout(@Request() req): any {
+        logout(@Request() req) {
           req.session.destroy();
           return { msg: 'The user session has ended' }
         }
