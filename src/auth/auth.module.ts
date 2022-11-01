@@ -1,13 +1,15 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { UsersModule } from '../users/users.module';
-import { LocalStrategy } from './local.strategy';
 import { AuthController } from './auth.controller';
-import { JwtStrategy } from './jwt.strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { jwtConstants } from './constants';
-import { SessionSerializer } from './session.serializer';
+// import { SessionSerializer } from './session.serializer';
+import { AccessTokenStrategy } from './strategies/acessToken.strategy';
+import { RefreshTokenStrategy } from './strategies/refreshToken.strategy';
+import { ConfigModule } from '@nestjs/config';
+
 
 @Module({
   imports: [
@@ -17,10 +19,12 @@ import { SessionSerializer } from './session.serializer';
     }),
     JwtModule.register({
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '5m' },
+      signOptions: { expiresIn: '60s' },
     }),
+    ConfigModule
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy, SessionSerializer],
+  // providers: [AuthService, SessionSerializer, AccessTokenStrategy, RefreshTokenStrategy],
+  providers: [AuthService, AccessTokenStrategy, RefreshTokenStrategy],
   controllers: [AuthController],
   exports: [JwtModule, AuthService],
 })

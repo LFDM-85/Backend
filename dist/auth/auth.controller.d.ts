@@ -1,17 +1,14 @@
+import { Request } from 'express';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { AuthService } from './auth.service';
-import { Response } from 'express';
-import { JwtService } from '@nestjs/jwt';
-import { UsersService } from '../users/users.service';
+import { AuthDto } from './dto/auth.dto';
 export declare class AuthController {
     private authService;
-    private jwtService;
-    private userService;
-    constructor(authService: AuthService, jwtService: JwtService, userService: UsersService);
-    signin(req: any, res: Response): Promise<{
-        token: string;
-        user: import("../users/schema/users.schema").Users;
+    constructor(authService: AuthService);
+    signup(createUserDto: CreateUserDto): Promise<any>;
+    signin(data: AuthDto): Promise<{
+        accessToken: string;
+        refreshToken: string;
     }>;
-    logout(req: any): {
-        msg: string;
-    };
+    logout(req: Request): void;
 }

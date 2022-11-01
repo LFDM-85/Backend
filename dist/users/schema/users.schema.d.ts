@@ -10,5 +10,6 @@ export declare class Users {
     roles: string[];
     isValidated: boolean;
     classes: [Class];
+    refreshToke: string;
 }
 export declare const UsersSchema: mongoose.Schema<Users, mongoose.Model<Users, any, any, any, any>, {}, {}, {}, {}, "type", Users>;

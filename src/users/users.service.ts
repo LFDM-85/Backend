@@ -49,16 +49,12 @@ export class UsersService {
 
   async update(id: string, updateUserDto: UpdateUserDto) {
     return await this.usersModel.findByIdAndUpdate(
-      {
-      _id: id,
-      },
-      {
-        $set: updateUserDto,
-      },
-      {
-        new: true
-      },
-    )
+     
+        id,
+        updateUserDto, {new: true}
+      
+      
+    ).exec()
   }
 
   async addClass(userId: string, classId: string) {
@@ -146,8 +142,6 @@ export class UsersService {
   }
 
   async remove(id: string) {
-    return await this.usersModel.deleteOne({
-      _id: id
-    }).exec()
+    return await this.usersModel.findByIdAndDelete(id).exec()
   }
 }

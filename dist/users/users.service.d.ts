@@ -54,5 +54,7 @@ export declare class UsersService {
     getAttendance(userId: string): Promise<Users & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    remove(id: string): Promise<import("mongodb").DeleteResult>;
+    remove(id: string): Promise<Users & import("mongoose").Document<any, any, any> & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
 }

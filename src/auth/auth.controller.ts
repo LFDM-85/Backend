@@ -1,38 +1,34 @@
+
 import {
+  Body,
   Controller,
-  UseGuards,
-  Request,
+  Get,
+  HttpCode,
+  HttpStatus,
   Post,
-  Res,
-  BadRequestException,
+  Req,
 } from '@nestjs/common';
-import { LocalAuthGuard } from './local-auth.guard';
+import { Request } from 'express';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { AuthService } from './auth.service';
-import { Response} from 'express';
-import { JwtService } from '@nestjs/jwt';
-import { UsersService } from '../users/users.service';
+import { AuthDto } from './dto/auth.dto';
 
-@Controller()
+@Controller('auth')
 export class AuthController {
-  constructor(
-    private authService: AuthService,
-    private jwtService: JwtService,
-    private userService: UsersService,
-  ) {}
-  @UseGuards(LocalAuthGuard)
-  @Post('auth/signin')
-  async signin(@Request() req, @Res({ passthrough: true }) res: Response) {
-    const user = req.user;
+  constructor(private authService: AuthService) {}
 
-    if (!user) throw new BadRequestException('invalid credentials');
-
-    return this.authService.signin(req.user);
+  @Post('signup')
+  signup(@Body() createUserDto: CreateUserDto) {
+    return this.authService.signUp(createUserDto);
   }
 
-  @Post('auth/signout')
-        logout(@Request() req) {
-          req.session.destroy();
-          return { msg: 'The user session has ended' }
-        }
-    
+  @Post('signin')
+  signin(@Body() data: AuthDto) {
+    return this.authService.signIn(data);
+  }
+
+  @Get('logout')
+  logout(@Req() req: Request) {
+    this.authService.logout(req.user['sub']);
+  }
 }

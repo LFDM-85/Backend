@@ -49,13 +49,7 @@ let UsersService = class UsersService {
         return await this.usersModel.findOne({ email }).exec();
     }
     async update(id, updateUserDto) {
-        return await this.usersModel.findByIdAndUpdate({
-            _id: id,
-        }, {
-            $set: updateUserDto,
-        }, {
-            new: true
-        });
+        return await this.usersModel.findByIdAndUpdate(id, updateUserDto, { new: true }).exec();
     }
     async addClass(userId, classId) {
         return this.usersModel.findByIdAndUpdate(userId, { $set: { classes: classId } }, { new: true });
@@ -98,9 +92,7 @@ let UsersService = class UsersService {
         return user;
     }
     async remove(id) {
-        return await this.usersModel.deleteOne({
-            _id: id
-        }).exec();
+        return await this.usersModel.findByIdAndDelete(id).exec();
     }
 };
 UsersService = __decorate([

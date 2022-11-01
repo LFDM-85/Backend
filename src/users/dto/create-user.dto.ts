@@ -16,6 +16,9 @@ export class CreateUserDto {
   @IsString()
   @IsOptional()
   image: string;
+  @IsString()
+  @IsOptional()
+  refreshToken: string;
 
   @IsArray()
     @IsNotEmpty()

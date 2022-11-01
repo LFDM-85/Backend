@@ -14,48 +14,47 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
-const local_auth_guard_1 = require("./local-auth.guard");
+const create_user_dto_1 = require("../users/dto/create-user.dto");
 const auth_service_1 = require("./auth.service");
-const jwt_1 = require("@nestjs/jwt");
-const users_service_1 = require("../users/users.service");
+const auth_dto_1 = require("./dto/auth.dto");
 let AuthController = class AuthController {
-    constructor(authService, jwtService, userService) {
+    constructor(authService) {
         this.authService = authService;
-        this.jwtService = jwtService;
-        this.userService = userService;
     }
-    async signin(req, res) {
-        const user = req.user;
-        if (!user)
-            throw new common_1.BadRequestException('invalid credentials');
-        return this.authService.signin(req.user);
+    signup(createUserDto) {
+        return this.authService.signUp(createUserDto);
+    }
+    signin(data) {
+        return this.authService.signIn(data);
     }
     logout(req) {
-        req.session.destroy();
-        return { msg: 'The user session has ended' };
+        this.authService.logout(req.user['sub']);
     }
 };
 __decorate([
-    (0, common_1.UseGuards)(local_auth_guard_1.LocalAuthGuard),
-    (0, common_1.Post)('auth/signin'),
-    __param(0, (0, common_1.Request)()),
-    __param(1, (0, common_1.Res)({ passthrough: true })),
+    (0, common_1.Post)('signup'),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
-    __metadata("design:returntype", Promise)
+    __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
+    __metadata("design:returntype", void 0)
+], AuthController.prototype, "signup", null);
+__decorate([
+    (0, common_1.Post)('signin'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [auth_dto_1.AuthDto]),
+    __metadata("design:returntype", void 0)
 ], AuthController.prototype, "signin", null);
 __decorate([
-    (0, common_1.Post)('auth/signout'),
-    __param(0, (0, common_1.Request)()),
+    (0, common_1.Get)('logout'),
+    __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "logout", null);
 AuthController = __decorate([
-    (0, common_1.Controller)(),
-    __metadata("design:paramtypes", [auth_service_1.AuthService,
-        jwt_1.JwtService,
-        users_service_1.UsersService])
+    (0, common_1.Controller)('auth'),
+    __metadata("design:paramtypes", [auth_service_1.AuthService])
 ], AuthController);
 exports.AuthController = AuthController;
 //# sourceMappingURL=auth.controller.js.map

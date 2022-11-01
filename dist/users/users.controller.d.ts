@@ -51,5 +51,7 @@ export declare class UsersController {
     getAttendance(userId: string): Promise<import("./schema/users.schema").Users & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    delete(id: string): Promise<import("mongodb").DeleteResult>;
+    delete(id: string): Promise<import("./schema/users.schema").Users & import("mongoose").Document<any, any, any> & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
 }
