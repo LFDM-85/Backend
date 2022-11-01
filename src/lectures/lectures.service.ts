@@ -3,7 +3,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateLectureDto } from './dto/create-lecture.dto';
 import { UpdateLectureDto } from './dto/update-lecture.dto';
-// import { Lecture } from './entities/lecture.entity';
 import { Lecture, LectureDocument } from './schema/lectures.schema';
 
 @Injectable()

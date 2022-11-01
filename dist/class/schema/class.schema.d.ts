@@ -1,6 +1,6 @@
 import mongoose, { Document } from "mongoose";
-import { Lecture } from "src/lectures/entities/lecture.entity";
 import { Users } from "src/users/schema/users.schema";
+import { Lecture } from "src/lectures/schema/lectures.schema";
 export declare type ClassDocument = Class & Document;
 export declare class Class {
     _id: string;

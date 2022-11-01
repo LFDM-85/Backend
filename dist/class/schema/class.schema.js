@@ -13,7 +13,7 @@ exports.ClassSchema = exports.Class = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const class_transformer_1 = require("class-transformer");
 const mongoose_2 = require("mongoose");
-const lecture_entity_1 = require("../../lectures/entities/lecture.entity");
+const lectures_schema_1 = require("../../lectures/schema/lectures.schema");
 let Class = class Class {
 };
 __decorate([
@@ -33,7 +33,7 @@ __decorate([
     __metadata("design:type", Array)
 ], Class.prototype, "user", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: lecture_entity_1.Lecture.name }] })),
+    (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: lectures_schema_1.Lecture.name }] })),
     __metadata("design:type", Array)
 ], Class.prototype, "lecture", void 0);
 Class = __decorate([

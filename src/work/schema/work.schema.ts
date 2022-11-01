@@ -1,7 +1,8 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Transform } from "class-transformer";
 import mongoose from "mongoose";
-import { Users } from "src/users/entities/user.entity";
+// import { Users } from "src/users/entities/user.entity";
+import { Users } from "src/users/schema/users.schema";
 
 export type WorkDocument = Work & Document
 @Schema()

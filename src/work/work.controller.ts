@@ -1,16 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, Res, NotFoundException, HttpStatus, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete} from '@nestjs/common';
 import { WorkService } from './work.service';
 import { CreateWorkDto } from './dto/create-work.dto';
 import { UpdateWorkDto } from './dto/update-work.dto';
-import { FileInterceptor } from '@nestjs/platform-express';
-import Path from 'path'
-import multer, { diskStorage } from 'multer';
-import {Roles} from "../decorators/roles.decorator";
-import { Role } from "../enums/role.enum";
-import { CloudinaryStorage } from 'multer-storage-cloudinary'
-import { v2 as cloudinary } from 'cloudinary';
-import { join } from 'path';
-import { CreateAttendanceDto } from 'src/attendance/dto/create-attendance.dto';
+// import { FileInterceptor } from '@nestjs/platform-express';
+// import Path from 'path'
+// import multer, { diskStorage } from 'multer';
+// import {Roles} from "../decorators/roles.decorator";
+// import { Role } from "../enums/role.enum";
+// import { CloudinaryStorage } from 'multer-storage-cloudinary'
+// import { v2 as cloudinary } from 'cloudinary';
+// import { join } from 'path';
+// import { CreateAttendanceDto } from 'src/attendance/dto/create-attendance.dto';
 
 
 // const storage = new CloudinaryStorage({

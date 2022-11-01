@@ -1,7 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-// import { Users } from './entities/user.entity';
 import { Users, UserDocument } from './schema/users.schema';
 import { encodePassword } from '../utils/bcrypt';
 import { UpdateUserDto } from './dto/update-user.dto';

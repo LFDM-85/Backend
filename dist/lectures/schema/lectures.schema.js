@@ -13,9 +13,9 @@ exports.LectureSchema = exports.Lecture = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const class_transformer_1 = require("class-transformer");
 const mongoose_2 = require("mongoose");
-const assessment_entity_1 = require("../../assessments/entities/assessment.entity");
-const attendance_entity_1 = require("../../attendance/entities/attendance.entity");
-const work_entity_1 = require("../../work/entities/work.entity");
+const assessments_schema_1 = require("../../assessments/schema/assessments.schema");
+const attendance_schema_1 = require("../../attendance/schema/attendance.schema");
+const work_schema_1 = require("../../work/schema/work.schema");
 let Lecture = class Lecture {
 };
 __decorate([
@@ -35,16 +35,16 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Lecture.prototype, "finished", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: assessment_entity_1.Assessment.name }] })),
+    (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: assessments_schema_1.Assessment.name }] })),
     __metadata("design:type", Array)
 ], Lecture.prototype, "assessment", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: work_entity_1.Work.name }] })),
+    (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: work_schema_1.Work.name }] })),
     __metadata("design:type", Array)
 ], Lecture.prototype, "work", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: attendance_entity_1.Attendance.name }),
-    __metadata("design:type", attendance_entity_1.Attendance)
+    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, ref: attendance_schema_1.Attendance.name }),
+    __metadata("design:type", attendance_schema_1.Attendance)
 ], Lecture.prototype, "attendance", void 0);
 Lecture = __decorate([
     (0, mongoose_1.Schema)()

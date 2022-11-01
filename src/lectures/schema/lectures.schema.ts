@@ -1,10 +1,12 @@
 import { Prop, Schema, SchemaFactory} from "@nestjs/mongoose";
 import { Transform } from "class-transformer";
 import mongoose from "mongoose";
-import { Assessment } from "src/assessments/entities/assessment.entity";
-import { Attendance } from "src/attendance/entities/attendance.entity";
-import { Work } from "src/work/entities/work.entity";
-
+// import { Assessment } from "src/assessments/entities/assessment.entity";
+// import { Attendance } from "src/attendance/entities/attendance.entity";
+// import { Work } from "src/work/entities/work.entity";
+import { Assessment } from "src/assessments/schema/assessments.schema";
+import { Attendance } from "src/attendance/schema/attendance.schema";
+import { Work } from "src/work/schema/work.schema";
 
 export type LectureDocument = Lecture & Document
 @Schema()
