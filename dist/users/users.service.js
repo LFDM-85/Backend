@@ -16,7 +16,7 @@ exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("mongoose");
 const mongoose_2 = require("@nestjs/mongoose");
-const user_entity_1 = require("./entities/user.entity");
+const users_schema_1 = require("./schema/users.schema");
 const bcrypt_1 = require("../utils/bcrypt");
 let UsersService = class UsersService {
     constructor(usersModel) {
@@ -58,7 +58,7 @@ let UsersService = class UsersService {
         });
     }
     async addClass(userId, classId) {
-        return this.usersModel.findByIdAndUpdate(userId, { $addToSet: { classes: classId } }, { new: true });
+        return this.usersModel.findByIdAndUpdate(userId, { $set: { classes: classId } }, { new: true });
     }
     async removeClass(userId, classId) {
         return this.usersModel.findByIdAndUpdate(userId, { $pull: { classes: classId } }, { new: true });
@@ -105,7 +105,7 @@ let UsersService = class UsersService {
 };
 UsersService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_2.InjectModel)(user_entity_1.Users.name)),
+    __param(0, (0, mongoose_2.InjectModel)(users_schema_1.Users.name)),
     __metadata("design:paramtypes", [mongoose_1.Model])
 ], UsersService);
 exports.UsersService = UsersService;

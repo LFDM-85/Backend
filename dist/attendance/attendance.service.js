@@ -16,7 +16,7 @@ exports.AttendanceService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const attendance_entity_1 = require("./entities/attendance.entity");
+const attendance_schema_1 = require("./schema/attendance.schema");
 let AttendanceService = class AttendanceService {
     constructor(attendanceModel) {
         this.attendanceModel = attendanceModel;
@@ -38,7 +38,7 @@ let AttendanceService = class AttendanceService {
         }, { new: true });
     }
     async addUser(userId, attendanceId) {
-        return this.attendanceModel.findByIdAndUpdate(attendanceId, { $addToSet: { user: userId } }, { new: true });
+        return this.attendanceModel.findByIdAndUpdate(attendanceId, { $set: { user: userId } }, { new: true });
     }
     async removeUser(userId, attendanceId) {
         return this.attendanceModel.findByIdAndUpdate(attendanceId, { $pull: { user: userId } }, { new: true });
@@ -53,7 +53,7 @@ let AttendanceService = class AttendanceService {
 };
 AttendanceService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(attendance_entity_1.Attendance.name)),
+    __param(0, (0, mongoose_1.InjectModel)(attendance_schema_1.Attendance.name)),
     __metadata("design:paramtypes", [mongoose_2.Model])
 ], AttendanceService);
 exports.AttendanceService = AttendanceService;

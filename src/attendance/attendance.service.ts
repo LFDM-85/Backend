@@ -3,11 +3,12 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateAttendanceDto } from './dto/create-attendance.dto';
 import { UpdateAttendanceDto } from './dto/update-attendance.dto';
-import { Attendance } from './entities/attendance.entity';
+// import { Attendance } from './entities/attendance.entity';
+import { Attendance, AttendanceDocument } from './schema/attendance.schema';
 
 @Injectable()
 export class AttendanceService {
-  constructor(@InjectModel(Attendance.name) private attendanceModel: Model<Attendance>) {}
+  constructor(@InjectModel(Attendance.name) private attendanceModel: Model<AttendanceDocument>) {}
 
   async create(createAttendanceDto: CreateAttendanceDto) {
     //  const { filename} = createAttendanceDto
@@ -40,7 +41,7 @@ export class AttendanceService {
   async addUser(userId: string, attendanceId: string) {
     return this.attendanceModel.findByIdAndUpdate(
       attendanceId,
-      { $addToSet:  { user: userId }},
+      { $set:  { user: userId }},
   { new: true}
     )
   }

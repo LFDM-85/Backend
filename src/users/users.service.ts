@@ -1,7 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { Users } from './entities/user.entity';
+// import { Users } from './entities/user.entity';
+import { Users, UserDocument } from './schema/users.schema';
 import { encodePassword } from '../utils/bcrypt';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -9,7 +10,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(Users.name) private usersModel: Model<Users>) {}
+  constructor(@InjectModel(Users.name) private usersModel: Model<UserDocument>) {}
 
   async create(createUserDto: CreateUserDto): Promise<Users> {
     
@@ -64,7 +65,7 @@ export class UsersService {
   async addClass(userId: string, classId: string) {
     return this.usersModel.findByIdAndUpdate(
       userId,
-      { $addToSet:  { classes: classId }},
+      { $set:  { classes: classId }},
   { new: true}
     )
   }

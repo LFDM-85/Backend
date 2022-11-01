@@ -29,25 +29,25 @@ import { UpdateAssessmentDto } from './dto/update-assessment.dto';
 export declare class AssessmentsController {
     private readonly assessmentsService;
     constructor(assessmentsService: AssessmentsService);
-    create(createAssessmentDto: CreateAssessmentDto): Promise<import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {
-        _id: import("mongoose").Types.ObjectId;
-    })[], import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {
-        _id: import("mongoose").Types.ObjectId;
-    }, {}, import("./entities/assessment.entity").Assessment>;
-    update(id: string, updateAssessmentDto: UpdateAssessmentDto): Promise<import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    addAssessment(userId: string, assessmentId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    removeAssessment(userId: string, assessmentId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    getAssessment(assessmentId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/assessment.entity").Assessment> & import("./entities/assessment.entity").Assessment & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
+    create(createAssessmentDto: CreateAssessmentDto): Promise<import("mongoose").Document<unknown, any, import("./schema/assessments.schema").AssessmentDocument> & import("./schema/assessments.schema").Assessment & Document & Required<{
+        _id: string;
+    }>>;
+    findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, import("./schema/assessments.schema").AssessmentDocument> & import("./schema/assessments.schema").Assessment & Document & Required<{
+        _id: string;
+    }>)[], import("mongoose").Document<unknown, any, import("./schema/assessments.schema").AssessmentDocument> & import("./schema/assessments.schema").Assessment & Document & Required<{
+        _id: string;
+    }>, {}, import("./schema/assessments.schema").AssessmentDocument>;
+    update(id: string, updateAssessmentDto: UpdateAssessmentDto): Promise<import("mongoose").Document<unknown, any, import("./schema/assessments.schema").AssessmentDocument> & import("./schema/assessments.schema").Assessment & Document & Required<{
+        _id: string;
+    }>>;
+    addAssessment(userId: string, assessmentId: string): Promise<import("mongoose").Document<unknown, any, import("./schema/assessments.schema").AssessmentDocument> & import("./schema/assessments.schema").Assessment & Document & Required<{
+        _id: string;
+    }>>;
+    removeAssessment(userId: string, assessmentId: string): Promise<import("mongoose").Document<unknown, any, import("./schema/assessments.schema").AssessmentDocument> & import("./schema/assessments.schema").Assessment & Document & Required<{
+        _id: string;
+    }>>;
+    getAssessment(assessmentId: string): Promise<import("mongoose").Document<unknown, any, import("./schema/assessments.schema").AssessmentDocument> & import("./schema/assessments.schema").Assessment & Document & Required<{
+        _id: string;
+    }>>;
     remove(id: string): Promise<import("mongodb").DeleteResult>;
 }

@@ -29,25 +29,25 @@ import { UpdateWorkDto } from './dto/update-work.dto';
 export declare class WorkController {
     private readonly workService;
     constructor(workService: WorkService);
-    create(createWorkDto: CreateWorkDto): Promise<import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
-        _id: import("mongoose").Types.ObjectId;
-    })[], import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
-        _id: import("mongoose").Types.ObjectId;
-    }, {}, import("./entities/work.entity").Work>;
-    update(id: string, updateWorkDto: UpdateWorkDto): Promise<import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    addUser(userId: string, workId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    removeUser(userId: string, workId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    getUser(workId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/work.entity").Work> & import("./entities/work.entity").Work & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
+    create(createWorkDto: CreateWorkDto): Promise<import("mongoose").Document<unknown, any, import("./schema/work.schema").WorkDocument> & import("./schema/work.schema").Work & Document & Required<{
+        _id: string;
+    }>>;
+    findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, import("./schema/work.schema").WorkDocument> & import("./schema/work.schema").Work & Document & Required<{
+        _id: string;
+    }>)[], import("mongoose").Document<unknown, any, import("./schema/work.schema").WorkDocument> & import("./schema/work.schema").Work & Document & Required<{
+        _id: string;
+    }>, {}, import("./schema/work.schema").WorkDocument>;
+    update(id: string, updateWorkDto: UpdateWorkDto): Promise<import("mongoose").Document<unknown, any, import("./schema/work.schema").WorkDocument> & import("./schema/work.schema").Work & Document & Required<{
+        _id: string;
+    }>>;
+    addUser(userId: string, workId: string): Promise<import("mongoose").Document<unknown, any, import("./schema/work.schema").WorkDocument> & import("./schema/work.schema").Work & Document & Required<{
+        _id: string;
+    }>>;
+    removeUser(userId: string, workId: string): Promise<import("mongoose").Document<unknown, any, import("./schema/work.schema").WorkDocument> & import("./schema/work.schema").Work & Document & Required<{
+        _id: string;
+    }>>;
+    getUser(workId: string): Promise<import("mongoose").Document<unknown, any, import("./schema/work.schema").WorkDocument> & import("./schema/work.schema").Work & Document & Required<{
+        _id: string;
+    }>>;
     remove(id: string): Promise<import("mongodb").DeleteResult>;
 }

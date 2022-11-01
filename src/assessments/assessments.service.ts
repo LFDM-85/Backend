@@ -3,11 +3,11 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateAssessmentDto } from './dto/create-assessment.dto';
 import { UpdateAssessmentDto } from './dto/update-assessment.dto';
-import { Assessment } from './entities/assessment.entity';
+import { Assessment, AssessmentDocument } from './schema/assessments.schema';
 
 @Injectable()
 export class AssessmentsService {
-  constructor(@InjectModel(Assessment.name) private assessmentModel: Model<Assessment>) {}
+  constructor(@InjectModel(Assessment.name) private assessmentModel: Model<AssessmentDocument>) {}
   async create(createAssessmentDto: CreateAssessmentDto) {
     return await(await this.assessmentModel.create(createAssessmentDto)).save();
   }
@@ -15,10 +15,6 @@ export class AssessmentsService {
   findAll() {
     return this.assessmentModel.find();
   }
-
-  // findOne(id: number) {
-  //   return `This action returns a #${id} assessment`;
-  // }
 
   async update(id: string, updateAssessmentDto: UpdateAssessmentDto) {
     return await this.assessmentModel.findByIdAndUpdate(
@@ -35,7 +31,7 @@ export class AssessmentsService {
   async addUser(userId: string, assessmentId: string) {
     return this.assessmentModel.findByIdAndUpdate(
       assessmentId,
-      { $addToSet:  { user: userId }},
+      { $set:  { user: userId }},
   { new: true}
     )
   }

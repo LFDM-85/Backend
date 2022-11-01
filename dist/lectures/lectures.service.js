@@ -16,7 +16,7 @@ exports.LecturesService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const lecture_entity_1 = require("./entities/lecture.entity");
+const lectures_schema_1 = require("./schema/lectures.schema");
 let LecturesService = class LecturesService {
     constructor(lectureModel) {
         this.lectureModel = lectureModel;
@@ -39,7 +39,7 @@ let LecturesService = class LecturesService {
         }, { new: true });
     }
     async addAssessment(assessmentId, lectureId) {
-        return this.lectureModel.findByIdAndUpdate(lectureId, { $addToSet: { assessment: assessmentId } }, { new: true });
+        return this.lectureModel.findByIdAndUpdate(lectureId, { $set: { assessment: assessmentId } }, { new: true });
     }
     async removeAssessment(assessmentId, lectureId) {
         return this.lectureModel.findByIdAndUpdate(lectureId, { $pull: { assessment: assessmentId } }, { new: true });
@@ -48,7 +48,7 @@ let LecturesService = class LecturesService {
         return await (await this.lectureModel.findById(lectureId)).populate('assessment');
     }
     async addAttendance(attendanceId, lectureId) {
-        return this.lectureModel.findByIdAndUpdate(lectureId, { $addToSet: { attendance: attendanceId } }, { new: true });
+        return this.lectureModel.findByIdAndUpdate(lectureId, { $set: { attendance: attendanceId } }, { new: true });
     }
     async removeAttendance(attendanceId, lectureId) {
         return this.lectureModel.findByIdAndUpdate(lectureId, { $pull: { assessment: attendanceId } }, { new: true });
@@ -57,7 +57,7 @@ let LecturesService = class LecturesService {
         return await this.lectureModel.findById(lectureId).populate('attendance');
     }
     async addWork(workId, lectureId) {
-        return this.lectureModel.findByIdAndUpdate(lectureId, { $addToSet: { work: workId } }, { new: true });
+        return this.lectureModel.findByIdAndUpdate(lectureId, { $set: { work: workId } }, { new: true });
     }
     async removeWork(workId, lectureId) {
         return this.lectureModel.findByIdAndUpdate(lectureId, { $pull: { work: workId } }, { new: true });
@@ -71,7 +71,7 @@ let LecturesService = class LecturesService {
 };
 LecturesService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(lecture_entity_1.Lecture.name)),
+    __param(0, (0, mongoose_1.InjectModel)(lectures_schema_1.Lecture.name)),
     __metadata("design:paramtypes", [mongoose_2.Model])
 ], LecturesService);
 exports.LecturesService = LecturesService;

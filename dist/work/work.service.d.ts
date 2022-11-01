@@ -27,36 +27,36 @@ import { Model } from 'mongoose';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { CreateWorkDto } from './dto/create-work.dto';
 import { UpdateWorkDto } from './dto/update-work.dto';
-import { Work } from './entities/work.entity';
+import { Work, WorkDocument } from './schema/work.schema';
 export declare class WorkService {
     private workModel;
     private cloudinary;
-    constructor(workModel: Model<Work>, cloudinary: CloudinaryService);
-    create(createWorkDto: CreateWorkDto): Promise<import("mongoose").Document<unknown, any, Work> & Work & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
+    constructor(workModel: Model<WorkDocument>, cloudinary: CloudinaryService);
+    create(createWorkDto: CreateWorkDto): Promise<import("mongoose").Document<unknown, any, WorkDocument> & Work & Document & Required<{
+        _id: string;
+    }>>;
     uploadFileToCloudinary(file: Express.Multer.File): Promise<(resolve: any, reject: any) => void>;
-    findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, Work> & Work & {
-        _id: import("mongoose").Types.ObjectId;
-    })[], import("mongoose").Document<unknown, any, Work> & Work & {
-        _id: import("mongoose").Types.ObjectId;
-    }, {}, Work>;
-    findOne(id: string): import("mongoose").Query<import("mongoose").Document<unknown, any, Work> & Work & {
-        _id: import("mongoose").Types.ObjectId;
-    }, import("mongoose").Document<unknown, any, Work> & Work & {
-        _id: import("mongoose").Types.ObjectId;
-    }, {}, Work>;
-    update(id: string, updateWorkDto: UpdateWorkDto): Promise<import("mongoose").Document<unknown, any, Work> & Work & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    addUser(userId: string, workId: string): Promise<import("mongoose").Document<unknown, any, Work> & Work & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    removeUser(userId: string, workId: string): Promise<import("mongoose").Document<unknown, any, Work> & Work & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    getUsers(workId: string): Promise<import("mongoose").Document<unknown, any, Work> & Work & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
+    findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, WorkDocument> & Work & Document & Required<{
+        _id: string;
+    }>)[], import("mongoose").Document<unknown, any, WorkDocument> & Work & Document & Required<{
+        _id: string;
+    }>, {}, WorkDocument>;
+    findOne(id: string): import("mongoose").Query<import("mongoose").Document<unknown, any, WorkDocument> & Work & Document & Required<{
+        _id: string;
+    }>, import("mongoose").Document<unknown, any, WorkDocument> & Work & Document & Required<{
+        _id: string;
+    }>, {}, WorkDocument>;
+    update(id: string, updateWorkDto: UpdateWorkDto): Promise<import("mongoose").Document<unknown, any, WorkDocument> & Work & Document & Required<{
+        _id: string;
+    }>>;
+    addUser(userId: string, workId: string): Promise<import("mongoose").Document<unknown, any, WorkDocument> & Work & Document & Required<{
+        _id: string;
+    }>>;
+    removeUser(userId: string, workId: string): Promise<import("mongoose").Document<unknown, any, WorkDocument> & Work & Document & Required<{
+        _id: string;
+    }>>;
+    getUsers(workId: string): Promise<import("mongoose").Document<unknown, any, WorkDocument> & Work & Document & Required<{
+        _id: string;
+    }>>;
     remove(id: string): Promise<import("mongodb").DeleteResult>;
 }

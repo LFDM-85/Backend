@@ -4,7 +4,8 @@ import {
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { comparePasswords } from '../utils/bcrypt';
-import { Users } from '../users/entities/user.entity';
+// import { Users } from '../users/entities/user.entity';
+import { Users ,UserDocument } from 'src/users/schema/users.schema';
 
 
 @Injectable()

@@ -3,11 +3,12 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateLectureDto } from './dto/create-lecture.dto';
 import { UpdateLectureDto } from './dto/update-lecture.dto';
-import { Lecture } from './entities/lecture.entity';
+// import { Lecture } from './entities/lecture.entity';
+import { Lecture, LectureDocument } from './schema/lectures.schema';
 
 @Injectable()
 export class LecturesService {
-  constructor(@InjectModel(Lecture.name) private lectureModel: Model<Lecture>){}
+  constructor(@InjectModel(Lecture.name) private lectureModel: Model<LectureDocument>){}
   async create(createLectureDto: CreateLectureDto) {
 
     const { summary} = createLectureDto
@@ -43,7 +44,7 @@ export class LecturesService {
   async addAssessment(assessmentId: string, lectureId: string) {
     return this.lectureModel.findByIdAndUpdate(
       lectureId,
-      { $addToSet: { assessment: assessmentId } },
+      { $set: { assessment: assessmentId } },
       {new: true}
     )
   }
@@ -63,7 +64,7 @@ export class LecturesService {
   async addAttendance(attendanceId: string, lectureId: string) {
     return this.lectureModel.findByIdAndUpdate(
       lectureId,
-      { $addToSet: { attendance: attendanceId } },
+      { $set: { attendance: attendanceId } },
       {new: true}
     )
   }
@@ -83,7 +84,7 @@ export class LecturesService {
   async addWork(workId: string, lectureId: string) {
     return this.lectureModel.findByIdAndUpdate(
       lectureId,
-      { $addToSet: { work: workId } },
+      { $set: { work: workId } },
       {new: true}
     )
   }

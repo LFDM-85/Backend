@@ -16,7 +16,7 @@ exports.ClassService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const class_entity_1 = require("./entities/class.entity");
+const class_schema_1 = require("./schema/class.schema");
 let ClassService = class ClassService {
     constructor(classModel) {
         this.classModel = classModel;
@@ -49,7 +49,7 @@ let ClassService = class ClassService {
         }, { new: true });
     }
     async addUser(userId, classId) {
-        return this.classModel.findByIdAndUpdate(classId, { $addToSet: { user: userId } }, { new: true });
+        return this.classModel.findByIdAndUpdate(classId, { $set: { user: userId } }, { new: true });
     }
     async removeUser(userId, classId) {
         return this.classModel.findByIdAndUpdate(classId, { $pull: { user: userId } }, { new: true });
@@ -59,7 +59,7 @@ let ClassService = class ClassService {
         return classes;
     }
     async addLecture(lectureId, classId) {
-        return this.classModel.findByIdAndUpdate(classId, { $addToSet: { lecture: lectureId } }, { new: true });
+        return this.classModel.findByIdAndUpdate(classId, { $set: { lecture: lectureId } }, { new: true });
     }
     async removeLecture(lectureId, classId) {
         return this.classModel.findByIdAndUpdate(classId, { $pull: { lecture: lectureId } }, { new: true });
@@ -73,7 +73,7 @@ let ClassService = class ClassService {
 };
 ClassService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(class_entity_1.Class.name)),
+    __param(0, (0, mongoose_1.InjectModel)(class_schema_1.Class.name)),
     __metadata("design:paramtypes", [mongoose_2.Model])
 ], ClassService);
 exports.ClassService = ClassService;

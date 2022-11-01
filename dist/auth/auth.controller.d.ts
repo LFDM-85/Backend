@@ -9,7 +9,7 @@ export declare class AuthController {
     constructor(authService: AuthService, jwtService: JwtService, userService: UsersService);
     signin(req: any, res: Response): Promise<{
         token: string;
-        user: import("../users/entities/user.entity").Users;
+        user: import("../users/schema/users.schema").Users;
     }>;
     logout(req: any): {
         msg: string;

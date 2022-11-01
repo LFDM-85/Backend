@@ -1,12 +1,12 @@
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
-import { Users } from '../users/entities/user.entity';
+import { Users } from 'src/users/schema/users.schema';
 export declare class AuthService {
     private userService;
     private jwtService;
     constructor(userService: UsersService, jwtService: JwtService);
     validateUser(email: string, password: string): Promise<{
-        id: import("mongoose").Types.ObjectId;
+        id: any;
         name: string;
         email: string;
         roles: string[];

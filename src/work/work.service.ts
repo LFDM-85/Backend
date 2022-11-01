@@ -5,11 +5,12 @@ import { Model } from 'mongoose';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { CreateWorkDto } from './dto/create-work.dto';
 import { UpdateWorkDto } from './dto/update-work.dto';
-import { Work } from './entities/work.entity';
+// import { Work } from './entities/work.entity';
+import { Work, WorkDocument } from './schema/work.schema';
 
 @Injectable()
 export class WorkService {
-  constructor(@InjectModel(Work.name) private workModel: Model<Work>, private cloudinary: CloudinaryService) {}
+  constructor(@InjectModel(Work.name) private workModel: Model<WorkDocument>, private cloudinary: CloudinaryService) {}
   async create(createWorkDto: CreateWorkDto) {
 
     const { filename} = createWorkDto
@@ -45,7 +46,7 @@ export class WorkService {
   async addUser(userId: string, workId: string) {
     return this.workModel.findByIdAndUpdate(
       workId,
-      { $addToSet:  { user: userId }},
+      { $set:  { user: userId }},
   { new: true}
     )
   }

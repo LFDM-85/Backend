@@ -29,26 +29,26 @@ import { UpdateAttendanceDto } from './dto/update-attendance.dto';
 export declare class AttendanceController {
     private readonly attendanceService;
     constructor(attendanceService: AttendanceService);
-    create(createAttendanceDto: CreateAttendanceDto): Promise<import("mongoose").Document<unknown, any, import("./entities/attendance.entity").Attendance> & import("./entities/attendance.entity").Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
+    create(createAttendanceDto: CreateAttendanceDto): Promise<import("mongoose").Document<unknown, any, import("./schema/attendance.schema").AttendanceDocument> & import("./schema/attendance.schema").Attendance & Document & Required<{
+        _id: string;
+    }>>;
     findFile(filename: any, res: any): any;
-    findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, import("./entities/attendance.entity").Attendance> & import("./entities/attendance.entity").Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    })[], import("mongoose").Document<unknown, any, import("./entities/attendance.entity").Attendance> & import("./entities/attendance.entity").Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    }, {}, import("./entities/attendance.entity").Attendance>;
-    update(id: string, updateAttendanceDto: UpdateAttendanceDto): Promise<import("mongoose").Document<unknown, any, import("./entities/attendance.entity").Attendance> & import("./entities/attendance.entity").Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    addAttendance(userId: string, attendanceId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/attendance.entity").Attendance> & import("./entities/attendance.entity").Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    removeAttendance(userId: string, attendanceId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/attendance.entity").Attendance> & import("./entities/attendance.entity").Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    getAttendance(attendanceId: string): Promise<import("mongoose").Document<unknown, any, import("./entities/attendance.entity").Attendance> & import("./entities/attendance.entity").Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
+    findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, import("./schema/attendance.schema").AttendanceDocument> & import("./schema/attendance.schema").Attendance & Document & Required<{
+        _id: string;
+    }>)[], import("mongoose").Document<unknown, any, import("./schema/attendance.schema").AttendanceDocument> & import("./schema/attendance.schema").Attendance & Document & Required<{
+        _id: string;
+    }>, {}, import("./schema/attendance.schema").AttendanceDocument>;
+    update(id: string, updateAttendanceDto: UpdateAttendanceDto): Promise<import("mongoose").Document<unknown, any, import("./schema/attendance.schema").AttendanceDocument> & import("./schema/attendance.schema").Attendance & Document & Required<{
+        _id: string;
+    }>>;
+    addAttendance(userId: string, attendanceId: string): Promise<import("mongoose").Document<unknown, any, import("./schema/attendance.schema").AttendanceDocument> & import("./schema/attendance.schema").Attendance & Document & Required<{
+        _id: string;
+    }>>;
+    removeAttendance(userId: string, attendanceId: string): Promise<import("mongoose").Document<unknown, any, import("./schema/attendance.schema").AttendanceDocument> & import("./schema/attendance.schema").Attendance & Document & Required<{
+        _id: string;
+    }>>;
+    getAttendance(attendanceId: string): Promise<import("mongoose").Document<unknown, any, import("./schema/attendance.schema").AttendanceDocument> & import("./schema/attendance.schema").Attendance & Document & Required<{
+        _id: string;
+    }>>;
     remove(id: string): Promise<import("mongodb").DeleteResult>;
 }

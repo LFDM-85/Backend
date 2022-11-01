@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const cloudinary_service_1 = require("../cloudinary/cloudinary.service");
-const work_entity_1 = require("./entities/work.entity");
+const work_schema_1 = require("./schema/work.schema");
 let WorkService = class WorkService {
     constructor(workModel, cloudinary) {
         this.workModel = workModel;
@@ -47,7 +47,7 @@ let WorkService = class WorkService {
         }, { new: true });
     }
     async addUser(userId, workId) {
-        return this.workModel.findByIdAndUpdate(workId, { $addToSet: { user: userId } }, { new: true });
+        return this.workModel.findByIdAndUpdate(workId, { $set: { user: userId } }, { new: true });
     }
     async removeUser(userId, workId) {
         return this.workModel.findByIdAndUpdate(workId, { $pull: { user: userId } }, { new: true });
@@ -62,7 +62,7 @@ let WorkService = class WorkService {
 };
 WorkService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(work_entity_1.Work.name)),
+    __param(0, (0, mongoose_1.InjectModel)(work_schema_1.Work.name)),
     __metadata("design:paramtypes", [mongoose_2.Model, cloudinary_service_1.CloudinaryService])
 ], WorkService);
 exports.WorkService = WorkService;

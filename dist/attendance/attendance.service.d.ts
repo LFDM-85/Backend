@@ -25,34 +25,34 @@
 import { Model } from 'mongoose';
 import { CreateAttendanceDto } from './dto/create-attendance.dto';
 import { UpdateAttendanceDto } from './dto/update-attendance.dto';
-import { Attendance } from './entities/attendance.entity';
+import { Attendance, AttendanceDocument } from './schema/attendance.schema';
 export declare class AttendanceService {
     private attendanceModel;
-    constructor(attendanceModel: Model<Attendance>);
-    create(createAttendanceDto: CreateAttendanceDto): Promise<import("mongoose").Document<unknown, any, Attendance> & Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, Attendance> & Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    })[], import("mongoose").Document<unknown, any, Attendance> & Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    }, {}, Attendance>;
-    findOne(id: string): import("mongoose").Query<import("mongoose").Document<unknown, any, Attendance> & Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    }, import("mongoose").Document<unknown, any, Attendance> & Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    }, {}, Attendance>;
-    update(id: string, updateAttendanceDto: UpdateAttendanceDto): Promise<import("mongoose").Document<unknown, any, Attendance> & Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    addUser(userId: string, attendanceId: string): Promise<import("mongoose").Document<unknown, any, Attendance> & Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    removeUser(userId: string, attendanceId: string): Promise<import("mongoose").Document<unknown, any, Attendance> & Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    getUsers(attendanceId: string): Promise<import("mongoose").Document<unknown, any, Attendance> & Attendance & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
+    constructor(attendanceModel: Model<AttendanceDocument>);
+    create(createAttendanceDto: CreateAttendanceDto): Promise<import("mongoose").Document<unknown, any, AttendanceDocument> & Attendance & Document & Required<{
+        _id: string;
+    }>>;
+    findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, any, AttendanceDocument> & Attendance & Document & Required<{
+        _id: string;
+    }>)[], import("mongoose").Document<unknown, any, AttendanceDocument> & Attendance & Document & Required<{
+        _id: string;
+    }>, {}, AttendanceDocument>;
+    findOne(id: string): import("mongoose").Query<import("mongoose").Document<unknown, any, AttendanceDocument> & Attendance & Document & Required<{
+        _id: string;
+    }>, import("mongoose").Document<unknown, any, AttendanceDocument> & Attendance & Document & Required<{
+        _id: string;
+    }>, {}, AttendanceDocument>;
+    update(id: string, updateAttendanceDto: UpdateAttendanceDto): Promise<import("mongoose").Document<unknown, any, AttendanceDocument> & Attendance & Document & Required<{
+        _id: string;
+    }>>;
+    addUser(userId: string, attendanceId: string): Promise<import("mongoose").Document<unknown, any, AttendanceDocument> & Attendance & Document & Required<{
+        _id: string;
+    }>>;
+    removeUser(userId: string, attendanceId: string): Promise<import("mongoose").Document<unknown, any, AttendanceDocument> & Attendance & Document & Required<{
+        _id: string;
+    }>>;
+    getUsers(attendanceId: string): Promise<import("mongoose").Document<unknown, any, AttendanceDocument> & Attendance & Document & Required<{
+        _id: string;
+    }>>;
     remove(id: string): Promise<import("mongodb").DeleteResult>;
 }

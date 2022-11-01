@@ -2,12 +2,13 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UpdateClassDto } from './dto/update-class.dto';
-import { Class } from './entities/class.entity';
+// import { Class } from './entities/class.entity';
+import { Class, ClassDocument } from './schema/class.schema';
 
 
 @Injectable()
 export class ClassService {
-  constructor(@InjectModel(Class.name) private classModel: Model<Class>,  ) {}
+  constructor(@InjectModel(Class.name) private classModel: Model<ClassDocument>,  ) {}
 
   async create(nameClass: string, open: boolean) {
 
@@ -54,7 +55,7 @@ export class ClassService {
   async addUser(userId: string, classId: string) {
     return this.classModel.findByIdAndUpdate(
       classId,
-      { $addToSet:  { user: userId }},
+      { $set:  { user: userId }},
   { new: true}
     )
   }
@@ -75,7 +76,7 @@ export class ClassService {
   async addLecture(lectureId: string, classId: string) {
     return this.classModel.findByIdAndUpdate(
       classId,
-      { $addToSet: { lecture: lectureId } },
+      { $set: { lecture: lectureId } },
       {new: true}
     )
   }
