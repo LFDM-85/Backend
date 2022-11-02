@@ -23,11 +23,10 @@ export class Users {
   roles: string[]
   @Prop()
   isValidated: boolean;
-  // @Prop([{type: mongoose.Schema.Types.ObjectId, ref: Class.name}])
-  @Prop({ type:[{ type: mongoose.Schema.Types.ObjectId, ref: Class.name}]})
-  classes: [Class]
   @Prop()
   refreshToke: string
+  @Prop({ type:[{ type: mongoose.Schema.Types.ObjectId, ref: Class.name}]})
+  classes: [Class]
 }
 
 export const UsersSchema = SchemaFactory.createForClass(Users)

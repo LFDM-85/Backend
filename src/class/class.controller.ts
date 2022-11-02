@@ -4,7 +4,6 @@ import { CreateClassDto } from './dto/create-class.dto';
 import { UpdateClassDto } from './dto/update-class.dto';
 import {Roles} from "../decorators/roles.decorator";
 import {Role} from "../enums/role.enum";
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('class')
 export class ClassController {

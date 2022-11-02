@@ -17,19 +17,13 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("mongoose");
 const mongoose_2 = require("@nestjs/mongoose");
 const users_schema_1 = require("./schema/users.schema");
-const bcrypt_1 = require("../utils/bcrypt");
 let UsersService = class UsersService {
     constructor(usersModel) {
         this.usersModel = usersModel;
     }
     async create(createUserDto) {
-        const { email, password } = createUserDto;
-        const users = await this.usersModel.find({ email });
-        if (users.length)
-            throw new common_1.BadRequestException('Email in use');
-        createUserDto.password = (0, bcrypt_1.encodePassword)(password);
-        const user = await this.usersModel.create(createUserDto);
-        return user.save();
+        const createdUser = new this.usersModel(createUserDto);
+        return createdUser.save();
     }
     async findAll() {
         return await this.usersModel.find().populate({

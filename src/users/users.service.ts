@@ -11,16 +11,20 @@ import { CreateUserDto } from './dto/create-user.dto';
 export class UsersService {
   constructor(@InjectModel(Users.name) private usersModel: Model<UserDocument>) {}
 
-  async create(createUserDto: CreateUserDto): Promise<Users> {
+  // async create(createUserDto: CreateUserDto): Promise<Users> {
     
-    const {email, password} = createUserDto
-    const users = await this.usersModel.find({ email });
-    if (users.length) throw new BadRequestException('Email in use');
+  //   const {email, password} = createUserDto
+  //   const users = await this.usersModel.find({ email });
+  //   if (users.length) throw new BadRequestException('Email in use');
 
-    createUserDto.password = encodePassword(password);
+  //   createUserDto.password = encodePassword(password);
 
-    const user = await this.usersModel.create(createUserDto);
-    return user.save(); // saves the entity in MongoDB
+  //   const user = await this.usersModel.create(createUserDto);
+  //   return user.save(); // saves the entity in MongoDB
+  // }
+    async create(createUserDto: CreateUserDto): Promise<UserDocument> {
+    const createdUser = new this.usersModel(createUserDto);
+    return createdUser.save();
   }
 
   async findAll() {

@@ -45,13 +45,13 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Users.prototype, "isValidated", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: class_schema_1.Class.name }] }),
-    __metadata("design:type", Array)
-], Users.prototype, "classes", void 0);
-__decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Users.prototype, "refreshToke", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: class_schema_1.Class.name }] }),
+    __metadata("design:type", Array)
+], Users.prototype, "classes", void 0);
 Users = __decorate([
     (0, mongoose_1.Schema)()
 ], Users);

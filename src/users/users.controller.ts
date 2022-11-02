@@ -11,8 +11,6 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Roles } from 'src/decorators/roles.decorator';
 import { Role } from 'src/enums/role.enum';
@@ -21,14 +19,7 @@ import { Role } from 'src/enums/role.enum';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  // @Post('/signup')
-  // async createUser(@Body() createUserDto: CreateUserDto) {
-  //   return await this.usersService.create(createUserDto
-  //   );
-  // }
-
   @Get('/whoami')
-  @UseGuards(AuthenticatedGuard)
   async whoami(@Request() req): Promise<string> {
     return req.user;
   }

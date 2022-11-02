@@ -5,7 +5,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 export declare class UsersService {
     private usersModel;
     constructor(usersModel: Model<UserDocument>);
-    create(createUserDto: CreateUserDto): Promise<Users>;
+    create(createUserDto: CreateUserDto): Promise<UserDocument>;
     findAll(): Promise<Omit<Users & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }, never>[]>;
