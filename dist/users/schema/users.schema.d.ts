@@ -9,7 +9,7 @@ export declare class Users {
     password: string;
     roles: string[];
     isValidated: boolean;
-    refreshToke: string;
+    refreshToken: string;
     classes: [Class];
 }
 export declare const UsersSchema: mongoose.Schema<Users, mongoose.Model<Users, any, any, any, any>, {}, {}, {}, {}, "type", Users>;

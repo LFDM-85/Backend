@@ -77,6 +77,17 @@ let AuthService = class AuthService {
             refreshToken,
         };
     }
+    async refreshTokens(email, refreshToken) {
+        const user = await this.usersService.findEmail(email);
+        if (!user || !user.refreshToken)
+            throw new common_1.ForbiddenException('Access Denied');
+        const refreshTokenMatches = await argon2.verify(user.refreshToken, refreshToken);
+        if (!refreshTokenMatches)
+            throw new common_1.ForbiddenException('Access Denied');
+        const tokens = await this.getTokens(user.id, user.email);
+        await this.updateRefreshToken(user.id, tokens.refreshToken);
+        return tokens;
+    }
 };
 AuthService = __decorate([
     (0, common_1.Injectable)(),

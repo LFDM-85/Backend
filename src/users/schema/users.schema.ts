@@ -24,7 +24,7 @@ export class Users {
   @Prop()
   isValidated: boolean;
   @Prop()
-  refreshToke: string
+  refreshToken: string
   @Prop({ type:[{ type: mongoose.Schema.Types.ObjectId, ref: Class.name}]})
   classes: [Class]
 }

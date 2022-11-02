@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { Request } from 'express';
 import { AccessTokenGuard } from 'src/common/guards/accessToken.guard';
+import { RefreshTokenGuard } from 'src/common/guards/refreshToken.guard';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dto/auth.dto';
@@ -33,4 +34,12 @@ export class AuthController {
   logout(@Req() req: Request) {
     this.authService.logout(req.user['sub']);
   }
+
+  @UseGuards(RefreshTokenGuard)
+@Get('refresh')
+refreshTokens(@Req() req: Request) {
+  const email = req.user['sub'];
+  const refreshToken = req.user['refreshToken'];
+  return this.authService.refreshTokens(email, refreshToken);
+}
 }

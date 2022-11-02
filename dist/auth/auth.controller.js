@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
 const accessToken_guard_1 = require("../common/guards/accessToken.guard");
+const refreshToken_guard_1 = require("../common/guards/refreshToken.guard");
 const create_user_dto_1 = require("../users/dto/create-user.dto");
 const auth_service_1 = require("./auth.service");
 const auth_dto_1 = require("./dto/auth.dto");
@@ -30,6 +31,11 @@ let AuthController = class AuthController {
     }
     logout(req) {
         this.authService.logout(req.user['sub']);
+    }
+    refreshTokens(req) {
+        const email = req.user['sub'];
+        const refreshToken = req.user['refreshToken'];
+        return this.authService.refreshTokens(email, refreshToken);
     }
 };
 __decorate([
@@ -54,6 +60,14 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "logout", null);
+__decorate([
+    (0, common_1.UseGuards)(refreshToken_guard_1.RefreshTokenGuard),
+    (0, common_1.Get)('refresh'),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], AuthController.prototype, "refreshTokens", null);
 AuthController = __decorate([
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])

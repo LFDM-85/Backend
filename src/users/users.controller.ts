@@ -14,6 +14,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Roles } from 'src/decorators/roles.decorator';
 import { Role } from 'src/enums/role.enum';
+import { AccessTokenGuard } from 'src/common/guards/accessToken.guard';
 
 @Controller('auth')
 export class UsersController {
@@ -35,7 +36,7 @@ export class UsersController {
   findUser(@Param('email') email: string) {
     return this.usersService.findEmail(email);
   }
-
+@UseGuards(AccessTokenGuard)
   @Patch('/:id')
     // @Roles(Role.Admin)
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
@@ -103,7 +104,7 @@ export class UsersController {
   getAttendance(@Param('id') userId: string) {
     return this.usersService.getAttendance(userId)
     }
-  
+  @UseGuards(AccessTokenGuard)
   @Delete('/:id')
     // @Roles(Role.Admin)
   delete(@Param('id') id: string) {

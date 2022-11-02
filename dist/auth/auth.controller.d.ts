@@ -11,4 +11,8 @@ export declare class AuthController {
         refreshToken: string;
     }>;
     logout(req: Request): void;
+    refreshTokens(req: Request): Promise<{
+        accessToken: string;
+        refreshToken: string;
+    }>;
 }
