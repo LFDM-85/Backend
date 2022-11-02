@@ -33,7 +33,7 @@ export class UsersService {
   }
 
 
-  async findEmail(email: string) {
+  async findEmail(email: string): Promise<UserDocument> {
     return await this.usersModel.findOne({ email }).populate({
       path: 'classes', populate: [{
         path: 'lecture', populate: [{ path: 'assessment'},{path: 'work'},{path: 'attendance'}],

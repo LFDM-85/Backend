@@ -15,15 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const users_service_1 = require("./users.service");
-const create_user_dto_1 = require("./dto/create-user.dto");
 const authenticated_guard_1 = require("../auth/authenticated.guard");
 const update_user_dto_1 = require("./dto/update-user.dto");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
-    }
-    async createUser(createUserDto) {
-        return await this.usersService.create(createUserDto);
     }
     async whoami(req) {
         return req.user;
@@ -77,13 +73,6 @@ let UsersController = class UsersController {
         return this.usersService.remove(id);
     }
 };
-__decorate([
-    (0, common_1.Post)('/signup'),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "createUser", null);
 __decorate([
     (0, common_1.Get)('/whoami'),
     (0, common_1.UseGuards)(authenticated_guard_1.AuthenticatedGuard),

@@ -21,11 +21,11 @@ import { Role } from 'src/enums/role.enum';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post('/signup')
-  async createUser(@Body() createUserDto: CreateUserDto) {
-    return await this.usersService.create(createUserDto
-    );
-  }
+  // @Post('/signup')
+  // async createUser(@Body() createUserDto: CreateUserDto) {
+  //   return await this.usersService.create(createUserDto
+  //   );
+  // }
 
   @Get('/whoami')
   @UseGuards(AuthenticatedGuard)

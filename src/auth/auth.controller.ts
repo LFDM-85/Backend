@@ -7,8 +7,10 @@ import {
   HttpStatus,
   Post,
   Req,
+  UseGuards,
 } from '@nestjs/common';
 import { Request } from 'express';
+import { AccessTokenGuard } from 'src/common/guards/accessToken.guard';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dto/auth.dto';
@@ -17,17 +19,17 @@ import { AuthDto } from './dto/auth.dto';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @Post('signup')
+  @Post('/signup')
   signup(@Body() createUserDto: CreateUserDto) {
     return this.authService.signUp(createUserDto);
   }
 
-  @Post('signin')
+  @Post('/signin')
   signin(@Body() data: AuthDto) {
     return this.authService.signIn(data);
   }
-
-  @Get('logout')
+  @UseGuards(AccessTokenGuard)
+  @Get('/signout')
   logout(@Req() req: Request) {
     this.authService.logout(req.user['sub']);
   }

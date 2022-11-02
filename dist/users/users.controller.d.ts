@@ -1,17 +1,13 @@
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
-    createUser(createUserDto: CreateUserDto): Promise<import("./schema/users.schema").Users>;
     whoami(req: any): Promise<string>;
     findAllUsers(): Promise<Omit<import("./schema/users.schema").Users & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }, never>[]>;
-    findUser(email: string): Promise<import("./schema/users.schema").Users & import("mongoose").Document<any, any, any> & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
+    findUser(email: string): Promise<import("./schema/users.schema").UserDocument>;
     update(id: string, updateUserDto: UpdateUserDto): Promise<import("./schema/users.schema").Users & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;

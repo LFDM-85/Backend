@@ -9,9 +9,7 @@ export declare class UsersService {
     findAll(): Promise<Omit<Users & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }, never>[]>;
-    findEmail(email: string): Promise<Users & import("mongoose").Document<any, any, any> & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
+    findEmail(email: string): Promise<UserDocument>;
     whoami(email: string): Promise<Users & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;
