@@ -1,18 +1,13 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
-import helmet from 'helmet';
-import * as cookieParser from 'cookie-parser';
-import * as session from 'express-session';
-import * as passport from 'passport';
-import * as dotenv from 'dotenv';
+import { NestFactory } from '@nestjs/core'
+import { AppModule } from './app.module'
+import helmet from 'helmet'
 
-dotenv.config();
+import * as dotenv from 'dotenv'
 
-const secret = process.env.SESSION_SECRET;
+dotenv.config()
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule)
 
   const options = {
     origin: true,
@@ -20,25 +15,11 @@ async function bootstrap() {
     preflightContinue: false,
     optionsSuccessStatus: 200,
     credentials: true,
-  };
-  app.enableCors(options);
+  }
+  app.enableCors(options)
 
-  app.use(cookieParser());
-  app.use(helmet());
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-    }),
-  );
-  app.use(
-    session({
-      secret: secret,
-      resave: false,
-      saveUninitialized: false,
-    }),
-  );
-  app.use(passport.initialize());
-  app.use(passport.session());
-  await app.listen(5000);
+  app.use(helmet())
+
+  await app.listen(5000)
 }
-bootstrap();
+bootstrap()

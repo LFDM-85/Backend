@@ -9,20 +9,18 @@ export declare class AuthService {
     private configService;
     constructor(usersService: UsersService, jwtService: JwtService, configService: ConfigService);
     signUp(createUserDto: CreateUserDto): Promise<any>;
-    signIn(data: AuthDto): Promise<{
+    signin(data: AuthDto): Promise<{
         accessToken: string;
         refreshToken: string;
     }>;
-    logout(userId: string): Promise<import("../users/schema/users.schema").Users & import("mongoose").Document<any, any, any> & {
-        _id: import("mongoose").Types.ObjectId;
+    logout(userId: string): Promise<void>;
+    refreshTokens(userId: string, refreshToken: string): Promise<{
+        accessToken: string;
+        refreshToken: string;
     }>;
     hashData(data: string): Promise<string>;
     updateRefreshToken(userId: string, refreshToken: string): Promise<void>;
-    getTokens(userId: string, username: string): Promise<{
-        accessToken: string;
-        refreshToken: string;
-    }>;
-    refreshTokens(email: string, refreshToken: string): Promise<{
+    getTokens(userId: string, email: string): Promise<{
         accessToken: string;
         refreshToken: string;
     }>;

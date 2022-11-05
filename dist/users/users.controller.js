@@ -15,23 +15,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const users_service_1 = require("./users.service");
+const create_user_dto_1 = require("./dto/create-user.dto");
 const update_user_dto_1 = require("./dto/update-user.dto");
 const accessToken_guard_1 = require("../common/guards/accessToken.guard");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
     }
-    async whoami(req) {
-        return req.user;
+    create(createUserDto) {
+        return this.usersService.create(createUserDto);
     }
-    findAllUsers() {
+    findAll() {
         return this.usersService.findAll();
     }
-    findUser(email) {
-        return this.usersService.findEmail(email);
+    findById(id) {
+        return this.usersService.findById(id);
     }
     update(id, updateUserDto) {
         return this.usersService.update(id, updateUserDto);
+    }
+    remove(id) {
+        return this.usersService.remove(id);
     }
     addClass(userId, classId) {
         return this.usersService.addClass(userId, classId);
@@ -69,39 +73,44 @@ let UsersController = class UsersController {
     getAttendance(userId) {
         return this.usersService.getAttendance(userId);
     }
-    delete(id) {
-        return this.usersService.remove(id);
-    }
 };
 __decorate([
-    (0, common_1.Get)('/whoami'),
-    __param(0, (0, common_1.Request)()),
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], UsersController.prototype, "whoami", null);
+    __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)('/all'),
+    (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], UsersController.prototype, "findAllUsers", null);
+], UsersController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)('/:email'),
-    __param(0, (0, common_1.Param)('email')),
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], UsersController.prototype, "findUser", null);
+], UsersController.prototype, "findById", null);
 __decorate([
     (0, common_1.UseGuards)(accessToken_guard_1.AccessTokenGuard),
-    (0, common_1.Patch)('/:id'),
+    (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_user_dto_1.UpdateUserDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "update", null);
+__decorate([
+    (0, common_1.UseGuards)(accessToken_guard_1.AccessTokenGuard),
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "remove", null);
 __decorate([
     (0, common_1.Patch)('/:id/add-class/:classId'),
     __param(0, (0, common_1.Param)('id')),
@@ -194,16 +203,8 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "getAttendance", null);
-__decorate([
-    (0, common_1.UseGuards)(accessToken_guard_1.AccessTokenGuard),
-    (0, common_1.Delete)('/:id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], UsersController.prototype, "delete", null);
 UsersController = __decorate([
-    (0, common_1.Controller)('auth'),
+    (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])
 ], UsersController);
 exports.UsersController = UsersController;

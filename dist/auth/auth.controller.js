@@ -27,15 +27,15 @@ let AuthController = class AuthController {
         return this.authService.signUp(createUserDto);
     }
     signin(data) {
-        return this.authService.signIn(data);
+        return this.authService.signin(data);
     }
     logout(req) {
         this.authService.logout(req.user['sub']);
     }
     refreshTokens(req) {
-        const email = req.user['sub'];
+        const userId = req.user['sub'];
         const refreshToken = req.user['refreshToken'];
-        return this.authService.refreshTokens(email, refreshToken);
+        return this.authService.refreshTokens(userId, refreshToken);
     }
 };
 __decorate([
@@ -54,7 +54,7 @@ __decorate([
 ], AuthController.prototype, "signin", null);
 __decorate([
     (0, common_1.UseGuards)(accessToken_guard_1.AccessTokenGuard),
-    (0, common_1.Get)('/signout'),
+    (0, common_1.Get)('/logout'),
     __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

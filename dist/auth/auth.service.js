@@ -22,7 +22,7 @@ let AuthService = class AuthService {
         this.configService = configService;
     }
     async signUp(createUserDto) {
-        const userExists = await this.usersService.findEmail(createUserDto.email);
+        const userExists = await this.usersService.findByEmail(createUserDto.email);
         if (userExists) {
             throw new common_1.BadRequestException('User already exists');
         }
@@ -32,8 +32,8 @@ let AuthService = class AuthService {
         await this.updateRefreshToken(newUser._id, tokens.refreshToken);
         return tokens;
     }
-    async signIn(data) {
-        const user = await this.usersService.findEmail(data.email);
+    async signin(data) {
+        const user = await this.usersService.findByEmail(data.email);
         if (!user)
             throw new common_1.BadRequestException('User does not exist');
         const passwordMatches = await argon2.verify(user.password, data.password);
@@ -44,7 +44,18 @@ let AuthService = class AuthService {
         return tokens;
     }
     async logout(userId) {
-        return this.usersService.update(userId, { refreshToken: null });
+        this.usersService.update(userId, { refreshToken: null });
+    }
+    async refreshTokens(userId, refreshToken) {
+        const user = await this.usersService.findById(userId);
+        if (!user || !user.refreshToken)
+            throw new common_1.ForbiddenException('Access Denied');
+        const refreshTokenMatches = await argon2.verify(user.refreshToken, refreshToken);
+        if (!refreshTokenMatches)
+            throw new common_1.ForbiddenException('Access Denied');
+        const tokens = await this.getTokens(user.id, user.email);
+        await this.updateRefreshToken(user.id, tokens.refreshToken);
+        return tokens;
     }
     hashData(data) {
         return argon2.hash(data);
@@ -55,18 +66,18 @@ let AuthService = class AuthService {
             refreshToken: hashedRefreshToken,
         });
     }
-    async getTokens(userId, username) {
+    async getTokens(userId, email) {
         const [accessToken, refreshToken] = await Promise.all([
             this.jwtService.signAsync({
                 sub: userId,
-                username,
+                email,
             }, {
                 secret: this.configService.get('JWT_ACCESS_SECRET'),
                 expiresIn: '15m',
             }),
             this.jwtService.signAsync({
                 sub: userId,
-                username,
+                email,
             }, {
                 secret: this.configService.get('JWT_REFRESH_SECRET'),
                 expiresIn: '7d',
@@ -76,17 +87,6 @@ let AuthService = class AuthService {
             accessToken,
             refreshToken,
         };
-    }
-    async refreshTokens(email, refreshToken) {
-        const user = await this.usersService.findEmail(email);
-        if (!user || !user.refreshToken)
-            throw new common_1.ForbiddenException('Access Denied');
-        const refreshTokenMatches = await argon2.verify(user.refreshToken, refreshToken);
-        if (!refreshTokenMatches)
-            throw new common_1.ForbiddenException('Access Denied');
-        const tokens = await this.getTokens(user.id, user.email);
-        await this.updateRefreshToken(user.id, tokens.refreshToken);
-        return tokens;
     }
 };
 AuthService = __decorate([
