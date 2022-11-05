@@ -54,7 +54,7 @@ __decorate([
 ], AuthController.prototype, "signin", null);
 __decorate([
     (0, common_1.UseGuards)(accessToken_guard_1.AccessTokenGuard),
-    (0, common_1.Get)('/logout'),
+    (0, common_1.Get)('/signout'),
     __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

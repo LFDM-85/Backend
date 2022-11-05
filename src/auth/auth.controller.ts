@@ -21,7 +21,7 @@ export class AuthController {
   }
 
   @UseGuards(AccessTokenGuard)
-  @Get('/logout')
+  @Get('/signout')
   logout(@Req() req: Request) {
     this.authService.logout(req.user['sub'])
   }
