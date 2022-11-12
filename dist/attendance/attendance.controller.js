@@ -18,6 +18,7 @@ const path_1 = require("path");
 const attendance_service_1 = require("./attendance.service");
 const create_attendance_dto_1 = require("./dto/create-attendance.dto");
 const update_attendance_dto_1 = require("./dto/update-attendance.dto");
+const swagger_1 = require("@nestjs/swagger");
 let AttendanceController = class AttendanceController {
     constructor(attendanceService) {
         this.attendanceService = attendanceService;
@@ -106,6 +107,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AttendanceController.prototype, "remove", null);
 AttendanceController = __decorate([
+    (0, swagger_1.ApiTags)('Attendance'),
     (0, common_1.Controller)('attendance'),
     __metadata("design:paramtypes", [attendance_service_1.AttendanceService])
 ], AttendanceController);

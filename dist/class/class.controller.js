@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const class_service_1 = require("./class.service");
 const create_class_dto_1 = require("./dto/create-class.dto");
 const update_class_dto_1 = require("./dto/update-class.dto");
+const swagger_1 = require("@nestjs/swagger");
 let ClassController = class ClassController {
     constructor(classService) {
         this.classService = classService;
@@ -147,6 +148,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ClassController.prototype, "remove", null);
 ClassController = __decorate([
+    (0, swagger_1.ApiTags)('Class'),
     (0, common_1.Controller)('class'),
     __metadata("design:paramtypes", [class_service_1.ClassService])
 ], ClassController);

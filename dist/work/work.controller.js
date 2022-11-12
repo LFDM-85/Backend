@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const work_service_1 = require("./work.service");
 const create_work_dto_1 = require("./dto/create-work.dto");
 const update_work_dto_1 = require("./dto/update-work.dto");
+const swagger_1 = require("@nestjs/swagger");
 let WorkController = class WorkController {
     constructor(workService) {
         this.workService = workService;
@@ -95,6 +96,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], WorkController.prototype, "remove", null);
 WorkController = __decorate([
+    (0, swagger_1.ApiTags)('Works'),
     (0, common_1.Controller)('work'),
     __metadata("design:paramtypes", [work_service_1.WorkService])
 ], WorkController);

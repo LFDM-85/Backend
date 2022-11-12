@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const assessments_service_1 = require("./assessments.service");
 const create_assessment_dto_1 = require("./dto/create-assessment.dto");
 const update_assessment_dto_1 = require("./dto/update-assessment.dto");
+const swagger_1 = require("@nestjs/swagger");
 let AssessmentsController = class AssessmentsController {
     constructor(assessmentsService) {
         this.assessmentsService = assessmentsService;
@@ -95,6 +96,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AssessmentsController.prototype, "remove", null);
 AssessmentsController = __decorate([
+    (0, swagger_1.ApiTags)('Assessments'),
     (0, common_1.Controller)('assessments'),
     __metadata("design:paramtypes", [assessments_service_1.AssessmentsService])
 ], AssessmentsController);

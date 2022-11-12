@@ -3,6 +3,7 @@ import { AppModule } from './app.module'
 import helmet from 'helmet'
 
 import * as dotenv from 'dotenv'
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 dotenv.config()
 
@@ -19,6 +20,24 @@ async function bootstrap() {
   app.enableCors(options)
 
   app.use(helmet())
+
+  const config = new DocumentBuilder()
+    .setTitle('Documentation with Swagger - Elearning Project')
+    .setDescription(
+      'Swagger (aka OpenApi) is a well-known library in the backend universe, being available for several languages and frameworks. It generates an internal website on your backend that describes, in great detail, each endpoint and entity structure present in your application.',
+    )
+    .setVersion('1.0')
+    .addTag('Users')
+    .addTag('Auth')
+    .addTag('Class')
+    .addTag('Lectures')
+    .addTag('Assessments')
+    .addTag('Works')
+    .addTag('Attendance')
+    .build()
+
+  const document = SwaggerModule.createDocument(app, config)
+  SwaggerModule.setup('api', app, document)
 
   await app.listen(5000)
 }

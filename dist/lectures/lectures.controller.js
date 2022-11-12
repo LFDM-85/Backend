@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const lectures_service_1 = require("./lectures.service");
 const create_lecture_dto_1 = require("./dto/create-lecture.dto");
 const update_lecture_dto_1 = require("./dto/update-lecture.dto");
+const swagger_1 = require("@nestjs/swagger");
 let LecturesController = class LecturesController {
     constructor(lecturesService) {
         this.lecturesService = lecturesService;
@@ -159,6 +160,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], LecturesController.prototype, "remove", null);
 LecturesController = __decorate([
+    (0, swagger_1.ApiTags)('Lectures'),
     (0, common_1.Controller)('lectures'),
     __metadata("design:paramtypes", [lectures_service_1.LecturesService])
 ], LecturesController);

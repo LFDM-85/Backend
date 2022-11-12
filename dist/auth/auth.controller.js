@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const accessToken_guard_1 = require("../common/guards/accessToken.guard");
 const refreshToken_guard_1 = require("../common/guards/refreshToken.guard");
 const create_user_dto_1 = require("../users/dto/create-user.dto");
@@ -69,6 +70,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "refreshTokens", null);
 AuthController = __decorate([
+    (0, swagger_1.ApiTags)('Auth'),
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])
 ], AuthController);
