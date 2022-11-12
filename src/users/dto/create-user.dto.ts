@@ -12,7 +12,7 @@ export class CreateUserDto {
     example: 'image.jpg',
     description: 'User-associated avatar image',
   })
-  image: string
+  image?: string
 
   @ApiProperty({
     example: 'email@email.com',

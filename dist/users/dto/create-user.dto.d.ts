@@ -1,6 +1,6 @@
 export declare class CreateUserDto {
     name: string;
-    image: string;
+    image?: string;
     email: string;
     password: string;
     refreshToken?: string;
