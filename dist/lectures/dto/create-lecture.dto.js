@@ -10,20 +10,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateLectureDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreateLectureDto {
 }
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        example: 'Lesson #1  - Lesson title',
+        description: 'Is the title of the lesson',
+    }),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateLectureDto.prototype, "summary", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        example: 'Users homeworks and discussion ',
+        description: 'Is a brief discussion on the topic of the class.',
+    }),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateLectureDto.prototype, "description", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        example: 'true',
+        description: 'Sets the state of the lecture. If the teacher has finished the lecture or not.',
+    }),
     (0, class_validator_1.IsBoolean)(),
     __metadata("design:type", Boolean)
 ], CreateLectureDto.prototype, "finished", void 0);

@@ -2,14 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
-const common_1 = require("@nestjs/common");
 const helmet_1 = require("helmet");
-const cookieParser = require("cookie-parser");
-const session = require("express-session");
-const passport = require("passport");
 const dotenv = require("dotenv");
+const swagger_1 = require("@nestjs/swagger");
 dotenv.config();
-const secret = process.env.SESSION_SECRET;
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     const options = {
@@ -20,18 +16,21 @@ async function bootstrap() {
         credentials: true,
     };
     app.enableCors(options);
-    app.use(cookieParser());
     app.use((0, helmet_1.default)());
-    app.useGlobalPipes(new common_1.ValidationPipe({
-        whitelist: true,
-    }));
-    app.use(session({
-        secret: secret,
-        resave: false,
-        saveUninitialized: false,
-    }));
-    app.use(passport.initialize());
-    app.use(passport.session());
+    const config = new swagger_1.DocumentBuilder()
+        .setTitle('Documentation with Swagger - Elearning Project')
+        .setDescription('Swagger (aka OpenApi) is a well-known library in the backend universe, being available for several languages and frameworks. It generates an internal website on your backend that describes, in great detail, each endpoint and entity structure present in your application.')
+        .setVersion('1.0')
+        .addTag('Users')
+        .addTag('Auth')
+        .addTag('Class')
+        .addTag('Lectures')
+        .addTag('Assessments')
+        .addTag('Works')
+        .addTag('Attendance')
+        .build();
+    const document = swagger_1.SwaggerModule.createDocument(app, config);
+    swagger_1.SwaggerModule.setup('api', app, document);
     await app.listen(5000);
 }
 bootstrap();

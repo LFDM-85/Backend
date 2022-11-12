@@ -10,15 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateAssessmentDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreateAssessmentDto {
 }
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        example: '17',
+        description: 'Is the value of the assessmente for the user in a specific lecture.',
+    }),
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Number)
 ], CreateAssessmentDto.prototype, "assessmentValue", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        example: 'johnDoe@xyz.com',
+        description: 'Is the user email that will be associated to the assessment.',
+    }),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)

@@ -14,99 +14,80 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
-const mongoose_1 = require("mongoose");
-const mongoose_2 = require("@nestjs/mongoose");
+const mongoose_1 = require("@nestjs/mongoose");
+const mongoose_2 = require("mongoose");
 const users_schema_1 = require("./schema/users.schema");
-const bcrypt_1 = require("../utils/bcrypt");
 let UsersService = class UsersService {
-    constructor(usersModel) {
-        this.usersModel = usersModel;
+    constructor(userModel) {
+        this.userModel = userModel;
     }
     async create(createUserDto) {
-        const { email, password } = createUserDto;
-        const users = await this.usersModel.find({ email });
-        if (users.length)
-            throw new common_1.BadRequestException('Email in use');
-        createUserDto.password = (0, bcrypt_1.encodePassword)(password);
-        const user = await this.usersModel.create(createUserDto);
-        return user.save();
+        const createdUser = new this.userModel(createUserDto);
+        return createdUser.save();
     }
     async findAll() {
-        return await this.usersModel.find().populate({
-            path: 'classes', populate: [{
-                    path: 'lecture', populate: [{ path: 'assessment' }, { path: 'work' }, { path: 'attendance' }],
-                }],
-        }).exec();
+        return this.userModel.find().exec();
     }
-    async findEmail(email) {
-        return await this.usersModel.findOne({ email }).populate({
-            path: 'classes', populate: [{
-                    path: 'lecture', populate: [{ path: 'assessment' }, { path: 'work' }, { path: 'attendance' }],
-                }],
-        }).exec();
+    async findById(id) {
+        return this.userModel.findById(id);
     }
-    async whoami(email) {
-        return await this.usersModel.findOne({ email }).exec();
+    async findByEmail(email) {
+        return this.userModel.findOne({ email }).exec();
     }
     async update(id, updateUserDto) {
-        return await this.usersModel.findByIdAndUpdate({
-            _id: id,
-        }, {
-            $set: updateUserDto,
-        }, {
-            new: true
-        });
+        return this.userModel.findByIdAndUpdate(id, updateUserDto, { new: true }).exec();
+    }
+    async remove(id) {
+        return this.userModel.findByIdAndDelete(id).exec();
+    }
+    async whoami(email) {
+        return await this.userModel.findOne({ email }).exec();
     }
     async addClass(userId, classId) {
-        return this.usersModel.findByIdAndUpdate(userId, { $set: { classes: classId } }, { new: true });
+        return this.userModel.findByIdAndUpdate(userId, { $set: { classes: classId } }, { new: true });
     }
     async removeClass(userId, classId) {
-        return this.usersModel.findByIdAndUpdate(userId, { $pull: { classes: classId } }, { new: true });
+        return this.userModel.findByIdAndUpdate(userId, { $pull: { classes: classId } }, { new: true });
     }
     async getClasses(email) {
-        const user = await this.usersModel.findOne({ email }).populate('classes');
+        const user = await this.userModel.findOne({ email }).populate('classes');
         return user;
     }
     async addWork(userId, workId) {
-        return this.usersModel.findByIdAndUpdate(userId, { $addToSet: { work: workId } }, { new: true });
+        return this.userModel.findByIdAndUpdate(userId, { $addToSet: { work: workId } }, { new: true });
     }
     async removeWork(userId, workId) {
-        return this.usersModel.findByIdAndUpdate(userId, { $pull: { work: workId } }, { new: true });
+        return this.userModel.findByIdAndUpdate(userId, { $pull: { work: workId } }, { new: true });
     }
     async getWork(userId) {
-        const user = await this.usersModel.findById(userId).populate('work');
+        const user = await this.userModel.findById(userId).populate('work');
         return user;
     }
     async addAssessment(userId, assessmentId) {
-        return this.usersModel.findByIdAndUpdate(userId, { $addToSet: { assessment: assessmentId } }, { new: true });
+        return this.userModel.findByIdAndUpdate(userId, { $addToSet: { assessment: assessmentId } }, { new: true });
     }
     async removeAssessment(userId, assessmentId) {
-        return this.usersModel.findByIdAndUpdate(userId, { $pull: { assessment: assessmentId } }, { new: true });
+        return this.userModel.findByIdAndUpdate(userId, { $pull: { assessment: assessmentId } }, { new: true });
     }
     async getAssessment(email) {
-        const user = await this.usersModel.findOne({ email });
+        const user = await this.userModel.findOne({ email });
         return user;
     }
     async addAttendance(userId, attendanceId) {
-        return this.usersModel.findByIdAndUpdate(userId, { $addToSet: { attendance: attendanceId } }, { new: true });
+        return this.userModel.findByIdAndUpdate(userId, { $addToSet: { attendance: attendanceId } }, { new: true });
     }
     async removeAttendance(userId, attendanceId) {
-        return this.usersModel.findByIdAndUpdate(userId, { $pull: { attendance: attendanceId } }, { new: true });
+        return this.userModel.findByIdAndUpdate(userId, { $pull: { attendance: attendanceId } }, { new: true });
     }
     async getAttendance(userId) {
-        const user = await this.usersModel.findById(userId).populate('attendance');
+        const user = await this.userModel.findById(userId).populate('attendance');
         return user;
-    }
-    async remove(id) {
-        return await this.usersModel.deleteOne({
-            _id: id
-        }).exec();
     }
 };
 UsersService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_2.InjectModel)(users_schema_1.Users.name)),
-    __metadata("design:paramtypes", [mongoose_1.Model])
+    __param(0, (0, mongoose_1.InjectModel)(users_schema_1.Users.name)),
+    __metadata("design:paramtypes", [mongoose_2.Model])
 ], UsersService);
 exports.UsersService = UsersService;
 //# sourceMappingURL=users.service.js.map

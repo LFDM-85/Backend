@@ -1,18 +1,14 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
-import helmet from 'helmet';
-import * as cookieParser from 'cookie-parser';
-import * as session from 'express-session';
-import * as passport from 'passport';
-import * as dotenv from 'dotenv';
+import { NestFactory } from '@nestjs/core'
+import { AppModule } from './app.module'
+import helmet from 'helmet'
 
-dotenv.config();
+import * as dotenv from 'dotenv'
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
-const secret = process.env.SESSION_SECRET;
+dotenv.config()
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule)
 
   const options = {
     origin: true,
@@ -20,25 +16,29 @@ async function bootstrap() {
     preflightContinue: false,
     optionsSuccessStatus: 200,
     credentials: true,
-  };
-  app.enableCors(options);
+  }
+  app.enableCors(options)
 
-  app.use(cookieParser());
-  app.use(helmet());
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-    }),
-  );
-  app.use(
-    session({
-      secret: secret,
-      resave: false,
-      saveUninitialized: false,
-    }),
-  );
-  app.use(passport.initialize());
-  app.use(passport.session());
-  await app.listen(5000);
+  app.use(helmet())
+
+  const config = new DocumentBuilder()
+    .setTitle('Documentation with Swagger - Elearning Project')
+    .setDescription(
+      'Swagger (aka OpenApi) is a well-known library in the backend universe, being available for several languages and frameworks. It generates an internal website on your backend that describes, in great detail, each endpoint and entity structure present in your application.',
+    )
+    .setVersion('1.0')
+    .addTag('Users')
+    .addTag('Auth')
+    .addTag('Class')
+    .addTag('Lectures')
+    .addTag('Assessments')
+    .addTag('Works')
+    .addTag('Attendance')
+    .build()
+
+  const document = SwaggerModule.createDocument(app, config)
+  SwaggerModule.setup('api', app, document)
+
+  await app.listen(5000)
 }
-bootstrap();
+bootstrap()

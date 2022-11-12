@@ -4,17 +4,11 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
-    createUser(createUserDto: CreateUserDto): Promise<import("./schema/users.schema").Users>;
-    whoami(req: any): Promise<string>;
-    findAllUsers(): Promise<Omit<import("./schema/users.schema").Users & import("mongoose").Document<any, any, any> & {
-        _id: import("mongoose").Types.ObjectId;
-    }, never>[]>;
-    findUser(email: string): Promise<import("./schema/users.schema").Users & import("mongoose").Document<any, any, any> & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
-    update(id: string, updateUserDto: UpdateUserDto): Promise<import("./schema/users.schema").Users & import("mongoose").Document<any, any, any> & {
-        _id: import("mongoose").Types.ObjectId;
-    }>;
+    create(createUserDto: CreateUserDto): Promise<import("./schema/users.schema").UserDocument>;
+    findAll(): Promise<import("./schema/users.schema").UserDocument[]>;
+    findById(id: string): Promise<import("./schema/users.schema").UserDocument>;
+    update(id: string, updateUserDto: UpdateUserDto): Promise<import("./schema/users.schema").UserDocument>;
+    remove(id: string): Promise<import("./schema/users.schema").UserDocument>;
     addClass(userId: string, classId: string): Promise<import("./schema/users.schema").Users & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;
@@ -51,5 +45,4 @@ export declare class UsersController {
     getAttendance(userId: string): Promise<import("./schema/users.schema").Users & import("mongoose").Document<any, any, any> & {
         _id: import("mongoose").Types.ObjectId;
     }>;
-    delete(id: string): Promise<import("mongodb").DeleteResult>;
 }

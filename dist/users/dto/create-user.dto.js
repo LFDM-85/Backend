@@ -10,37 +10,49 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateUserDto = void 0;
-const class_validator_1 = require("class-validator");
+const swagger_1 = require("@nestjs/swagger");
 class CreateUserDto {
 }
 __decorate([
-    (0, class_validator_1.IsEmail)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CreateUserDto.prototype, "email", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CreateUserDto.prototype, "password", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, swagger_1.ApiProperty)({
+        example: 'John Doe',
+        description: 'The name will be used for anything (Profile, Home Page, etc.) that needs to display information about the connected person.',
+    }),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "name", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsOptional)(),
+    (0, swagger_1.ApiProperty)({
+        example: 'image.jpg',
+        description: 'User-associated avatar image',
+    }),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "image", void 0);
 __decorate([
-    (0, class_validator_1.IsArray)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, swagger_1.ApiProperty)({
+        example: 'email@email.com',
+        description: 'The email that was used for account registration. Also required to login',
+    }),
+    __metadata("design:type", String)
+], CreateUserDto.prototype, "email", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: 'dfg089uoHUHhpuhT',
+        description: 'The password that was used for account registration. Also required to login',
+    }),
+    __metadata("design:type", String)
+], CreateUserDto.prototype, "password", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: "['student']",
+        description: 'The roles are assigned to the user and with them he will have access to specific information',
+    }),
     __metadata("design:type", Array)
 ], CreateUserDto.prototype, "roles", void 0);
 __decorate([
-    (0, class_validator_1.IsBoolean)(),
-    (0, class_validator_1.IsNotEmpty)(),
+    (0, swagger_1.ApiProperty)({
+        example: 'true',
+        description: 'Validation allows the teacher to log into the account and have access to all contents',
+    }),
     __metadata("design:type", Boolean)
 ], CreateUserDto.prototype, "isValidated", void 0);
 exports.CreateUserDto = CreateUserDto;
