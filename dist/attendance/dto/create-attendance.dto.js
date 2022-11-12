@@ -10,30 +10,51 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateAttendanceDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreateAttendanceDto {
 }
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        example: 'true',
+        description: 'Is the state of the presence of the student in the lecture.',
+    }),
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Boolean)
 ], CreateAttendanceDto.prototype, "attendance", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        example: 'false',
+        description: 'Is the validation state of the presence of the student in the lecture. It is given by the teacher.',
+    }),
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Boolean)
 ], CreateAttendanceDto.prototype, "validation", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        example: 'filenameExample',
+        description: 'The name that the user gives to the file that will be uploaded',
+    }),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateAttendanceDto.prototype, "filename", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        example: '/parentfolder/filenameExample',
+        description: 'Is the location of the file that the user will upload',
+    }),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], CreateAttendanceDto.prototype, "filepath", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        example: 'johnDoe@xyz.com',
+        description: 'Is the user email that will be associated to the file. Is the owner of the file',
+    }),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
