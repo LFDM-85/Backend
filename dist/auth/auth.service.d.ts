@@ -10,8 +10,11 @@ export declare class AuthService {
     constructor(usersService: UsersService, jwtService: JwtService, configService: ConfigService);
     signUp(createUserDto: CreateUserDto): Promise<any>;
     signin(data: AuthDto): Promise<{
-        accessToken: string;
-        refreshToken: string;
+        tokens: {
+            accessToken: string;
+            refreshToken: string;
+        };
+        user: import("../users/schema/users.schema").UserDocument;
     }>;
     logout(userId: string): Promise<void>;
     refreshTokens(userId: string, refreshToken: string): Promise<{

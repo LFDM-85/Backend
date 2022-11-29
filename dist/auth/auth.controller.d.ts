@@ -7,8 +7,11 @@ export declare class AuthController {
     constructor(authService: AuthService);
     signup(createUserDto: CreateUserDto): Promise<any>;
     signin(data: AuthDto): Promise<{
-        accessToken: string;
-        refreshToken: string;
+        tokens: {
+            accessToken: string;
+            refreshToken: string;
+        };
+        user: import("../users/schema/users.schema").UserDocument;
     }>;
     logout(req: Request): void;
     refreshTokens(req: Request): Promise<{

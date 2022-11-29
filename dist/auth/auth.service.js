@@ -41,7 +41,7 @@ let AuthService = class AuthService {
             throw new common_1.BadRequestException('Password is incorrect');
         const tokens = await this.getTokens(user._id, user.email);
         await this.updateRefreshToken(user._id, tokens.refreshToken);
-        return tokens;
+        return { tokens, user };
     }
     async logout(userId) {
         this.usersService.update(userId, { refreshToken: null });
