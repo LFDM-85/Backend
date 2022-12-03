@@ -6,24 +6,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ClassModule = void 0;
+exports.CourseModule = void 0;
 const common_1 = require("@nestjs/common");
-const class_service_1 = require("./class.service");
-const class_controller_1 = require("./class.controller");
+const course_service_1 = require("./course.service");
+const course_controller_1 = require("./course.controller");
 const mongoose_1 = require("@nestjs/mongoose");
-const class_schema_1 = require("./schema/class.schema");
+const course_schema_1 = require("./schema/course.schema");
 const users_module_1 = require("../users/users.module");
-let ClassModule = class ClassModule {
+let CourseModule = class CourseModule {
 };
-ClassModule = __decorate([
+CourseModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            users_module_1.UsersModule,
-            mongoose_1.MongooseModule.forFeature([{ name: class_schema_1.Class.name, schema: class_schema_1.ClassSchema }]),
-        ],
-        controllers: [class_controller_1.ClassController],
-        providers: [class_service_1.ClassService],
+        imports: [users_module_1.UsersModule, mongoose_1.MongooseModule.forFeature([{ name: course_schema_1.Course.name, schema: course_schema_1.CourseSchema }])],
+        controllers: [course_controller_1.CourseController],
+        providers: [course_service_1.CourseService],
     })
-], ClassModule);
-exports.ClassModule = ClassModule;
-//# sourceMappingURL=class.module.js.map
+], CourseModule);
+exports.CourseModule = CourseModule;
+//# sourceMappingURL=course.module.js.map

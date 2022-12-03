@@ -9,36 +9,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ClassSchema = exports.Class = void 0;
+exports.CourseSchema = exports.Course = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const class_transformer_1 = require("class-transformer");
 const mongoose_2 = require("mongoose");
 const lectures_schema_1 = require("../../lectures/schema/lectures.schema");
-let Class = class Class {
+let Course = class Course {
 };
 __decorate([
     (0, class_transformer_1.Transform)(({ value }) => value.toString()),
     __metadata("design:type", String)
-], Class.prototype, "_id", void 0);
+], Course.prototype, "_id", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], Class.prototype, "nameClass", void 0);
+], Course.prototype, "nameCourse", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", Boolean)
-], Class.prototype, "open", void 0);
+], Course.prototype, "open", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: 'Users' }] })),
+    (0, mongoose_1.Prop)({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: 'Users' }] }),
     __metadata("design:type", Array)
-], Class.prototype, "user", void 0);
+], Course.prototype, "user", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: lectures_schema_1.Lecture.name }] })),
+    (0, mongoose_1.Prop)({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: lectures_schema_1.Lecture.name }] }),
     __metadata("design:type", Array)
-], Class.prototype, "lecture", void 0);
-Class = __decorate([
+], Course.prototype, "lecture", void 0);
+Course = __decorate([
     (0, mongoose_1.Schema)()
-], Class);
-exports.Class = Class;
-exports.ClassSchema = mongoose_1.SchemaFactory.createForClass(Class);
-//# sourceMappingURL=class.schema.js.map
+], Course);
+exports.Course = Course;
+exports.CourseSchema = mongoose_1.SchemaFactory.createForClass(Course);
+//# sourceMappingURL=course.schema.js.map

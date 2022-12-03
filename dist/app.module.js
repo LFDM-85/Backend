@@ -12,7 +12,7 @@ const users_module_1 = require("./users/users.module");
 const auth_module_1 = require("./auth/auth.module");
 const mongoose_1 = require("@nestjs/mongoose");
 const dotenv = require("dotenv");
-const class_module_1 = require("./class/class.module");
+const course_module_1 = require("./course/course.module");
 const lectures_module_1 = require("./lectures/lectures.module");
 const assessments_module_1 = require("./assessments/assessments.module");
 const work_module_1 = require("./work/work.module");
@@ -30,7 +30,7 @@ AppModule = __decorate([
             mongoose_1.MongooseModule.forRoot(URL),
             users_module_1.UsersModule,
             auth_module_1.AuthModule,
-            class_module_1.ClassModule,
+            course_module_1.CourseModule,
             lectures_module_1.LecturesModule,
             assessments_module_1.AssessmentsModule,
             work_module_1.WorkModule,

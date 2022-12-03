@@ -9,28 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateClassDto = void 0;
+exports.CreateCourseDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
-class CreateClassDto {
+class CreateCourseDto {
 }
 __decorate([
     (0, swagger_1.ApiProperty)({
         example: 'Mathematics',
-        description: 'Is the name of the class that was given by the administrator',
+        description: 'Is the name of the course that was given by the administrator',
     }),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateClassDto.prototype, "nameClass", void 0);
+], CreateCourseDto.prototype, "nameCourse", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
         example: 'true',
-        description: 'Is the state of the class.',
+        description: 'Is the state of the course.',
     }),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsBoolean)(),
     __metadata("design:type", Boolean)
-], CreateClassDto.prototype, "open", void 0);
-exports.CreateClassDto = CreateClassDto;
-//# sourceMappingURL=create-class.dto.js.map
+], CreateCourseDto.prototype, "open", void 0);
+exports.CreateCourseDto = CreateCourseDto;
+//# sourceMappingURL=create-course.dto.js.map

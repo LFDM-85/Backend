@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import { Transform } from 'class-transformer'
+import { Exclude, Transform } from 'class-transformer'
 import mongoose, { Document } from 'mongoose'
-import { Class } from 'src/class/schema/class.schema'
+import { Course } from '../../course/schema/course.schema'
 
 export type UserDocument = Users & Document
 @Schema()
@@ -21,9 +21,10 @@ export class Users {
   @Prop()
   isValidated: boolean
   @Prop()
-  refreshToken: string
-  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: Class.name }] })
-  classes: [Class]
+  @Exclude()
+  refreshToken?: string
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: Course.name }] })
+  courses: [Course]
 }
 
 export const UsersSchema = SchemaFactory.createForClass(Users)

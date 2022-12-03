@@ -43,7 +43,7 @@ let WorkService = class WorkService {
         return await this.workModel.findByIdAndUpdate({
             _id: id,
         }, {
-            $push: updateWorkDto
+            $push: updateWorkDto,
         }, { new: true });
     }
     async addUser(userId, workId) {
@@ -63,7 +63,8 @@ let WorkService = class WorkService {
 WorkService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(work_schema_1.Work.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model, cloudinary_service_1.CloudinaryService])
+    __metadata("design:paramtypes", [mongoose_2.Model,
+        cloudinary_service_1.CloudinaryService])
 ], WorkService);
 exports.WorkService = WorkService;
 //# sourceMappingURL=work.service.js.map

@@ -1,9 +1,9 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { CreateAttendanceDto } from './dto/create-attendance.dto';
-import { UpdateAttendanceDto } from './dto/update-attendance.dto';
-import { Attendance, AttendanceDocument } from './schema/attendance.schema';
+import { Injectable } from '@nestjs/common'
+import { InjectModel } from '@nestjs/mongoose'
+import { Model } from 'mongoose'
+import { CreateAttendanceDto } from './dto/create-attendance.dto'
+import { UpdateAttendanceDto } from './dto/update-attendance.dto'
+import { Attendance, AttendanceDocument } from './schema/attendance.schema'
 
 @Injectable()
 export class AttendanceService {
@@ -13,15 +13,15 @@ export class AttendanceService {
     //  const { filename} = createAttendanceDto
     // const findOneAttendance = await this.attendanceModel.findOne({ filename })
     // if(findOneAttendance) throw new BadRequestException('Attendance already exist! Please change the name of the file and try again.')
-    return await(await this.attendanceModel.create(createAttendanceDto)).save()
+    return await (await this.attendanceModel.create(createAttendanceDto)).save()
   }
 
   findAll() {
-    return this.attendanceModel.find();
+    return this.attendanceModel.find()
   }
 
   findOne(id: string) {
-    return this.attendanceModel.findById(id);
+    return this.attendanceModel.findById(id)
   }
 
   async update(id: string, updateAttendanceDto: UpdateAttendanceDto) {
@@ -30,18 +30,17 @@ export class AttendanceService {
         _id: id,
       },
       {
-        $push: updateAttendanceDto
+        $push: updateAttendanceDto,
       },
-      {new: true}
-    );
+      { new: true },
+    )
   }
-
 
   async addUser(userId: string, attendanceId: string) {
     return this.attendanceModel.findByIdAndUpdate(
       attendanceId,
-      { $set:  { user: userId }},
-  { new: true}
+      { $set: { user: userId } },
+      { new: true },
     )
   }
 
@@ -49,16 +48,16 @@ export class AttendanceService {
     return this.attendanceModel.findByIdAndUpdate(
       attendanceId,
       { $pull: { user: userId } },
-      { new: true}
+      { new: true },
     )
   }
 
-   async getUsers(attendanceId: string) {
-    const assessment = await this.attendanceModel.findById(attendanceId).populate('user');
-    return assessment;
-   }
-  
+  async getUsers(attendanceId: string) {
+    const assessment = await this.attendanceModel.findById(attendanceId).populate('user')
+    return assessment
+  }
+
   remove(id: string) {
-    return this.attendanceModel.deleteOne({id}).exec();
+    return this.attendanceModel.deleteOne({ id }).exec()
   }
 }

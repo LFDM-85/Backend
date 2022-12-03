@@ -34,7 +34,7 @@ let AttendanceService = class AttendanceService {
         return await this.attendanceModel.findByIdAndUpdate({
             _id: id,
         }, {
-            $push: updateAttendanceDto
+            $push: updateAttendanceDto,
         }, { new: true });
     }
     async addUser(userId, attendanceId) {

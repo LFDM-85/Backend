@@ -1,18 +1,18 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsBoolean, IsString, IsNotEmpty } from 'class-validator'
 
-export class CreateClassDto {
+export class CreateCourseDto {
   @ApiProperty({
     example: 'Mathematics',
-    description: 'Is the name of the class that was given by the administrator',
+    description: 'Is the name of the course that was given by the administrator',
   })
   @IsNotEmpty()
   @IsString()
-  nameClass: string
+  nameCourse: string
 
   @ApiProperty({
     example: 'true',
-    description: 'Is the state of the class.',
+    description: 'Is the state of the course.',
   })
   @IsNotEmpty()
   @IsBoolean()

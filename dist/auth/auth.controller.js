@@ -55,7 +55,7 @@ __decorate([
 ], AuthController.prototype, "signin", null);
 __decorate([
     (0, common_1.UseGuards)(accessToken_guard_1.AccessTokenGuard),
-    (0, common_1.Get)('/signout'),
+    (0, common_1.Post)('/signout'),
     __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -63,7 +63,7 @@ __decorate([
 ], AuthController.prototype, "logout", null);
 __decorate([
     (0, common_1.UseGuards)(refreshToken_guard_1.RefreshTokenGuard),
-    (0, common_1.Get)('refresh'),
+    (0, common_1.Get)('/refresh'),
     __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

@@ -1,5 +1,5 @@
 import mongoose, { Document } from 'mongoose';
-import { Class } from 'src/class/schema/class.schema';
+import { Course } from '../../course/schema/course.schema';
 export declare type UserDocument = Users & Document;
 export declare class Users {
     _id: string;
@@ -9,7 +9,7 @@ export declare class Users {
     password: string;
     roles: string[];
     isValidated: boolean;
-    refreshToken: string;
-    classes: [Class];
+    refreshToken?: string;
+    courses: [Course];
 }
 export declare const UsersSchema: mongoose.Schema<Users, mongoose.Model<Users, any, any, any, any>, {}, {}, {}, {}, "type", Users>;

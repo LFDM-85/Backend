@@ -5,7 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose'
 import * as dotenv from 'dotenv'
 import { ThrottlerModule } from '@nestjs/throttler'
 import { ServeStaticModule } from '@nestjs/serve-static'
-import { ClassModule } from './class/class.module'
+import { CourseModule } from './course/course.module'
 import { LecturesModule } from './lectures/lectures.module'
 import { AssessmentsModule } from './assessments/assessments.module'
 import { WorkModule } from './work/work.module'
@@ -24,7 +24,7 @@ const URL = process.env.DATABASE_URL
     UsersModule,
     AuthModule,
 
-    ClassModule,
+    CourseModule,
     LecturesModule,
     AssessmentsModule,
     WorkModule,
