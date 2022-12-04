@@ -23,7 +23,7 @@ async function bootstrap() {
         .setVersion('1.0')
         .addTag('Users')
         .addTag('Auth')
-        .addTag('Course')
+        .addTag('Courses')
         .addTag('Lectures')
         .addTag('Assessments')
         .addTag('Works')

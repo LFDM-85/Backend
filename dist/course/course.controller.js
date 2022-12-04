@@ -148,8 +148,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], CourseController.prototype, "remove", null);
 CourseController = __decorate([
-    (0, swagger_1.ApiTags)('Course'),
-    (0, common_1.Controller)('course'),
+    (0, swagger_1.ApiTags)('Courses'),
+    (0, common_1.Controller)('courses'),
     __metadata("design:paramtypes", [course_service_1.CourseService])
 ], CourseController);
 exports.CourseController = CourseController;
