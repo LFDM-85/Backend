@@ -7,7 +7,7 @@ import { Role } from '../enums/role.enum'
 import { ApiTags } from '@nestjs/swagger'
 
 @ApiTags('Courses')
-@Controller('courses')
+@Controller('course')
 export class CourseController {
   constructor(private courseService: CourseService) {}
 
