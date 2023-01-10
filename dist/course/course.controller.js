@@ -13,6 +13,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CourseController = void 0;
+const openapi = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
 const course_service_1 = require("./course.service");
 const create_course_dto_1 = require("./dto/create-course.dto");
@@ -61,6 +62,7 @@ let CourseController = class CourseController {
 };
 __decorate([
     (0, common_1.Post)('/create'),
+    openapi.ApiResponse({ status: 201, type: Object }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_course_dto_1.CreateCourseDto]),
@@ -68,12 +70,14 @@ __decorate([
 ], CourseController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)('/all'),
+    openapi.ApiResponse({ status: 200, type: [Object] }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], CourseController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)('/:name'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('name')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -81,6 +85,7 @@ __decorate([
 ], CourseController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Get)('/:id'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -88,6 +93,7 @@ __decorate([
 ], CourseController.prototype, "findId", null);
 __decorate([
     (0, common_1.Patch)('/:id'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -96,6 +102,7 @@ __decorate([
 ], CourseController.prototype, "update", null);
 __decorate([
     (0, common_1.Patch)('/:id/add-user/:courseId'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('courseId')),
     __metadata("design:type", Function),
@@ -104,6 +111,7 @@ __decorate([
 ], CourseController.prototype, "addCourse", null);
 __decorate([
     (0, common_1.Patch)('/:id/remove-user/:courseId'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('courseId')),
     __metadata("design:type", Function),
@@ -112,6 +120,7 @@ __decorate([
 ], CourseController.prototype, "removeCourse", null);
 __decorate([
     (0, common_1.Get)('/:courseId/users'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('courseId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -119,6 +128,7 @@ __decorate([
 ], CourseController.prototype, "getCourses", null);
 __decorate([
     (0, common_1.Patch)('/:lectureId/add-lecture/:courseId'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('lectureId')),
     __param(1, (0, common_1.Param)('courseId')),
     __metadata("design:type", Function),
@@ -127,6 +137,7 @@ __decorate([
 ], CourseController.prototype, "addLecture", null);
 __decorate([
     (0, common_1.Patch)('/:lectureId/remove-lecture/:courseId'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('lectureId')),
     __param(1, (0, common_1.Param)('courseId')),
     __metadata("design:type", Function),
@@ -135,6 +146,7 @@ __decorate([
 ], CourseController.prototype, "removeLecture", null);
 __decorate([
     (0, common_1.Get)('/:courseId/lectures'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('courseId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -142,6 +154,7 @@ __decorate([
 ], CourseController.prototype, "getLectures", null);
 __decorate([
     (0, common_1.Delete)('/:name'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('name')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

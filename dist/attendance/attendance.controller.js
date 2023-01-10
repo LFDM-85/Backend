@@ -13,6 +13,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AttendanceController = void 0;
+const openapi = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
 const path_1 = require("path");
 const attendance_service_1 = require("./attendance.service");
@@ -50,6 +51,7 @@ let AttendanceController = class AttendanceController {
 };
 __decorate([
     (0, common_1.Post)('/create'),
+    openapi.ApiResponse({ status: 201, type: Object }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_attendance_dto_1.CreateAttendanceDto]),
@@ -57,6 +59,7 @@ __decorate([
 ], AttendanceController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)('/download/:filename'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('filename')),
     __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -65,12 +68,14 @@ __decorate([
 ], AttendanceController.prototype, "findFile", null);
 __decorate([
     (0, common_1.Get)(),
+    openapi.ApiResponse({ status: 200 }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], AttendanceController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Patch)(':id'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -79,6 +84,7 @@ __decorate([
 ], AttendanceController.prototype, "update", null);
 __decorate([
     (0, common_1.Patch)('/:id/add-user/:attendanceId'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('attendanceId')),
     __metadata("design:type", Function),
@@ -87,6 +93,7 @@ __decorate([
 ], AttendanceController.prototype, "addAttendance", null);
 __decorate([
     (0, common_1.Patch)('/:id/remove-user/:attendanceId'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('attendanceId')),
     __metadata("design:type", Function),
@@ -101,6 +108,7 @@ __decorate([
 ], AttendanceController.prototype, "getAttendance", null);
 __decorate([
     (0, common_1.Delete)(':id'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

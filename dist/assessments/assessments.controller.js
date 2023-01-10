@@ -13,6 +13,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AssessmentsController = void 0;
+const openapi = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
 const assessments_service_1 = require("./assessments.service");
 const create_assessment_dto_1 = require("./dto/create-assessment.dto");
@@ -46,6 +47,7 @@ let AssessmentsController = class AssessmentsController {
 };
 __decorate([
     (0, common_1.Post)('/create'),
+    openapi.ApiResponse({ status: 201, type: Object }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_assessment_dto_1.CreateAssessmentDto]),
@@ -53,12 +55,14 @@ __decorate([
 ], AssessmentsController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)('/all'),
+    openapi.ApiResponse({ status: 200 }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], AssessmentsController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Patch)('/:id'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -67,6 +71,7 @@ __decorate([
 ], AssessmentsController.prototype, "update", null);
 __decorate([
     (0, common_1.Patch)('/:id/add-user/:assessmentId'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('assessmentId')),
     __metadata("design:type", Function),
@@ -75,6 +80,7 @@ __decorate([
 ], AssessmentsController.prototype, "addAssessment", null);
 __decorate([
     (0, common_1.Patch)('/:id/remove-user/:assessmentId'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('assessmentId')),
     __metadata("design:type", Function),
@@ -83,6 +89,7 @@ __decorate([
 ], AssessmentsController.prototype, "removeAssessment", null);
 __decorate([
     (0, common_1.Get)('/:assessmentId/users'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('assessmentId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -90,6 +97,7 @@ __decorate([
 ], AssessmentsController.prototype, "getAssessment", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

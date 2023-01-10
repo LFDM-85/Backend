@@ -13,6 +13,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
+const openapi = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
 const users_service_1 = require("./users.service");
 const create_user_dto_1 = require("./dto/create-user.dto");
@@ -38,14 +39,14 @@ let UsersController = class UsersController {
     remove(id) {
         return this.usersService.remove(id);
     }
-    addClass(userId, classId) {
-        return this.usersService.addClass(userId, classId);
+    addCourse(userId, courseId) {
+        return this.usersService.addCourse(userId, courseId);
     }
-    removeClass(userId, classId) {
-        return this.usersService.removeClass(userId, classId);
+    removeCourse(userId, courseId) {
+        return this.usersService.removeCourse(userId, courseId);
     }
-    getClasses(email) {
-        return this.usersService.getClasses(email);
+    getCourses(email) {
+        return this.usersService.getCourses(email);
     }
     addWork(userId, workId) {
         return this.usersService.addWork(userId, workId);
@@ -77,6 +78,7 @@ let UsersController = class UsersController {
 };
 __decorate([
     (0, common_1.Post)(),
+    openapi.ApiResponse({ status: 201, type: Object }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
@@ -84,12 +86,14 @@ __decorate([
 ], UsersController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    openapi.ApiResponse({ status: 200, type: [Object] }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -98,6 +102,7 @@ __decorate([
 __decorate([
     (0, common_1.UseGuards)(accessToken_guard_1.AccessTokenGuard),
     (0, common_1.Patch)(':id'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -107,36 +112,41 @@ __decorate([
 __decorate([
     (0, common_1.UseGuards)(accessToken_guard_1.AccessTokenGuard),
     (0, common_1.Delete)(':id'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "remove", null);
 __decorate([
-    (0, common_1.Patch)('/:id/add-class/:classId'),
+    (0, common_1.Patch)('/:id/add-course/:courseId'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Param)('classId')),
+    __param(1, (0, common_1.Param)('courseId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", void 0)
-], UsersController.prototype, "addClass", null);
+], UsersController.prototype, "addCourse", null);
 __decorate([
-    (0, common_1.Patch)('/:id/remove-class/:classId'),
+    (0, common_1.Patch)('/:id/remove-course/:courseId'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Param)('classId')),
+    __param(1, (0, common_1.Param)('courseId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", void 0)
-], UsersController.prototype, "removeClass", null);
+], UsersController.prototype, "removeCourse", null);
 __decorate([
-    (0, common_1.Get)('/:email/classes'),
+    (0, common_1.Get)('/:email/courses'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('email')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], UsersController.prototype, "getClasses", null);
+], UsersController.prototype, "getCourses", null);
 __decorate([
     (0, common_1.Patch)('/:id/add-work/:workId'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('workId')),
     __metadata("design:type", Function),
@@ -145,6 +155,7 @@ __decorate([
 ], UsersController.prototype, "addWork", null);
 __decorate([
     (0, common_1.Patch)('/:id/remove-work/:workId'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('workId')),
     __metadata("design:type", Function),
@@ -153,6 +164,7 @@ __decorate([
 ], UsersController.prototype, "removeWork", null);
 __decorate([
     (0, common_1.Get)('/:id/works'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -160,6 +172,7 @@ __decorate([
 ], UsersController.prototype, "getWork", null);
 __decorate([
     (0, common_1.Patch)('/:id/add-assessment/:assessmentId'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('assessmentId')),
     __metadata("design:type", Function),
@@ -168,6 +181,7 @@ __decorate([
 ], UsersController.prototype, "addAssessment", null);
 __decorate([
     (0, common_1.Patch)('/:id/remove-work/:assessmentId'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('assessmentId')),
     __metadata("design:type", Function),
@@ -176,6 +190,7 @@ __decorate([
 ], UsersController.prototype, "removeAssessment", null);
 __decorate([
     (0, common_1.Get)('/:email/assessments'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('email')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -183,6 +198,7 @@ __decorate([
 ], UsersController.prototype, "getAssessment", null);
 __decorate([
     (0, common_1.Patch)('/:id/add-attendance/:attendanceId'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('attendanceId')),
     __metadata("design:type", Function),
@@ -191,6 +207,7 @@ __decorate([
 ], UsersController.prototype, "addAttendance", null);
 __decorate([
     (0, common_1.Patch)('/:id/remove-attendance/:attendanceId'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Param)('attendanceId')),
     __metadata("design:type", Function),
@@ -199,6 +216,7 @@ __decorate([
 ], UsersController.prototype, "removeAttendance", null);
 __decorate([
     (0, common_1.Get)('/:id/attendances'),
+    openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

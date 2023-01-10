@@ -41,19 +41,19 @@ export class UsersController {
     return this.usersService.remove(id)
   }
 
-  @Patch('/:id/add-class/:classId')
-  addClass(@Param('id') userId: string, @Param('classId') classId: string) {
-    return this.usersService.addClass(userId, classId)
+  @Patch('/:id/add-course/:courseId')
+  addCourse(@Param('id') userId: string, @Param('courseId') courseId: string) {
+    return this.usersService.addCourse(userId, courseId)
   }
 
-  @Patch('/:id/remove-class/:classId')
-  removeClass(@Param('id') userId: string, @Param('classId') classId: string) {
-    return this.usersService.removeClass(userId, classId)
+  @Patch('/:id/remove-course/:courseId')
+  removeCourse(@Param('id') userId: string, @Param('courseId') courseId: string) {
+    return this.usersService.removeCourse(userId, courseId)
   }
 
-  @Get('/:email/classes')
-  getClasses(@Param('email') email: string) {
-    return this.usersService.getClasses(email)
+  @Get('/:email/courses')
+  getCourses(@Param('email') email: string) {
+    return this.usersService.getCourses(email)
   }
 
   @Patch('/:id/add-work/:workId')

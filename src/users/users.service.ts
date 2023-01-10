@@ -63,16 +63,22 @@ export class UsersService {
   //   return this.userModel.findByIdAndUpdate(id, updateUserDto, { new: true }).exec()
   // }
 
-  async addClass(userId: string, classId: string) {
-    return this.userModel.findByIdAndUpdate(userId, { $set: { classes: classId } }, { new: true })
+  /**
+   * Adds the course to the user
+   * @param userId
+   * @param courseId
+   * @returns
+   */
+  async addCourse(userId: string, courseId: string) {
+    return this.userModel.findByIdAndUpdate(userId, { $set: { courses: courseId } }, { new: true })
   }
 
-  async removeClass(userId: string, classId: string) {
-    return this.userModel.findByIdAndUpdate(userId, { $pull: { classes: classId } }, { new: true })
+  async removeCourse(userId: string, courseId: string) {
+    return this.userModel.findByIdAndUpdate(userId, { $pull: { courses: courseId } }, { new: true })
   }
 
-  async getClasses(email: string) {
-    const user = await this.userModel.findOne({ email }).populate('classes')
+  async getCourses(email: string) {
+    const user = await this.userModel.findOne({ email }).populate('courses')
     return user
   }
 

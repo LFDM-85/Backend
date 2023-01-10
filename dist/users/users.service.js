@@ -43,14 +43,14 @@ let UsersService = class UsersService {
     async whoami(email) {
         return await this.userModel.findOne({ email }).exec();
     }
-    async addClass(userId, classId) {
-        return this.userModel.findByIdAndUpdate(userId, { $set: { classes: classId } }, { new: true });
+    async addCourse(userId, courseId) {
+        return this.userModel.findByIdAndUpdate(userId, { $set: { courses: courseId } }, { new: true });
     }
-    async removeClass(userId, classId) {
-        return this.userModel.findByIdAndUpdate(userId, { $pull: { classes: classId } }, { new: true });
+    async removeCourse(userId, courseId) {
+        return this.userModel.findByIdAndUpdate(userId, { $pull: { courses: courseId } }, { new: true });
     }
-    async getClasses(email) {
-        const user = await this.userModel.findOne({ email }).populate('classes');
+    async getCourses(email) {
+        const user = await this.userModel.findOne({ email }).populate('courses');
         return user;
     }
     async addWork(userId, workId) {
