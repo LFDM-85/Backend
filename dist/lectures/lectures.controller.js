@@ -29,6 +29,9 @@ let LecturesController = class LecturesController {
     findAll() {
         return this.lecturesService.findAll();
     }
+    findOne(id) {
+        return this.lecturesService.findOne(id);
+    }
     update(id, updateLectureDto) {
         return this.lecturesService.update(id, updateLectureDto);
     }
@@ -78,6 +81,14 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], LecturesController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    openapi.ApiResponse({ status: 200, type: Object }),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], LecturesController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)('/:id'),
     openapi.ApiResponse({ status: 200, type: require("./schema/lectures.schema").Lecture }),

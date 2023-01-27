@@ -37,6 +37,7 @@ export declare class LecturesController {
     }>, never>[], import("mongoose").Document<unknown, any, import("./schema/lectures.schema").LectureDocument> & import("./schema/lectures.schema").Lecture & Document & Required<{
         _id: string;
     }>, {}, import("./schema/lectures.schema").LectureDocument>;
+    findOne(id: string): Promise<import("./schema/lectures.schema").LectureDocument>;
     update(id: string, updateLectureDto: UpdateLectureDto): Promise<import("./schema/lectures.schema").Lecture>;
     addAssessment(assessmentId: string, lectureId: string): Promise<import("mongoose").Document<unknown, any, import("./schema/lectures.schema").LectureDocument> & import("./schema/lectures.schema").Lecture & Document & Required<{
         _id: string;

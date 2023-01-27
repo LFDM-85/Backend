@@ -24,7 +24,7 @@ let CourseService = class CourseService {
     async create(nameCourse, open) {
         const findOneCourse = await this.courseModel.findOne({ nameCourse });
         if (findOneCourse)
-            throw new common_1.BadRequestException('Class already exist!');
+            throw new common_1.BadRequestException('Course already exist!');
         const oneCourse = await this.courseModel.create({ nameCourse, open });
         return oneCourse.save();
     }
@@ -58,7 +58,7 @@ let CourseService = class CourseService {
         return await this.courseModel.findById(courseId).populate('user');
     }
     async addLecture(lectureId, courseId) {
-        return this.courseModel.findByIdAndUpdate(courseId, { $set: { lecture: lectureId } }, { new: true });
+        return this.courseModel.findByIdAndUpdate(courseId, { $push: { lecture: lectureId } }, { new: false });
     }
     async removeLecture(lectureId, courseId) {
         return this.courseModel.findByIdAndUpdate(courseId, { $pull: { lecture: lectureId } }, { new: true });

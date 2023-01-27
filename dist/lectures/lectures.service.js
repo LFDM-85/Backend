@@ -31,11 +31,14 @@ let LecturesService = class LecturesService {
     findAll() {
         return this.lectureModel.find().populate('assessment');
     }
+    async findOne(id) {
+        return this.lectureModel.findOne({ id });
+    }
     async update(id, updateLectureDto) {
         return await this.lectureModel.findByIdAndUpdate({
             _id: id,
         }, {
-            $set: updateLectureDto
+            $set: updateLectureDto,
         }, { new: true });
     }
     async addAssessment(assessmentId, lectureId) {

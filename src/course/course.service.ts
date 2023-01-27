@@ -11,7 +11,7 @@ export class CourseService {
   async create(nameCourse: string, open: boolean) {
     const findOneCourse = await this.courseModel.findOne({ nameCourse })
 
-    if (findOneCourse) throw new BadRequestException('Class already exist!')
+    if (findOneCourse) throw new BadRequestException('Course already exist!')
 
     const oneCourse = await this.courseModel.create({ nameCourse, open })
 
@@ -60,8 +60,8 @@ export class CourseService {
   async addLecture(lectureId: string, courseId: string) {
     return this.courseModel.findByIdAndUpdate(
       courseId,
-      { $set: { lecture: lectureId } },
-      { new: true },
+      { $push: { lecture: lectureId } },
+      { new: false },
     )
   }
 

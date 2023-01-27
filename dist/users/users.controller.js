@@ -30,8 +30,8 @@ let UsersController = class UsersController {
     findAll() {
         return this.usersService.findAll();
     }
-    findById(id) {
-        return this.usersService.findById(id);
+    findByEmail(email) {
+        return this.usersService.findByEmail(email);
     }
     update(id, updateUserDto) {
         return this.usersService.update(id, updateUserDto);
@@ -92,13 +92,13 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':id'),
+    (0, common_1.Get)(':email'),
     openapi.ApiResponse({ status: 200, type: Object }),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('email')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], UsersController.prototype, "findById", null);
+], UsersController.prototype, "findByEmail", null);
 __decorate([
     (0, common_1.UseGuards)(accessToken_guard_1.AccessTokenGuard),
     (0, common_1.Patch)(':id'),

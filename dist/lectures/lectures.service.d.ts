@@ -37,6 +37,7 @@ export declare class LecturesService {
     }>, never>[], import("mongoose").Document<unknown, any, LectureDocument> & Lecture & Document & Required<{
         _id: string;
     }>, {}, LectureDocument>;
+    findOne(id: string): Promise<LectureDocument>;
     update(id: string, updateLectureDto: UpdateLectureDto): Promise<Lecture>;
     addAssessment(assessmentId: string, lectureId: string): Promise<import("mongoose").Document<unknown, any, LectureDocument> & Lecture & Document & Required<{
         _id: string;

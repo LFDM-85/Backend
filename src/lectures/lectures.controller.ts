@@ -27,6 +27,11 @@ export class LecturesController {
   //   return this.lecturesService.findOne(id);
   // }
 
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.lecturesService.findOne(id)
+  }
+
   @Patch('/:id')
   // @Roles(Role.Professor)
   update(@Param('id') id: string, @Body() updateLectureDto: UpdateLectureDto) {

@@ -1,32 +1,30 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { CreateLectureDto } from './dto/create-lecture.dto';
-import { UpdateLectureDto } from './dto/update-lecture.dto';
-import { Lecture, LectureDocument } from './schema/lectures.schema';
+import { BadRequestException, Injectable } from '@nestjs/common'
+import { InjectModel } from '@nestjs/mongoose'
+import { Model } from 'mongoose'
+import { CreateLectureDto } from './dto/create-lecture.dto'
+import { UpdateLectureDto } from './dto/update-lecture.dto'
+import { Lecture, LectureDocument } from './schema/lectures.schema'
 
 @Injectable()
 export class LecturesService {
-  constructor(@InjectModel(Lecture.name) private lectureModel: Model<LectureDocument>){}
+  constructor(@InjectModel(Lecture.name) private lectureModel: Model<LectureDocument>) {}
   async create(createLectureDto: CreateLectureDto) {
-
-    const { summary} = createLectureDto
+    const { summary } = createLectureDto
 
     const findOneLecture = await this.lectureModel.findOne({ summary })
-    
-    if (findOneLecture) throw new BadRequestException('Lecture already exist!')
-    
-    return await (await this.lectureModel.create(createLectureDto)).save()
 
+    if (findOneLecture) throw new BadRequestException('Lecture already exist!')
+
+    return await (await this.lectureModel.create(createLectureDto)).save()
   }
 
   findAll() {
-    return this.lectureModel.find().populate('assessment');
+    return this.lectureModel.find().populate('assessment')
   }
 
-  // async findOne(id: string) {
-    
-  // }
+  async findOne(id: string): Promise<LectureDocument> {
+    return this.lectureModel.findOne({ id })
+  }
 
   async update(id: string, updateLectureDto: UpdateLectureDto): Promise<Lecture> {
     return await this.lectureModel.findByIdAndUpdate(
@@ -34,17 +32,17 @@ export class LecturesService {
         _id: id,
       },
       {
-        $set: updateLectureDto
+        $set: updateLectureDto,
       },
-      { new: true}
-    );
+      { new: true },
+    )
   }
 
   async addAssessment(assessmentId: string, lectureId: string) {
     return this.lectureModel.findByIdAndUpdate(
       lectureId,
       { $set: { assessment: assessmentId } },
-      {new: true}
+      { new: true },
     )
   }
 
@@ -52,7 +50,7 @@ export class LecturesService {
     return this.lectureModel.findByIdAndUpdate(
       lectureId,
       { $pull: { assessment: assessmentId } },
-      {new: true}
+      { new: true },
     )
   }
 
@@ -64,7 +62,7 @@ export class LecturesService {
     return this.lectureModel.findByIdAndUpdate(
       lectureId,
       { $set: { attendance: attendanceId } },
-      {new: true}
+      { new: true },
     )
   }
 
@@ -72,7 +70,7 @@ export class LecturesService {
     return this.lectureModel.findByIdAndUpdate(
       lectureId,
       { $pull: { assessment: attendanceId } },
-      {new: true}
+      { new: true },
     )
   }
 
@@ -81,18 +79,14 @@ export class LecturesService {
   }
 
   async addWork(workId: string, lectureId: string) {
-    return this.lectureModel.findByIdAndUpdate(
-      lectureId,
-      { $set: { work: workId } },
-      {new: true}
-    )
+    return this.lectureModel.findByIdAndUpdate(lectureId, { $set: { work: workId } }, { new: true })
   }
 
   async removeWork(workId: string, lectureId: string) {
     return this.lectureModel.findByIdAndUpdate(
       lectureId,
       { $pull: { work: workId } },
-      {new: true}
+      { new: true },
     )
   }
 
@@ -100,10 +94,7 @@ export class LecturesService {
     return await this.lectureModel.findById(lectureId).populate('work')
   }
 
-
-
-
   async remove(id: string) {
-    return this.lectureModel.deleteOne({ id }).exec();
+    return this.lectureModel.deleteOne({ id }).exec()
   }
 }
