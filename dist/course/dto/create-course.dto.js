@@ -10,9 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateCourseDto = void 0;
+const openapi = require("@nestjs/swagger");
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreateCourseDto {
+    static _OPENAPI_METADATA_FACTORY() {
+        return { nameCourse: { required: true, type: () => String }, open: { required: true, type: () => Boolean }, lecture: { required: true } };
+    }
 }
 __decorate([
     (0, swagger_1.ApiProperty)({
@@ -32,5 +36,9 @@ __decorate([
     (0, class_validator_1.IsBoolean)(),
     __metadata("design:type", Boolean)
 ], CreateCourseDto.prototype, "open", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    __metadata("design:type", Array)
+], CreateCourseDto.prototype, "lecture", void 0);
 exports.CreateCourseDto = CreateCourseDto;
 //# sourceMappingURL=create-course.dto.js.map

@@ -45,7 +45,7 @@ let CourseService = class CourseService {
         return await this.courseModel.findByIdAndUpdate({
             _id: id,
         }, {
-            $push: updateCourseDto,
+            $addToSet: { updateCourseDto },
         }, { new: true });
     }
     async addUser(userId, courseId) {
@@ -58,7 +58,7 @@ let CourseService = class CourseService {
         return await this.courseModel.findById(courseId).populate('user');
     }
     async addLecture(lectureId, courseId) {
-        return this.courseModel.findByIdAndUpdate(courseId, { $push: { lecture: lectureId } }, { new: false });
+        return this.courseModel.findByIdAndUpdate(courseId, { $set: { lecture: lectureId } }, { new: false });
     }
     async removeLecture(lectureId, courseId) {
         return this.courseModel.findByIdAndUpdate(courseId, { $pull: { lecture: lectureId } }, { new: true });

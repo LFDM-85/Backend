@@ -26,7 +26,18 @@ let UsersService = class UsersService {
         return createdUser.save();
     }
     async findAll() {
-        return this.userModel.find().exec();
+        return await this.userModel
+            .find()
+            .populate({
+            path: 'courses',
+            populate: [
+                {
+                    path: 'lecture',
+                    populate: [{ path: 'assessment' }, { path: 'work' }, { path: 'attendance' }],
+                },
+            ],
+        })
+            .exec();
     }
     async findById(id) {
         return this.userModel.findById(id);
@@ -50,7 +61,15 @@ let UsersService = class UsersService {
         return this.userModel.findByIdAndUpdate(userId, { $pull: { courses: courseId } }, { new: true });
     }
     async getCourses(email) {
-        const user = await this.userModel.findOne({ email }).populate('courses');
+        const user = await this.userModel.findOne({ email }).populate({
+            path: 'courses',
+            populate: [
+                {
+                    path: 'lecture',
+                    populate: [{ path: 'assessment' }, { path: 'work' }, { path: 'attendance' }],
+                },
+            ],
+        });
         return user;
     }
     async addWork(userId, workId) {

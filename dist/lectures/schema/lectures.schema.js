@@ -35,11 +35,11 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Lecture.prototype, "finished", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: assessments_schema_1.Assessment.name }] })),
+    (0, mongoose_1.Prop)({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: assessments_schema_1.Assessment.name }] }),
     __metadata("design:type", Array)
 ], Lecture.prototype, "assessment", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: work_schema_1.Work.name }] })),
+    (0, mongoose_1.Prop)({ type: [{ type: mongoose_2.default.Schema.Types.ObjectId, ref: work_schema_1.Work.name }] }),
     __metadata("design:type", Array)
 ], Lecture.prototype, "work", void 0);
 __decorate([

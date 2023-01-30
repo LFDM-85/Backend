@@ -39,7 +39,7 @@ export class CourseService {
         _id: id,
       },
       {
-        $push: updateCourseDto,
+        $addToSet: { updateCourseDto },
       },
       { new: true },
     )
@@ -60,7 +60,7 @@ export class CourseService {
   async addLecture(lectureId: string, courseId: string) {
     return this.courseModel.findByIdAndUpdate(
       courseId,
-      { $push: { lecture: lectureId } },
+      { $set: { lecture: lectureId } },
       { new: false },
     )
   }

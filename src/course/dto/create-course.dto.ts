@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IsBoolean, IsString, IsNotEmpty } from 'class-validator'
+import { IsBoolean, IsString, IsNotEmpty, IsArray } from 'class-validator'
 
 export class CreateCourseDto {
   @ApiProperty({
@@ -17,4 +17,6 @@ export class CreateCourseDto {
   @IsNotEmpty()
   @IsBoolean()
   open: boolean
+  @IsArray()
+  lecture: [{}]
 }

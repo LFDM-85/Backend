@@ -15,7 +15,18 @@ export class UsersService {
   }
 
   async findAll(): Promise<UserDocument[]> {
-    return this.userModel.find().exec()
+    return await this.userModel
+      .find()
+      .populate({
+        path: 'courses',
+        populate: [
+          {
+            path: 'lecture',
+            populate: [{ path: 'assessment' }, { path: 'work' }, { path: 'attendance' }],
+          },
+        ],
+      })
+      .exec()
   }
 
   async findById(id: string): Promise<UserDocument> {
@@ -33,35 +44,10 @@ export class UsersService {
   async remove(id: string): Promise<UserDocument> {
     return this.userModel.findByIdAndDelete(id).exec()
   }
-  // async findAll() {
-  //   return await this.usersModel
-  //     .find()
-  //     .populate({
-  //       path: 'classes',
-  //       populate: [
-  //         {
-  //           path: 'lecture',
-  //           populate: [{ path: 'assessment' }, { path: 'work' }, { path: 'attendance' }],
-  //         },
-  //       ],
-  //     })
-  //     .exec()
-  // }
-
-  // async findById(id: string): Promise<UserDocument> {
-  //   return this.usersModel.findById(id)
-  // }
-  // async findEmail(email: string): Promise<UserDocument> {
-  //   return this.usersModel.findOne({ email }).exec()
-  // }
 
   async whoami(email: string) {
     return await this.userModel.findOne({ email }).exec()
   }
-
-  // async update(id: string, updateUserDto: UpdateUserDto): Promise<UserDocument> {
-  //   return this.userModel.findByIdAndUpdate(id, updateUserDto, { new: true }).exec()
-  // }
 
   /**
    * Adds the course to the user
@@ -78,7 +64,15 @@ export class UsersService {
   }
 
   async getCourses(email: string) {
-    const user = await this.userModel.findOne({ email }).populate('courses')
+    const user = await this.userModel.findOne({ email }).populate({
+      path: 'courses',
+      populate: [
+        {
+          path: 'lecture',
+          populate: [{ path: 'assessment' }, { path: 'work' }, { path: 'attendance' }],
+        },
+      ],
+    })
     return user
   }
 
