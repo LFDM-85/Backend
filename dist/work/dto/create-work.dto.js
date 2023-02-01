@@ -10,9 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateWorkDto = void 0;
+const openapi = require("@nestjs/swagger");
 const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreateWorkDto {
+    static _OPENAPI_METADATA_FACTORY() {
+        return { filename: { required: true, type: () => String }, filepath: { required: true, type: () => String }, owner: { required: true, type: () => String } };
+    }
 }
 __decorate([
     (0, swagger_1.ApiProperty)({

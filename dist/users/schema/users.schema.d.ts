@@ -1,6 +1,6 @@
 import mongoose, { Document } from 'mongoose';
 import { Course } from '../../course/schema/course.schema';
-export declare type UserDocument = Users & Document;
+export type UserDocument = Users & Document;
 export declare class Users {
     _id: string;
     name: string;
@@ -12,4 +12,4 @@ export declare class Users {
     refreshToken?: string;
     courses: [Course];
 }
-export declare const UsersSchema: mongoose.Schema<Users, mongoose.Model<Users, any, any, any, any>, {}, {}, {}, {}, "type", Users>;
+export declare const UsersSchema: mongoose.Schema<Users, mongoose.Model<Users, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Users>;

@@ -1,5 +1,5 @@
 import { Strategy } from 'passport-jwt';
-declare type JwtPayload = {
+type JwtPayload = {
     sub: string;
     email: string;
 };

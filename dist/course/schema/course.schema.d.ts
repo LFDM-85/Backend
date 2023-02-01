@@ -1,7 +1,7 @@
 import mongoose, { Document } from 'mongoose';
 import { Users } from 'src/users/schema/users.schema';
 import { Lecture } from 'src/lectures/schema/lectures.schema';
-export declare type CourseDocument = Course & Document;
+export type CourseDocument = Course & Document;
 export declare class Course {
     _id: string;
     nameCourse: string;
@@ -9,4 +9,4 @@ export declare class Course {
     user: Users[];
     lecture: [Lecture];
 }
-export declare const CourseSchema: mongoose.Schema<Course, mongoose.Model<Course, any, any, any, any>, {}, {}, {}, {}, "type", Course>;
+export declare const CourseSchema: mongoose.Schema<Course, mongoose.Model<Course, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Course>;

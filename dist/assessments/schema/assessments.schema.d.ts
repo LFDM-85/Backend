@@ -23,10 +23,10 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-export declare type AssessmentDocument = Assessment & Document;
+export type AssessmentDocument = Assessment & Document;
 export declare class Assessment {
     _id: string;
     assessmentValue: number;
     userEmail: string;
 }
-export declare const AssessmentSchema: import("mongoose").Schema<Assessment, import("mongoose").Model<Assessment, any, any, any, any>, {}, {}, {}, {}, "type", Assessment>;
+export declare const AssessmentSchema: import("mongoose").Schema<Assessment, import("mongoose").Model<Assessment, any, any, any, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Assessment>;

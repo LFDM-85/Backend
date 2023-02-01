@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import { Assessment } from 'src/assessments/schema/assessments.schema';
 import { Attendance } from 'src/attendance/schema/attendance.schema';
 import { Work } from 'src/work/schema/work.schema';
-export declare type LectureDocument = Lecture & Document;
+export type LectureDocument = Lecture & Document;
 export declare class Lecture {
     _id: string;
     summary: string;
@@ -12,4 +12,4 @@ export declare class Lecture {
     work: Work[];
     attendance: Attendance;
 }
-export declare const LectureSchema: mongoose.Schema<Lecture, mongoose.Model<Lecture, any, any, any, any>, {}, {}, {}, {}, "type", Lecture>;
+export declare const LectureSchema: mongoose.Schema<Lecture, mongoose.Model<Lecture, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Lecture>;
