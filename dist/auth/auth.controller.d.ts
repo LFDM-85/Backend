@@ -11,11 +11,12 @@ export declare class AuthController {
             accessToken: string;
             refreshToken: string;
         };
-        user: import("../users/schema/users.schema").UserDocument;
+        user: import("src/users/schema/users.schema").UserDocument;
     }>;
     logout(req: Request): void;
     refreshTokens(req: Request): Promise<{
         accessToken: string;
         refreshToken: string;
     }>;
+    whoami(req: Request): Promise<import("src/users/schema/users.schema").UserDocument>;
 }

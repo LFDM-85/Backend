@@ -43,6 +43,10 @@ let AuthService = class AuthService {
         await this.updateRefreshToken(user._id, tokens.refreshToken);
         return { tokens, user };
     }
+    async whoami(userId) {
+        const user = await this.usersService.findById(userId);
+        return user;
+    }
     async logout(userId) {
         this.usersService.update(userId, { refreshToken: null });
     }

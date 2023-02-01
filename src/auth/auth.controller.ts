@@ -6,6 +6,7 @@ import { RefreshTokenGuard } from 'src/common/guards/refreshToken.guard'
 import { CreateUserDto } from 'src/users/dto/create-user.dto'
 import { AuthService } from './auth.service'
 import { AuthDto } from './dto/auth.dto'
+import { Users } from 'src/users/schema/users.schema'
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -34,5 +35,11 @@ export class AuthController {
     const userId = req.user['sub']
     const refreshToken = req.user['refreshToken']
     return this.authService.refreshTokens(userId, refreshToken)
+  }
+
+  @UseGuards(AccessTokenGuard)
+  @Get('/whoami')
+  whoami(@Req() req: Request) {
+    return this.authService.whoami(req.user['sub'])
   }
 }
