@@ -13,7 +13,7 @@ import { AttendanceModule } from './attendance/attendance.module'
 import { CloudinaryModule } from './cloudinary/cloudinary.module'
 import { ConfigModule } from '@nestjs/config'
 
-dotenv.config()
+dotenv.config({ path: './var/.env' })
 
 const URL = process.env.DATABASE_URL
 

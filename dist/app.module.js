@@ -19,7 +19,7 @@ const work_module_1 = require("./work/work.module");
 const attendance_module_1 = require("./attendance/attendance.module");
 const cloudinary_module_1 = require("./cloudinary/cloudinary.module");
 const config_1 = require("@nestjs/config");
-dotenv.config();
+dotenv.config({ path: './var/.env' });
 const URL = process.env.DATABASE_URL;
 let AppModule = class AppModule {
 };
