@@ -37,9 +37,9 @@ export class AuthController {
     return this.authService.refreshTokens(userId, refreshToken)
   }
 
-  @UseGuards(AccessTokenGuard)
-  @Get('/whoami')
-  whoami(@Req() req: Request) {
-    return this.authService.whoami(req.user['sub'])
-  }
+  // @UseGuards(AccessTokenGuard)
+  // @Get('/whoami')
+  // whoami(@Req() req: Request) {
+  //   return this.authService.whoami(req.user['sub'])
+  // }
 }

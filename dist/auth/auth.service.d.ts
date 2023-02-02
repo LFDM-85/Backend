@@ -16,7 +16,6 @@ export declare class AuthService {
         };
         user: import("../users/schema/users.schema").UserDocument;
     }>;
-    whoami(userId: string): Promise<import("../users/schema/users.schema").UserDocument>;
     logout(userId: string): Promise<void>;
     refreshTokens(userId: string, refreshToken: string): Promise<{
         accessToken: string;
