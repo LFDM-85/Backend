@@ -5,7 +5,7 @@ const app_module_1 = require("./app.module");
 const helmet_1 = require("helmet");
 const dotenv = require("dotenv");
 const swagger_1 = require("@nestjs/swagger");
-dotenv.config({ path: './var/.env' });
+dotenv.config();
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     const options = {

@@ -4,7 +4,7 @@ import helmet from 'helmet'
 import * as dotenv from 'dotenv'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
-dotenv.config({ path: './var/.env' })
+dotenv.config()
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
