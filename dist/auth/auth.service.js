@@ -45,6 +45,8 @@ let AuthService = class AuthService {
     }
     async whoami(userId) {
         const user = await this.usersService.findById(userId);
+        if (!user)
+            throw new common_1.BadRequestException('User does not exist');
         return user;
     }
     async logout(userId) {

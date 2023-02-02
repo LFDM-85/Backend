@@ -45,6 +45,7 @@ export class AuthService {
 
   async whoami(userId: string) {
     const user = await this.usersService.findById(userId)
+    if (!user) throw new BadRequestException('User does not exist')
     return user
   }
 
