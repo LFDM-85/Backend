@@ -39,6 +39,9 @@ let AuthController = class AuthController {
         const refreshToken = req.user['refreshToken'];
         return this.authService.refreshTokens(userId, refreshToken);
     }
+    whoami(req) {
+        return this.authService.whoami(req.user['sub']);
+    }
 };
 __decorate([
     (0, common_1.Post)('/signup'),
@@ -74,6 +77,15 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "refreshTokens", null);
+__decorate([
+    (0, common_1.UseGuards)(accessToken_guard_1.AccessTokenGuard),
+    (0, common_1.Get)('/whoami'),
+    openapi.ApiResponse({ status: 200, type: Object }),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], AuthController.prototype, "whoami", null);
 AuthController = __decorate([
     (0, swagger_1.ApiTags)('Auth'),
     (0, common_1.Controller)('auth'),

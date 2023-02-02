@@ -43,6 +43,12 @@ let AuthService = class AuthService {
         await this.updateRefreshToken(user._id, tokens.refreshToken);
         return { tokens, user };
     }
+    async whoami(userId) {
+        const user = await this.usersService.findById(userId);
+        if (!user)
+            throw new common_1.BadRequestException('User does not exist');
+        return user;
+    }
     async logout(userId) {
         this.usersService.update(userId, { refreshToken: null });
     }

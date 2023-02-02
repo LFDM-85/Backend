@@ -18,4 +18,5 @@ export declare class AuthController {
         accessToken: string;
         refreshToken: string;
     }>;
+    whoami(req: Request): Promise<import("src/users/schema/users.schema").UserDocument>;
 }
